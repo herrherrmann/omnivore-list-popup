@@ -4,9 +4,6 @@
 			"strict_min_version": "58.0a1"
 		}
 	},
-	"background": {
-		"scripts": ["background.js"]
-	},
 	"browser_action": {
 		"browser_style": true,
 		"default_title": "Omnivore Lister",
