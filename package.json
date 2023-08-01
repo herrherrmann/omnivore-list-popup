@@ -1,0 +1,20 @@
+{
+  "name": "omnivore-browser-extension",
+  "description": "",
+  "version": "0.0.1",
+  "author": "Sebastian Herrmann",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herrherrmann/omnivore-browser-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/herrherrmann/omnivore-browser-extension/issues"
+  },
+  "homepage": "https://github.com/herrherrmann/omnivore-browser-extension#readme",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "8.46.0",
+    "prettier": "3.0.0"
+  }
+}

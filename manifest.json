@@ -9,13 +9,13 @@
   },
   "browser_action": {
     "browser_style": true,
-    "default_title": "Tabs, tabs, tabs",
-    "default_popup": "tabs.html"
+    "default_title": "Omnivore Lister",
+    "default_popup": "index.html"
   },
   "description": "A list of methods you can perform on a tab.",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/tabs-tabs-tabs",
+  "homepage_url": "https://github.com/herrherrmann/omnivore-browser-extension",
   "manifest_version": 2,
-  "name": "Tabs, tabs, tabs",
+  "name": "Omnivore Lister",
   "permissions": [
     "tabs"
   ],
