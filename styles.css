@@ -1,20 +1,27 @@
-html, body {
-  width: 350px;
+:root {
+	--background-color: #f9f9fb;
+	--accent-color: #0060df;
+	--text-color-primary: #15141a;
+	--text-color-secondary: #5b5b66;
+	--border-color: #e0e0e6;
 }
 
-a {
-  margin: 10px;
-  display: inline-block;
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-color: #2b2a33;
+		--accent-color: #00ddff;
+		--text-color-primary: #fbfbfe;
+		--text-color-secondary: #cfcfd8;
+		--border-color: #e0e0e6;
+	}
 }
 
-.switch-tabs {
-  padding-left: 10px;
+html,
+body {
+	width: 350px;
+	background-color: var(--background-color);
+	color: var(--text-color);
 }
 
-.switch-tabs a {
-  display: block;
-}
-
-.panel {
-  margin: 5px;
+.content {
 }
