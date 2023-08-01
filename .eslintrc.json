@@ -13,6 +13,7 @@
 		"indent": ["warn", "tab"],
 		"linebreak-style": ["warn", "unix"],
 		"quotes": ["warn", "single"],
-		"semi": ["warn", "never"]
+		"semi": ["warn", "never"],
+		"no-console": "warn"
 	}
 }
