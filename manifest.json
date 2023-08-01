@@ -1,23 +1,21 @@
 {
-  "browser_specific_settings": {
-    "gecko": {
-      "strict_min_version": "58.0a1"
-    }
-  },
-  "background": {
-      "scripts": ["background.js"]
-  },
-  "browser_action": {
-    "browser_style": true,
-    "default_title": "Omnivore Lister",
-    "default_popup": "index.html"
-  },
-  "description": "A list of methods you can perform on a tab.",
-  "homepage_url": "https://github.com/herrherrmann/omnivore-browser-extension",
-  "manifest_version": 2,
-  "name": "Omnivore Lister",
-  "permissions": [
-    "tabs"
-  ],
-  "version": "1.0"
+	"browser_specific_settings": {
+		"gecko": {
+			"strict_min_version": "58.0a1"
+		}
+	},
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"browser_action": {
+		"browser_style": true,
+		"default_title": "Omnivore Lister",
+		"default_popup": "index.html"
+	},
+	"description": "A list of methods you can perform on a tab.",
+	"homepage_url": "https://github.com/herrherrmann/omnivore-browser-extension",
+	"manifest_version": 2,
+	"name": "Omnivore Lister",
+	"permissions": ["tabs", "https://api-prod.omnivore.app/*"],
+	"version": "1.0"
 }
