@@ -141,6 +141,7 @@ async function initialize() {
 		list.appendChild(listItem)
 	})
 	const content = document.getElementById('content')
+	content.textContent = ''
 	content.appendChild(list)
 }
 
