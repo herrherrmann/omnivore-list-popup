@@ -140,6 +140,11 @@ async function initialize() {
 		const { node } = item
 		link.textContent = node.title || '(No title)'
 		link.setAttribute('href', node.url)
+		link.addEventListener('click', (event) => {
+			event.preventDefault()
+			browser.tabs.create({ url: node.url })
+			window.close()
+		})
 		listItem.appendChild(link)
 		list.appendChild(listItem)
 	})
