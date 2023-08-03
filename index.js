@@ -136,20 +136,24 @@ async function initialize() {
 	const items = await loadItems()
 	items.forEach((item) => {
 		const listItem = document.createElement('li')
-		const link = document.createElement('a')
-		const { node } = item
-		link.textContent = node.title || '(No title)'
-		link.setAttribute('href', node.url)
-		link.addEventListener('click', (event) => {
-			event.preventDefault()
-			browser.tabs.create({ url: node.url })
-			window.close()
-		})
+		const link = buildLink(item.node)
 		listItem.appendChild(link)
 		list.appendChild(listItem)
 	})
 	const content = document.getElementById('content')
 	content.appendChild(list)
+}
+
+function buildLink(node) {
+	const link = document.createElement('a')
+	link.textContent = node.title || '(No title)'
+	link.setAttribute('href', node.url)
+	link.addEventListener('click', (event) => {
+		event.preventDefault()
+		browser.tabs.create({ url: node.url })
+		window.close()
+	})
+	return link
 }
 
 document.addEventListener('DOMContentLoaded', initialize)
