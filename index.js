@@ -177,8 +177,8 @@ async function reloadItems() {
 	const items = await loadItems()
 	items.forEach((item) => {
 		const listItem = document.createElement('li')
-		const link = buildLink(item.node)
-		listItem.appendChild(link)
+		const itemNode = buildItemNode(item.node)
+		listItem.appendChild(itemNode)
 		list.appendChild(listItem)
 	})
 	const content = document.getElementById('content')
@@ -186,7 +186,7 @@ async function reloadItems() {
 	content.appendChild(list)
 }
 
-function buildLink(node) {
+function buildItemNode(node) {
 	const link = document.createElement('a')
 	const title = document.createElement('div')
 	title.className = 'title'

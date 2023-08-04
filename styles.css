@@ -18,7 +18,7 @@
 		--accent-color: #00ddff;
 		--text-color-primary: #fbfbfe;
 		--text-color-secondary: #cfcfd8;
-		--border-color: #e0e0e6;
+		--border-color: #42414d;
 		--card-background: #5b5b66;
 		--card-background-hover: #42414d;
 		--gray-dark: #15141a;
@@ -68,8 +68,8 @@ body {
 	cursor: wait;
 }
 
-.toolbar button img {
-	height: 1.2em;
+.toolbar button svg {
+	width: 1.2em;
 }
 
 .content {
