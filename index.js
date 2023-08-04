@@ -164,6 +164,7 @@ mutation SaveUrl($input: SaveUrlInput!) {
 			clientRequestId: uuid,
 		},
 	}
+	// TODO: Error handling!
 	await sendAPIRequest(query, variables)
 }
 
@@ -219,6 +220,10 @@ document.addEventListener('click', async (event) => {
 	}
 	if (element.classList.contains('refresh')) {
 		await reloadItems()
+	}
+	if (element.classList.contains('open-omnivore')) {
+		browser.tabs.create({ url: 'https://omnivore.app/' })
+		window.close()
 	}
 	element.removeAttribute('disabled')
 	event.preventDefault()
