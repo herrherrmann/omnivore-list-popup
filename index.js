@@ -187,22 +187,35 @@ async function reloadItems() {
 }
 
 function buildItemNode(node) {
-	const link = document.createElement('a')
+	const item = document.createElement('a')
+	item.className = 'item'
+	const image = document.createElement(node.image ? 'img' : 'div')
+	image.className = 'image'
+	if (node.image) {
+		image.src = node.image
+	} else {
+		image.innerText = node.title.substring(0, 1)
+		image.style = `background-color: #${node.id.substring(0, 6)};`
+	}
+	const textDiv = document.createElement('div')
+	textDiv.className = 'text'
 	const title = document.createElement('div')
 	title.className = 'title'
 	title.textContent = node.title || '(No title)'
-	link.appendChild(title)
+	textDiv.appendChild(title)
 	const url = document.createElement('div')
 	url.className = 'url'
 	url.textContent = node.url
-	link.appendChild(url)
-	link.setAttribute('href', node.url)
-	link.addEventListener('click', (event) => {
+	textDiv.appendChild(url)
+	item.appendChild(image)
+	item.appendChild(textDiv)
+	item.setAttribute('href', node.url)
+	item.addEventListener('click', (event) => {
 		event.preventDefault()
 		browser.tabs.create({ url: node.url })
 		window.close()
 	})
-	return link
+	return item
 }
 
 document.addEventListener('DOMContentLoaded', initialize)

@@ -92,8 +92,9 @@ li:last-of-type {
 	margin: 0;
 }
 
-li a {
-	display: block;
+.item {
+	display: flex;
+	gap: 7px;
 	background-color: var(--card-background);
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius);
@@ -102,17 +103,36 @@ li a {
 	text-decoration: none;
 }
 
-li a:hover {
+.item:hover {
 	background-color: var(--card-background-hover);
 }
 
-li a .title {
+.item .image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 0 0 32px;
+	width: 32px;
+	height: 32px;
+	object-fit: contain;
+	border-radius: var(--border-radius);
+	font-size: 18px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.item .text {
+	flex: 1 1 auto;
+	display: block;
+}
+
+.item .text .title {
 	color: var(--text-color-primary);
 	font-weight: 600;
 	margin-bottom: 3px;
 }
 
-li a .url {
+.item .text .url {
 	color: var(--text-color-secondary);
 	font-size: 11px;
 }
