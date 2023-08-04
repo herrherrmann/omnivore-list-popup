@@ -72,6 +72,28 @@ body {
 	width: 1.2em;
 }
 
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2px;
+	height: 150px;
+}
+
+.loading svg {
+	height: 1em;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.rotating {
+	animation: rotate 1s linear 0s infinite;
+}
+
 .content {
 	max-height: 450px;
 	overflow: auto;

@@ -172,7 +172,20 @@ async function initialize() {
 	await reloadItems()
 }
 
+function showLoadingState() {
+	const loadingContainer = document.getElementById('loading')
+	loadingContainer.style = 'display: flex;'
+}
+
+function hideLoadingState() {
+	const loadingContainer = document.getElementById('loading')
+	loadingContainer.style = 'display: none;'
+}
+
 async function reloadItems() {
+	showLoadingState()
+	const content = document.getElementById('content')
+	content.textContent = ''
 	const list = document.createElement('ul')
 	const items = await loadItems()
 	items.forEach((item) => {
@@ -181,9 +194,8 @@ async function reloadItems() {
 		listItem.appendChild(itemNode)
 		list.appendChild(listItem)
 	})
-	const content = document.getElementById('content')
-	content.textContent = ''
 	content.appendChild(list)
+	hideLoadingState()
 }
 
 function buildItemNode(node) {
@@ -232,7 +244,10 @@ document.addEventListener('click', async (event) => {
 		await reloadItems()
 	}
 	if (element.classList.contains('refresh')) {
+		const icon = element.querySelector('svg')
+		icon.classList.add('rotating')
 		await reloadItems()
+		icon.classList.remove('rotating')
 	}
 	if (element.classList.contains('open-omnivore')) {
 		browser.tabs.create({ url: 'https://omnivore.app/' })
