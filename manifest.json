@@ -8,6 +8,14 @@
 	"browser_action": {
 		"browser_style": true,
 		"default_title": "Omnivore Lister",
+		"default_icon": "icons/wallet-black.png",
+		"theme_icons": [
+			{
+				"light": "icons/wallet-black.png",
+				"dark": "icons/wallet-white.png",
+				"size": 32
+			}
+		],
 		"default_popup": "index.html"
 	},
 	"options_ui": {
