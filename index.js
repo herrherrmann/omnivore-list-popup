@@ -106,19 +106,26 @@ async function loadApiKey() {
 	return getting.then(onGot, onError)
 }
 
-async function loadItems() {
+async function getActiveTab() {
+	function onGot(tabs) {
+		const activeTab = tabs[0]
+		return Promise.resolve(activeTab)
+	}
+	function onError(error) {
+		return Promise.reject(error)
+	}
+	const querying = browser.tabs.query({ active: true, currentWindow: true })
+	return querying.then(onGot, onError)
+}
+
+async function sendAPIRequest(query, variables) {
 	const apiKey = await loadApiKey()
 	if (!apiKey) {
 		// TODO: Show hint about missing API key.
 		return
 	}
 	const response = await fetch(API_URL, {
-		body: JSON.stringify({
-			query: searchQuery,
-			variables: {
-				first: 10,
-			},
-		}),
+		body: JSON.stringify({ query, variables }),
 		headers: {
 			Authorization: apiKey,
 			'Content-Type': 'application/json',
@@ -126,12 +133,45 @@ async function loadItems() {
 		method: 'POST',
 	})
 	const graphQLResult = await response.json()
-	const { data } = graphQLResult
+	return graphQLResult.data
+}
+
+async function loadItems() {
+	const data = await sendAPIRequest(searchQuery, { first: 10 })
 	const edges = data.search.edges
 	return edges
 }
 
+async function addLink(url) {
+	const query = `
+mutation SaveUrl($input: SaveUrlInput!) {
+	saveUrl(input: $input) {
+		... on SaveSuccess {
+			url
+			clientRequestId
+		}
+		... on SaveError {
+			errorCodes
+			message
+		}
+	}
+}`
+	const uuid = self.crypto.randomUUID()
+	const variables = {
+		input: {
+			url,
+			source: 'api',
+			clientRequestId: uuid,
+		},
+	}
+	await sendAPIRequest(query, variables)
+}
+
 async function initialize() {
+	await reloadItems()
+}
+
+async function reloadItems() {
 	const list = document.createElement('ul')
 	const items = await loadItems()
 	items.forEach((item) => {
@@ -165,3 +205,21 @@ function buildLink(node) {
 }
 
 document.addEventListener('DOMContentLoaded', initialize)
+
+document.addEventListener('click', async (event) => {
+	const element = event.target
+	if (element.tagName !== 'BUTTON') {
+		return
+	}
+	element.disabled = true
+	if (element.classList.contains('add-current-page')) {
+		const activeTab = await getActiveTab()
+		await addLink(activeTab.url)
+		await reloadItems()
+	}
+	if (element.classList.contains('refresh')) {
+		await reloadItems()
+	}
+	element.removeAttribute('disabled')
+	event.preventDefault()
+})

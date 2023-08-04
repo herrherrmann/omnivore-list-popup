@@ -8,6 +8,7 @@
 	--card-background-hover: #f0f0f4;
 	--gray-dark: #bfbfc9;
 
+	--outer-padding: 5px;
 	--border-radius: 5px;
 }
 
@@ -38,12 +39,41 @@ body {
 	font-size: 13px;
 }
 
-body {
-	padding: 5px;
+.toolbar {
+	display: flex;
+	gap: 5px;
+	padding: var(--outer-padding);
+	background-color: var(--card-background);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.toolbar button {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	font-size: inherit;
+	padding: 3px 6px;
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+}
+
+.toolbar button:hover {
+	background-color: var(--card-background-hover);
+}
+
+.toolbar button:disabled {
+	opacity: 0.8;
+	cursor: wait;
+}
+
+.toolbar button img {
+	height: 1.2em;
 }
 
 ul {
 	list-style-type: none;
+	padding: var(--outer-padding);
 }
 
 li {
