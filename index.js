@@ -147,7 +147,14 @@ async function initialize() {
 
 function buildLink(node) {
 	const link = document.createElement('a')
-	link.textContent = node.title || '(No title)'
+	const title = document.createElement('div')
+	title.className = 'title'
+	title.textContent = node.title || '(No title)'
+	link.appendChild(title)
+	const url = document.createElement('div')
+	url.className = 'url'
+	url.textContent = node.url
+	link.appendChild(url)
 	link.setAttribute('href', node.url)
 	link.addEventListener('click', (event) => {
 		event.preventDefault()

@@ -1,10 +1,11 @@
 :root {
-	--background-color: #f9f9fb;
+	--background-color: #e0e0e6;
 	--accent-color: #0060df;
 	--text-color-primary: #15141a;
 	--text-color-secondary: #5b5b66;
 	--border-color: #e0e0e6;
-	--gray-light: #fbfbfe;
+	--card-background: #fbfbfe;
+	--card-background-hover: #f0f0f4;
 	--gray-dark: #bfbfc9;
 
 	--border-radius: 5px;
@@ -17,7 +18,8 @@
 		--text-color-primary: #fbfbfe;
 		--text-color-secondary: #cfcfd8;
 		--border-color: #e0e0e6;
-		--gray-light: #5b5b66;
+		--card-background: #5b5b66;
+		--card-background-hover: #42414d;
 		--gray-dark: #15141a;
 	}
 }
@@ -31,9 +33,9 @@
 html,
 body {
 	width: 350px;
-	background-color: var(--gray-dark);
+	background-color: var(--background-color);
 	color: var(--text-color);
-	font-size: 15px;
+	font-size: 13px;
 }
 
 body {
@@ -47,13 +49,17 @@ ul {
 li {
 	display: block;
 	padding: 0;
-	margin: 0 0 5px 0;
+	margin: 0 0 3px 0;
+}
+
+li:last-of-type {
+	margin: 0;
 }
 
 li a {
 	display: block;
-	background-color: var(--background-color);
-	border: 1px solid var(--gray-light);
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius);
 	padding: 10px;
 	color: var(--text-color-primary);
@@ -61,5 +67,16 @@ li a {
 }
 
 li a:hover {
-	background-color: var(--gray-dark);
+	background-color: var(--card-background-hover);
+}
+
+li a .title {
+	color: var(--accent-color);
+	font-weight: 500;
+	margin-bottom: 3px;
+}
+
+li a .url {
+	color: var(--text-color-secondary);
+	font-size: 11px;
 }
