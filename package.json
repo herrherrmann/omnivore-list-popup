@@ -1,17 +1,17 @@
 {
-  "name": "omnivore-browser-extension",
-  "description": "",
+  "name": "omnivore-list-popup",
+  "description": "Browser extension to show a popup with a list of your Omnivore articles.",
   "version": "0.0.1",
   "author": "Sebastian Herrmann",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/herrherrmann/omnivore-browser-extension.git"
+    "url": "git+https://github.com/herrherrmann/omnivore-list-popup.git"
   },
   "bugs": {
-    "url": "https://github.com/herrherrmann/omnivore-browser-extension/issues"
+    "url": "https://github.com/herrherrmann/omnivore-list-popup/issues"
   },
-  "homepage": "https://github.com/herrherrmann/omnivore-browser-extension#readme",
+  "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "main": "index.js",
   "devDependencies": {
     "eslint": "8.46.0",

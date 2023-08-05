@@ -1,7 +1,7 @@
 {
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "omnivore-browser-extension@herrherrmann.net",
+			"id": "omnivore-list-popup@herrherrmann.net",
 			"strict_min_version": "58.0a1"
 		}
 	},
@@ -21,10 +21,14 @@
 	"options_ui": {
 		"page": "options.html"
 	},
-	"description": "A list of methods you can perform on a tab.",
-	"homepage_url": "https://github.com/herrherrmann/omnivore-browser-extension",
+	"description": "Show a popup with a list of your Omnivore articles to quickly open or archive.",
+	"homepage_url": "https://github.com/herrherrmann/omnivore-list-popup",
 	"manifest_version": 2,
-	"name": "Omnivore Lister",
+	"name": "Omnivore List Popup",
+	"icons": {
+		"48": "icons/wallet-48.png",
+		"96": "icons/wallet-96.png"
+	},
 	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
 	"version": "1.0"
 }
