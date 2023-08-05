@@ -21,5 +21,7 @@ Show a popup with a list of your Omnivore articles to quickly open or archive.
 ## Todos
 
 - [ ] Chrome compatibility
+- [ ] Improve onboarding, e.g. make it possible to enter API key in popup
+- [ ] Improve error handling
 - [ ] Internationalization
 - [ ] Split up code more (needs a bundler like Rollup)
