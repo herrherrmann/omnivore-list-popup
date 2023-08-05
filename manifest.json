@@ -7,7 +7,7 @@
 	},
 	"browser_action": {
 		"browser_style": true,
-		"default_title": "Omnivore Lister",
+		"default_title": "Omnivore List Popup",
 		"default_icon": "icons/wallet-black.png",
 		"theme_icons": [
 			{

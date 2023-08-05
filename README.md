@@ -6,7 +6,11 @@ Show a popup with a list of your Omnivore articles to quickly open or archive.
 
 ## Installation & Usage
 
-1. Download the extension from the
+1. Get an [Omnivore API Key](https://omnivore.app/settings/api) through your Omnivore Account.
+2. Install the extension from the [Firefox Extensions page](https://addons.mozilla.org/firefox/extensions/).
+3. Go into the extension’s settings and paste your Omnivore API key.
+4. Launch the extension by clicking the new "Omnivore List Popup" button in your Firefox extension toolbar/dropdown.
+5. Optional: Add the extension to your always-visible toolbar.
 
 ## Development Setup
 
