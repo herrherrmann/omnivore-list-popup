@@ -225,7 +225,9 @@ function buildItemNode(node) {
 	item.addEventListener('click', (event) => {
 		event.preventDefault()
 		browser.tabs.create({ url: node.url })
-		window.close()
+		if (!event.metaKey) {
+			window.close()
+		}
 	})
 	return item
 }
