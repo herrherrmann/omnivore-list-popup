@@ -1,6 +1,6 @@
 # Omnivore List Popup Firefox Extension
 
-Show a popup with a list of your Omnivore articles to quickly open or archive.
+Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to quickly open or archive.
 
 ![Screenshot of the extension running in Firefox](docs/screenshot.jpg)
 
@@ -18,10 +18,24 @@ Show a popup with a list of your Omnivore articles to quickly open or archive.
 2. Install dependencies with `npm install`.
 3. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox).
 
-## Todos
+## Contributing
 
+If you have ideas or issues, please get in touch! You can either use [GitHub issues](https://github.com/herrherrmann/omnivore-list-popup/issues) or contact [herrherrmann](https://github.com/herrherrmann/) directly.
+
+## Todos & Ideas
+
+- [ ] Add archiving feature for list items
+- [ ] Improve styles on Settings page
 - [ ] Chrome compatibility
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
 - [ ] Internationalization
+- [ ] Cache list items locally for offline usage
+- [ ] Highlight the popup button if the current page is added to Omnivore
 - [ ] Split up code more (needs a bundler like Rollup)
+
+## Acknowledgements
+
+- Thanks to the amazing [In My Pocket](https://inmypocketaddon.com/) extension for inspiring this project. 👏
+- Thanks to the [Omnivore team](https://omnivore.app/) for the nice Pocket alternative and open API.
+- Thanks to the [Lucide project](https://lucide.dev/) for the icon set.
