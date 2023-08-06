@@ -19,6 +19,8 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 3. Run the build with `npm run build` to generate the output files.
 4. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox).
 
+- `npm run dev` is available to watch files for changes and auto-build.
+
 ## Contributing
 
 If you have ideas or issues, please get in touch! You can either use [GitHub issues](https://github.com/herrherrmann/omnivore-list-popup/issues) or contact [herrherrmann](https://github.com/herrherrmann/) directly.

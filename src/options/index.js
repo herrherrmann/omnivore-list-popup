@@ -1,23 +1,16 @@
+import { loadApiKey, saveApiKey } from '../services/storage'
+
 const apiKeyFieldSelector = '#api-key'
 
-function saveOptions(event) {
-	event.preventDefault()
-	browser.storage.sync.set({
-		apiKey: document.querySelector(apiKeyFieldSelector).value,
-	})
+async function restoreOptions() {
+	const options = await loadApiKey()
+	document.querySelector(apiKeyFieldSelector).value = options.apiKey || ''
 }
 
-function restoreOptions() {
-	function setCurrentChoice(result) {
-		document.querySelector(apiKeyFieldSelector).value = result.apiKey || ''
-	}
-
-	function onError(error) {
-		console.log(`Error: ${error}`)
-	}
-
-	const getting = browser.storage.sync.get('apiKey')
-	getting.then(setCurrentChoice, onError)
+async function saveOptions(event) {
+	event.preventDefault()
+	const apiKey = document.querySelector(apiKeyFieldSelector).value
+	await saveApiKey(apiKey)
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions)

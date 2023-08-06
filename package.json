@@ -13,14 +13,15 @@
   },
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
-    "build": "rollup --config"
+    "dev": "webpack --watch",
+    "build": "webpack"
   },
   "devDependencies": {
-    "@rollup/plugin-swc": "^0.1.1",
     "@types/chrome": "^0.0.243",
     "@types/firefox-webext-browser": "^111.0.1",
     "eslint": "8.46.0",
     "prettier": "3.0.0",
-    "rollup": "^3.27.2"
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }
