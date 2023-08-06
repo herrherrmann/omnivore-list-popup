@@ -98,7 +98,6 @@ const searchQuery = `
 async function sendAPIRequest(query, variables) {
 	const apiKey = await loadApiKey()
 	if (!apiKey) {
-		// TODO: Show hint about missing API key.
 		return
 	}
 	const response = await fetch(API_URL, {

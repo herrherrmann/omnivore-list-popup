@@ -6,7 +6,11 @@
 	--border-color: #e0e0e6;
 	--card-background: #fbfbfe;
 	--card-background-hover: #f0f0f4;
-	--buttons-container-background: linear-gradient(90deg, rgba(251,251,254,0) 0%, rgba(251,251,254,1) 100%);
+	--buttons-container-background: linear-gradient(
+		90deg,
+		rgba(251, 251, 254, 0) 0%,
+		rgba(251, 251, 254, 1) 100%
+	);
 	--gray-dark: #bfbfc9;
 
 	--outer-padding: 5px;
@@ -22,7 +26,11 @@
 		--border-color: #42414d;
 		--card-background: #5b5b66;
 		--card-background-hover: #42414d;
-		--buttons-container-background: linear-gradient(90deg, rgba(251,251,254,0) 0%, rgba(91,91,102,1) 100%);
+		--buttons-container-background: linear-gradient(
+			90deg,
+			rgba(251, 251, 254, 0) 0%,
+			rgba(91, 91, 102, 1) 100%
+		);
 		--gray-dark: #15141a;
 	}
 }
@@ -76,7 +84,7 @@ body {
 }
 
 .loading {
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	gap: 2px;
@@ -85,6 +93,13 @@ body {
 
 .loading svg {
 	height: 1em;
+}
+
+.error {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 150px;
 }
 
 @keyframes rotate {

@@ -1,9 +1,22 @@
 import { addLink, loadItems } from '../services/api'
+import { loadApiKey } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
 import { buildItemNode } from './ui'
 
 async function initialize() {
 	await reloadItems()
+}
+
+function showError(message) {
+	const error = document.getElementById('error')
+	error.innerText = message
+	error.style = 'display: flex;'
+}
+
+function resetError() {
+	const error = document.getElementById('error')
+	error.innerText = ''
+	error.style = 'display: none;'
 }
 
 function showLoadingState() {
@@ -17,6 +30,12 @@ function hideLoadingState() {
 }
 
 async function reloadItems() {
+	const apiKey = await loadApiKey()
+	if (!apiKey) {
+		showError('No API key found! Please check the extension settings.')
+		return
+	}
+	resetError()
 	showLoadingState()
 	const content = document.getElementById('content')
 	content.textContent = ''
