@@ -160,8 +160,12 @@ li:last-of-type {
 }
 
 .item .text .url {
+	width: 95%;
 	color: var(--text-color-secondary);
 	font-size: 11px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .item:hover .buttons {
