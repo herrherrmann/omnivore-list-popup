@@ -21,6 +21,7 @@
     "@types/firefox-webext-browser": "^111.0.1",
     "eslint": "8.46.0",
     "prettier": "3.0.0",
+    "svg-inline-loader": "^0.8.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   }

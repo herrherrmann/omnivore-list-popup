@@ -119,6 +119,10 @@ export async function loadItems() {
 	return edges
 }
 
+function generateUUID() {
+	return self.crypto.randomUUID()
+}
+
 export async function addLink(url) {
 	const query = `
         mutation SaveUrl($input: SaveUrlInput!) {
@@ -133,12 +137,35 @@ export async function addLink(url) {
                 }
             }
         }`
-	const uuid = self.crypto.randomUUID()
 	const variables = {
 		input: {
 			url,
 			source: 'api',
-			clientRequestId: uuid,
+			clientRequestId: generateUUID(),
+		},
+	}
+	// TODO: Error handling!
+	await sendAPIRequest(query, variables)
+}
+
+export async function archiveLink(linkId) {
+	const query = `
+        mutation SetLinkArchived($input: ArchiveLinkInput!) {
+            setLinkArchived(input: $input) {
+                ... on ArchiveLinkSuccess {
+                    linkId
+                    message
+                }
+                ... on ArchiveLinkError {
+                    message
+                    errorCodes
+                }
+            }
+        }`
+	const variables = {
+		input: {
+			archived: true,
+			linkId,
 		},
 	}
 	// TODO: Error handling!

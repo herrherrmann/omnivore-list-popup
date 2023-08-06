@@ -27,7 +27,6 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 
 ## Todos & Ideas
 
-- [ ] Add archiving feature for list items
 - [ ] Chrome compatibility
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling

@@ -6,6 +6,7 @@
 	--border-color: #e0e0e6;
 	--card-background: #fbfbfe;
 	--card-background-hover: #f0f0f4;
+	--buttons-container-background: linear-gradient(90deg, rgba(251,251,254,0) 0%, rgba(251,251,254,1) 100%);
 	--gray-dark: #bfbfc9;
 
 	--outer-padding: 5px;
@@ -21,6 +22,7 @@
 		--border-color: #42414d;
 		--card-background: #5b5b66;
 		--card-background-hover: #42414d;
+		--buttons-container-background: linear-gradient(90deg, rgba(251,251,254,0) 0%, rgba(91,91,102,1) 100%);
 		--gray-dark: #15141a;
 	}
 }
@@ -51,7 +53,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 3px;
-	font-size: inherit;
+	font: inherit;
 	padding: 3px 6px;
 	background-color: var(--card-background);
 	border: 1px solid var(--border-color);
@@ -117,6 +119,8 @@ li:last-of-type {
 
 .item {
 	display: flex;
+	position: relative;
+	overflow: hidden;
 	gap: 7px;
 	background-color: var(--card-background);
 	border: 1px solid var(--border-color);
@@ -158,4 +162,39 @@ li:last-of-type {
 .item .text .url {
 	color: var(--text-color-secondary);
 	font-size: 11px;
+}
+
+.item:hover .buttons {
+	display: flex;
+}
+
+.item .buttons {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	padding: var(--outer-padding);
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	background: var(--buttons-container-background);
+}
+
+.item .buttons button {
+	display: flex;
+	font: inherit;
+	padding: 3px 6px;
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+.item .buttons button:hover {
+	background-color: var(--card-background-hover);
+}
+
+.item .buttons button svg {
+	width: 20px;
+	height: 20px;
 }

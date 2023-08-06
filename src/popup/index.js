@@ -24,7 +24,7 @@ async function reloadItems() {
 	const items = await loadItems()
 	items.forEach((item) => {
 		const listItem = document.createElement('li')
-		const itemNode = buildItemNode(item.node)
+		const itemNode = buildItemNode(item.node, reloadItems)
 		listItem.appendChild(itemNode)
 		list.appendChild(listItem)
 	})
