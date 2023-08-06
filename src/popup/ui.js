@@ -3,14 +3,33 @@ import { openTab } from '../services/tabs'
 export function buildItemNode(node) {
 	const item = document.createElement('a')
 	item.className = 'item'
+	item.appendChild(createImage(node))
+	item.appendChild(createTextDiv(node))
+	item.setAttribute('href', node.url)
+	item.addEventListener('click', (event) => {
+		event.preventDefault()
+		openTab(node.url)
+		if (!event.metaKey) {
+			window.close()
+		}
+	})
+	return item
+}
+
+function createImage(node) {
 	const image = document.createElement(node.image ? 'img' : 'div')
 	image.className = 'image'
 	if (node.image) {
 		image.src = node.image
 	} else {
 		image.innerText = node.title.substring(0, 1)
-		image.style = `background-color: #${node.id.substring(0, 6)};`
+		const randomColor = node.id.substring(0, 6)
+		image.style = `background-color: #${randomColor};`
 	}
+	return image
+}
+
+function createTextDiv(node) {
 	const textDiv = document.createElement('div')
 	textDiv.className = 'text'
 	const title = document.createElement('div')
@@ -21,15 +40,5 @@ export function buildItemNode(node) {
 	url.className = 'url'
 	url.textContent = node.url
 	textDiv.appendChild(url)
-	item.appendChild(image)
-	item.appendChild(textDiv)
-	item.setAttribute('href', node.url)
-	item.addEventListener('click', (event) => {
-		event.preventDefault()
-		openTab(node.url)
-		if (!event.metaKey) {
-			window.close()
-		}
-	})
-	return item
+	return textDiv
 }
