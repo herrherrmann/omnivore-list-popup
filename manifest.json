@@ -16,7 +16,7 @@
 				"size": 32
 			}
 		],
-		"default_popup": "index.html"
+		"default_popup": "popup.html"
 	},
 	"options_ui": {
 		"page": "options.html"

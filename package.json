@@ -12,9 +12,12 @@
     "url": "https://github.com/herrherrmann/omnivore-list-popup/issues"
   },
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
-  "main": "index.js",
+  "scripts": {
+    "build": "rollup --config"
+  },
   "devDependencies": {
     "eslint": "8.46.0",
-    "prettier": "3.0.0"
+    "prettier": "3.0.0",
+    "rollup": "^3.27.2"
   }
 }

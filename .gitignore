@@ -8,3 +8,7 @@ node_modules/
 logs
 *.log
 npm-debug.log*
+
+# Bundling
+options.js
+popup.js

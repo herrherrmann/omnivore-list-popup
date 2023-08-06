@@ -16,7 +16,8 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 1. Install the Node version defined in `.nvmrc` (e.g. with `nvm use`).
 2. Install dependencies with `npm install`.
-3. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox).
+3. Run the build with `npm run build` to generate the output files.
+4. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox).
 
 ## Contributing
 
@@ -32,7 +33,6 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 - [ ] Internationalization
 - [ ] Cache list items locally for offline usage
 - [ ] Highlight the popup button if the current page is added to Omnivore
-- [ ] Split up code more (needs a bundler like Rollup)
 
 ## Acknowledgements
 
