@@ -16,6 +16,7 @@
     "build": "rollup --config"
   },
   "devDependencies": {
+    "@rollup/plugin-swc": "^0.1.1",
     "eslint": "8.46.0",
     "prettier": "3.0.0",
     "rollup": "^3.27.2"

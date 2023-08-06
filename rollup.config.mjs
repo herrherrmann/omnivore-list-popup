@@ -1,3 +1,6 @@
+import swc from '@rollup/plugin-swc'
+
+/** @type {import('rollup').RollupOptions} */
 export default {
 	input: {
 		options: 'src/options/index.js',
@@ -5,5 +8,7 @@ export default {
 	},
 	output: {
 		dir: '.',
+		format: 'cjs',
 	},
+	plugins: [swc()],
 }
