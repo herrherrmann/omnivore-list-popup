@@ -1,0 +1,33 @@
+html,
+body {
+	font-size: 14px;
+}
+
+label {
+	display: block;
+}
+
+input {
+	display: block;
+	width: 100%;
+	padding: 3px 6px;
+	margin: 2px 0 0 0;
+	font: inherit;
+}
+
+small {
+	font-size: 11px;
+}
+
+button {
+	font: inherit;
+	padding: 3px 6px;
+}
+
+.message {
+	margin-left: 5px;
+}
+
+.message.success {
+	color: #2ac3a2;
+}
