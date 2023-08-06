@@ -70,6 +70,7 @@ body {
 
 .toolbar button svg {
 	width: 1.2em;
+	pointer-events: none;
 }
 
 .loading {
