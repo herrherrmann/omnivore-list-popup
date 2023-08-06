@@ -13,7 +13,7 @@
 			{
 				"light": "icons/wallet-black.png",
 				"dark": "icons/wallet-white.png",
-				"size": 32
+				"size": 64
 			}
 		],
 		"default_popup": "popup.html"
