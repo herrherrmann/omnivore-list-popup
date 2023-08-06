@@ -3,8 +3,8 @@ import { loadApiKey, saveApiKey } from '../services/storage'
 const apiKeyFieldSelector = '#api-key'
 
 async function restoreOptions() {
-	const options = await loadApiKey()
-	document.querySelector(apiKeyFieldSelector).value = options.apiKey || ''
+	const apiKey = await loadApiKey()
+	document.querySelector(apiKeyFieldSelector).value = apiKey || ''
 }
 
 async function saveOptions(event) {
