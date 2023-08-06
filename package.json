@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
+    "dev": "webpack --watch",
     "build": "webpack"
   },
   "devDependencies": {
