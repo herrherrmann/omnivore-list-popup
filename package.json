@@ -14,7 +14,8 @@
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
     "dev": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "zip-release": "zip -r omnivore-list-popup-release.zip icons CHANGELOG.md LICENSE manifest.json options.css options.html options.js popup.css popup.html popup.js"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.243",
