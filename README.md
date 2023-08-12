@@ -21,6 +21,15 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 - `npm run dev` is available to watch files for changes and auto-build.
 
+## Releasing
+
+Create an archive for a release in the Firefox extension store:
+
+1. Run `npm run build` to generate the output files.
+2. Run `zip-release` to create the extension archive.
+3. Run `zip-release-with-source` to create the extension archive with source files.
+4. Upload everything on https://addons.mozilla.org/developers/
+
 ## Contributing
 
 If you have ideas or issues, please get in touch! You can either use [GitHub issues](https://github.com/herrherrmann/omnivore-list-popup/issues) or contact [herrherrmann](https://github.com/herrherrmann/) directly.

@@ -14,6 +14,10 @@ async function saveOptions(event) {
 	const messageElement = document.querySelector('#message')
 	messageElement.classList.add('success')
 	messageElement.textContent = 'Saved!'
+	setTimeout(() => {
+		messageElement.textContent = ''
+		messageElement.classList.remove('success')
+	}, 1_000)
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions)
