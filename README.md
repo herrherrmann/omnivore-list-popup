@@ -25,10 +25,8 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 Create an archive for a release in the Firefox extension store:
 
-1. Run `npm run build` to generate the output files.
-2. Run `zip-release` to create the extension archive.
-3. Run `zip-release-with-source` to create the extension archive with source files.
-4. Upload everything on https://addons.mozilla.org/developers/
+1. Run `npm run create-release` to generate the output files and create the extension archives.
+2. Upload the archives on https://addons.mozilla.org/developers/
 
 ## Contributing
 
