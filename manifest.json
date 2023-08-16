@@ -30,5 +30,5 @@
 		"96": "icons/wallet-96.png"
 	},
 	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
-	"version": "1.0.1"
+	"version": "1.0.2"
 }

@@ -1,3 +1,9 @@
+# 1.0.2
+
+## Improvements:
+
+- Improve ellipsis logic of long URLs
+
 # 1.0.1
 
 ## Improvements:
@@ -5,7 +11,6 @@
 - Keep item URLs in one line and add ellipsis
 - Add hint about missing API key in popup
 - Reset the success message on the options page after one second
-
 
 # 1.0.0
 
