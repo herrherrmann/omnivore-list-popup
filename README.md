@@ -34,7 +34,7 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 
 ## Todos & Ideas
 
-- [ ] Chrome compatibility
+- [ ] Chrome compatibility (check e.g. [Hoverzoom](https://github.com/extesy/hoverzoom/) for inspiration)
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
 - [ ] Internationalization
