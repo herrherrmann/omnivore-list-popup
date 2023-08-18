@@ -1,3 +1,9 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 html,
 body {
 	font-family:
@@ -17,6 +23,14 @@ body {
 	font-size: 14px;
 }
 
+body {
+	padding: 6px 3px;
+}
+
+form {
+	width: 100%;
+}
+
 label {
 	display: block;
 }
@@ -24,9 +38,19 @@ label {
 input {
 	display: block;
 	width: 100%;
-	padding: 3px 6px;
-	margin: 2px 0 0 0;
+	padding: 3px 5px;
+	margin-top: 3px;
 	font: inherit;
+}
+
+input#api-key {
+	font-family:
+		Menlo,
+		Consolas,
+		Monaco,
+		Liberation Mono,
+		Lucida Console,
+		monospace;
 }
 
 small {
