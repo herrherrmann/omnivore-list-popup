@@ -6,10 +6,10 @@ export async function getActiveTab() {
 	function onError(error) {
 		return Promise.reject(error)
 	}
-	const querying = browser.tabs.query({ active: true, currentWindow: true })
+	const querying = chrome.tabs.query({ active: true, currentWindow: true })
 	return querying.then(onGot, onError)
 }
 
 export function openTab(url) {
-	return browser.tabs.create({ url })
+	return chrome.tabs.create({ url })
 }
