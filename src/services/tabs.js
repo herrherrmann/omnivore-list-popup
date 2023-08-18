@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill'
+
 export async function getActiveTab() {
 	function onGot(tabs) {
 		const activeTab = tabs[0]
@@ -6,10 +8,10 @@ export async function getActiveTab() {
 	function onError(error) {
 		return Promise.reject(error)
 	}
-	const querying = chrome.tabs.query({ active: true, currentWindow: true })
+	const querying = browser.tabs.query({ active: true, currentWindow: true })
 	return querying.then(onGot, onError)
 }
 
 export function openTab(url) {
-	return chrome.tabs.create({ url })
+	return browser.tabs.create({ url })
 }
