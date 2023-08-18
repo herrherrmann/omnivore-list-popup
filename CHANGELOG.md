@@ -1,3 +1,9 @@
+# 1.1.0
+
+- Migrate to Manifest v3
+- Add support for Chromium-based browsers
+- Improve styles on options page
+
 # 1.0.2
 
 ## Improvements:

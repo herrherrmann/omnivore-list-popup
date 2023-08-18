@@ -31,5 +31,5 @@
 	},
 	"permissions": ["storage", "tabs"],
 	"host_permissions": ["https://api-prod.omnivore.app/*"],
-	"version": "1.0.2"
+	"version": "1.1.0"
 }
