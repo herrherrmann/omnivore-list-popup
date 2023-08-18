@@ -46,6 +46,20 @@ body {
 	width: 350px;
 	background-color: var(--background-color);
 	color: var(--text-color);
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		avenir next,
+		avenir,
+		segoe ui,
+		helvetica neue,
+		helvetica,
+		Cantarell,
+		Ubuntu,
+		roboto,
+		noto,
+		arial,
+		sans-serif;
 	font-size: 13px;
 }
 
