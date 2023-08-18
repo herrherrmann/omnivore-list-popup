@@ -1,14 +1,14 @@
 {
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "omnivore-list-popup@herrherrmann.net",
-			"strict_min_version": "58.0a1"
+			"id": "omnivore-list-popup@herrherrmann.net"
 		}
 	},
-	"browser_action": {
-		"browser_style": true,
+	"action": {
 		"default_title": "Omnivore List Popup",
-		"default_icon": "icons/wallet-black.png",
+		"default_icon": {
+			"64": "icons/wallet-black.png"
+		},
 		"theme_icons": [
 			{
 				"light": "icons/wallet-black.png",
@@ -23,12 +23,13 @@
 	},
 	"description": "Show a popup with a list of your Omnivore articles to quickly open or archive.",
 	"homepage_url": "https://github.com/herrherrmann/omnivore-list-popup",
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Omnivore List Popup",
 	"icons": {
 		"48": "icons/wallet-48.png",
 		"96": "icons/wallet-96.png"
 	},
-	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
+	"permissions": ["storage", "tabs"],
+	"host_permissions": ["https://api-prod.omnivore.app/*"],
 	"version": "1.0.2"
 }
