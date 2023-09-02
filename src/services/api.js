@@ -170,3 +170,63 @@ export async function archiveLink(linkId) {
 	// TODO: Error handling!
 	await sendAPIRequest(query, variables)
 }
+
+export async function loadLabels(){
+    const query = `
+            query GetLabels { 
+                labels {
+                    ... on LabelsSuccess {
+                    labels {
+                        ...LabelFields
+                    }
+                    }
+                    ... on LabelsError {
+                    errorCodes
+                    }
+                }
+            }
+            fragment LabelFields on Label {
+                id
+                name
+                color
+                description
+                createdAt
+            }`
+
+	const data = await sendAPIRequest(query)
+    const labels = data.labels.labels
+    return labels;
+}
+
+export async function setLabel(linkId, labelIds) {
+
+	const query = `
+        mutation SetLabels($input: SetLabelsInput!) {
+            setLabels(input: $input) {
+                ... on SetLabelsSuccess {
+                    labels {
+                        ...LabelFields
+                    }
+                }
+                ... on SetLabelsError {
+                    errorCodes
+                }
+            }
+        }
+        fragment LabelFields on Label {
+            id
+            name
+            color
+            description
+            createdAt
+            position
+            internal
+        }`
+	const variables = {
+		input: {
+			pageId: linkId,
+			labelIds: labelIds,
+		},
+	}
+	await sendAPIRequest(query, variables)
+}

@@ -1,4 +1,4 @@
-import { addLink, loadItems } from '../services/api'
+import { addLink, loadItems, loadLabels } from '../services/api'
 import { loadApiKey } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
 import { buildItemNode } from './ui'
@@ -40,10 +40,11 @@ async function reloadItems() {
 	const content = document.getElementById('content')
 	content.textContent = ''
 	const list = document.createElement('ul')
+	const labels = await loadLabels()
 	const items = await loadItems()
 	items.forEach((item) => {
 		const listItem = document.createElement('li')
-		const itemNode = buildItemNode(item.node, reloadItems)
+		const itemNode = buildItemNode(item.node, reloadItems, labels)
 		listItem.appendChild(itemNode)
 		list.appendChild(listItem)
 	})
