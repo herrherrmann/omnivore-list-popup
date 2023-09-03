@@ -1,5 +1,5 @@
 import archiveSvg from '../images/archive.svg'
-import labelSvg from '../images/label.svg'
+import tagSvg from '../images/tag.svg'
 import { archiveLink, setLabel } from '../services/api'
 import { openTab } from '../services/tabs'
 
@@ -54,7 +54,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	const labelButton = document.createElement('button')
 	labelButton.type = 'button'
 	labelButton.className = 'button label'
-	labelButton.innerHTML = labelSvg
+	labelButton.innerHTML = tagSvg
 	labelButton.title = 'Set labels'
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
