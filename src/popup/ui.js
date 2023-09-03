@@ -128,13 +128,10 @@ function loadLabelSelection(article, labels){
 	saveButton.innerHTML = 'Save'
 	saveButton.addEventListener('click', async (event) => {
 
-		var checkedValues = []; 
-		var inputElements = document.getElementsByName('checkboxLabel');
-		for(var i=0; inputElements[i]; ++i){
-			if(inputElements[i].checked ){
-				checkedValues.push(inputElements[i].value);
-			}
-		}
+		const inputElements = document.getElementsByName('checkboxLabel')
+		const checkedValues = Array.from(inputElements)
+			.filter((inputElement) => inputElement.checked)
+			.map((inputElement) => inputElement.value)
 
 		await setLabel(article.id, checkedValues);
 		close();
