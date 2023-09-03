@@ -59,7 +59,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
-		loadLabelSelection(node, labels)
+		showLabelsPage(node, labels)
 	})
 	buttons.appendChild(labelButton)
 
@@ -78,14 +78,14 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	return buttons
 }
 
-function loadLabelSelection(article, labels) {
+function showLabelsPage(article, labels) {
 	const content = document.getElementById('content')
 	content.style = 'display: none;'
 
-	const labelPage = document.getElementById('labelPage')
-	labelPage.style = 'display: flex;'
+	const labelsPage = document.getElementById('labels-page')
+	labelsPage.style = 'display: flex;'
 
-	const ckBoxContainer = document.getElementById('labelList')
+	const labelsDiv = document.getElementById('labels')
 
 	labels.forEach((item) => {
 		const div = document.createElement('div')
@@ -105,7 +105,7 @@ function loadLabelSelection(article, labels) {
 
 		div.appendChild(checkbox)
 		div.appendChild(label)
-		ckBoxContainer.appendChild(div)
+		labelsDiv.appendChild(div)
 	})
 
 	const li = document.createElement('li')
@@ -116,8 +116,8 @@ function loadLabelSelection(article, labels) {
 	backButton.addEventListener('click', async () => {
 		//TODO: check bug of broken layout of the original page
 		document.getElementById('content').style = 'display: flex;'
-		labelPage.style = 'display: none;'
-		ckBoxContainer.innerHTML = ''
+		labelsPage.style = 'display: none;'
+		labelsDiv.innerHTML = ''
 	})
 	li.appendChild(backButton)
 
@@ -136,9 +136,9 @@ function loadLabelSelection(article, labels) {
 
 		//TODO: check bug of broken layout of the original page
 		document.getElementById('content').style = 'display: flex;'
-		labelPage.style = 'display: none;'
-		ckBoxContainer.innerHTML = ''
+		labelsPage.style = 'display: none;'
+		labelsDiv.innerHTML = ''
 	})
 	li.appendChild(saveButton)
-	ckBoxContainer.appendChild(li)
+	labelsDiv.appendChild(li)
 }
