@@ -101,12 +101,8 @@ function loadLabelSelection(article, labels){
 		label.htmlFor = item.id;
 		label.appendChild(document.createTextNode(' ' + item.name));
 
-		if(article.labels !== null) {
-			article.labels.forEach((gg) => {	
-				if(gg.id == item.id)
-					checkbox.checked = true;
-			})		
-		}
+		const isChecked = !!article.labels?.find((label) => label.id === item.id)
+		checkbox.checked = isChecked
 
 		li.appendChild(checkbox);
 		li.appendChild(label);
