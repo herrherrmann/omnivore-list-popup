@@ -108,20 +108,20 @@ function showLabelsPage(article, labels) {
 		labelsDiv.appendChild(div)
 	})
 
-	const li = document.createElement('li')
+	const buttons = document.createElement('div')
 	const backButton = document.createElement('button')
 	backButton.type = 'button'
-	backButton.className = 'closeLabelSelection'
+	backButton.className = 'close'
 	backButton.innerHTML = 'Close'
 	backButton.addEventListener('click', async () => {
 		closeLabelsPage()
 	})
-	li.appendChild(backButton)
+	buttons.appendChild(backButton)
 
 	const saveButton = document.createElement('button')
 	saveButton.style = 'margin-left: 10px;'
 	saveButton.type = 'button'
-	saveButton.className = 'saveLabelSelection'
+	saveButton.className = 'save'
 	saveButton.innerHTML = 'Save'
 	saveButton.addEventListener('click', async () => {
 		const inputElements = document.getElementsByName('checkboxLabel')
@@ -131,8 +131,8 @@ function showLabelsPage(article, labels) {
 		await setLabel(article.id, checkedValues)
 		closeLabelsPage()
 	})
-	li.appendChild(saveButton)
-	labelsDiv.appendChild(li)
+	buttons.appendChild(saveButton)
+	labelsDiv.appendChild(buttons)
 
 	function closeLabelsPage() {
 		labelsPage.style = 'display: none;'
