@@ -126,7 +126,6 @@ function loadLabelSelection(article, labels){
 	saveButton.type = 'button'
 	saveButton.className = 'saveLabelSelection'
 	saveButton.innerHTML = 'Save'
-	saveButton.ariaLabel = 'Save'
 	saveButton.addEventListener('click', async (event) => {
 
 		var checkedValues = []; 
