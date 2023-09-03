@@ -1,6 +1,6 @@
 import archiveSvg from '../images/archive.svg'
 import labelSvg from '../images/label.svg'
-import { archiveLink, setLabel  } from '../services/api'
+import { archiveLink, setLabel } from '../services/api'
 import { openTab } from '../services/tabs'
 
 export function buildItemNode(node, onReloadItems, labels) {
@@ -59,10 +59,9 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
-		loadLabelSelection(node, labels);		
+		loadLabelSelection(node, labels)
 	})
-	buttons.appendChild(labelButton);
-
+	buttons.appendChild(labelButton)
 
 	const archiveButton = document.createElement('button')
 	archiveButton.type = 'button'
@@ -79,45 +78,46 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	return buttons
 }
 
-function loadLabelSelection(article, labels){
+function loadLabelSelection(article, labels) {
 	const content = document.getElementById('content')
 	content.style = 'display: none;'
 
-	var labelPage = document.getElementById('labelPage')
+	const labelPage = document.getElementById('labelPage')
 	labelPage.style = 'display: flex;'
 
-	var ckBoxContainer = document.getElementById('labelList')
+	const ckBoxContainer = document.getElementById('labelList')
 
-	labels.forEach((item) => {	
-		var li = document.createElement('li');
+	labels.forEach((item) => {
+		const div = document.createElement('div')
 
-		var checkbox = document.createElement('input');
-		checkbox.name = "checkboxLabel";
-		checkbox.type = "checkbox";
-		checkbox.value = item.id;
-		checkbox.id = item.id;
+		const checkbox = document.createElement('input')
+		checkbox.name = 'checkboxLabel'
+		checkbox.type = 'checkbox'
+		checkbox.value = item.id
+		checkbox.id = item.id
 
-		var label = document.createElement('label')
-		label.htmlFor = item.id;
-		label.appendChild(document.createTextNode(' ' + item.name));
+		const label = document.createElement('label')
+		label.htmlFor = item.id
+		label.appendChild(document.createTextNode(' ' + item.name))
 
 		const isChecked = !!article.labels?.find((label) => label.id === item.id)
 		checkbox.checked = isChecked
 
-		li.appendChild(checkbox);
-		li.appendChild(label);
-		ckBoxContainer.appendChild(li)
+		div.appendChild(checkbox)
+		div.appendChild(label)
+		ckBoxContainer.appendChild(div)
 	})
 
-	var li = document.createElement('li');
+	const li = document.createElement('li')
 	const backButton = document.createElement('button')
 	backButton.type = 'button'
 	backButton.className = 'closeLabelSelection'
 	backButton.innerHTML = 'Close'
-	backButton.addEventListener('click', async (event) => {
+	backButton.addEventListener('click', async () => {
+		//TODO: check bug of broken layout of the original page
 		document.getElementById('content').style = 'display: flex;'
 		labelPage.style = 'display: none;'
-		ckBoxContainer.innerHTML = '';
+		ckBoxContainer.innerHTML = ''
 	})
 	li.appendChild(backButton)
 
@@ -126,17 +126,19 @@ function loadLabelSelection(article, labels){
 	saveButton.type = 'button'
 	saveButton.className = 'saveLabelSelection'
 	saveButton.innerHTML = 'Save'
-	saveButton.addEventListener('click', async (event) => {
-
+	saveButton.addEventListener('click', async () => {
 		const inputElements = document.getElementsByName('checkboxLabel')
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
 
-		await setLabel(article.id, checkedValues);
-		close();
+		await setLabel(article.id, checkedValues)
+
+		//TODO: check bug of broken layout of the original page
+		document.getElementById('content').style = 'display: flex;'
+		labelPage.style = 'display: none;'
+		ckBoxContainer.innerHTML = ''
 	})
 	li.appendChild(saveButton)
 	ckBoxContainer.appendChild(li)
-
 }

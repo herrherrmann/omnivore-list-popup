@@ -171,8 +171,8 @@ export async function archiveLink(linkId) {
 	await sendAPIRequest(query, variables)
 }
 
-export async function loadLabels(){
-    const query = `
+export async function loadLabels() {
+	const query = `
             query GetLabels { 
                 labels {
                     ... on LabelsSuccess {
@@ -194,12 +194,11 @@ export async function loadLabels(){
             }`
 
 	const data = await sendAPIRequest(query)
-    const labels = data.labels.labels
-    return labels;
+	const labels = data.labels.labels
+	return labels
 }
 
 export async function setLabel(linkId, labelIds) {
-
 	const query = `
         mutation SetLabels($input: SetLabelsInput!) {
             setLabels(input: $input) {
