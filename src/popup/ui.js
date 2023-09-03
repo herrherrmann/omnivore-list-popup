@@ -109,12 +109,20 @@ function showLabelsPage(article, labels, onReloadItems) {
 		labelsDiv.appendChild(div)
 	})
 
-	const backButton = document.querySelector('#labels-page #buttons #back')
+	const buttons = document.querySelector('#labels-page #buttons')
+	buttons.innerHTML = ''
+
+	const backButton = document.createElement('button')
+	backButton.type = 'button'
+	backButton.innerHTML = 'Back'
 	backButton.addEventListener('click', () => {
 		closeLabelsPage()
 	})
+	buttons.appendChild(backButton)
 
-	const saveButton = document.querySelector('#labels-page #buttons #save')
+	const saveButton = document.createElement('button')
+	saveButton.type = 'submit'
+	saveButton.innerHTML = 'Save'
 	saveButton.addEventListener('click', async () => {
 		const inputElements = document.getElementsByName('checkboxLabel')
 		const checkedValues = Array.from(inputElements)
@@ -125,6 +133,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		closeLabelsPage()
 		await onReloadItems()
 	})
+	buttons.appendChild(saveButton)
 
 	function closeLabelsPage() {
 		labelsPage.style = 'display: none;'
