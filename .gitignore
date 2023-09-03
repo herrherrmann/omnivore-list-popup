@@ -10,5 +10,5 @@ logs
 npm-debug.log*
 
 # Bundling
-options.js
-popup.js
+/options.js
+/popup.js
