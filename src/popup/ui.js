@@ -114,10 +114,7 @@ function showLabelsPage(article, labels) {
 	backButton.className = 'closeLabelSelection'
 	backButton.innerHTML = 'Close'
 	backButton.addEventListener('click', async () => {
-		//TODO: check bug of broken layout of the original page
-		document.getElementById('content').style = 'display: flex;'
-		labelsPage.style = 'display: none;'
-		labelsDiv.innerHTML = ''
+		closeLabelsPage()
 	})
 	li.appendChild(backButton)
 
@@ -131,14 +128,15 @@ function showLabelsPage(article, labels) {
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
-
 		await setLabel(article.id, checkedValues)
-
-		//TODO: check bug of broken layout of the original page
-		document.getElementById('content').style = 'display: flex;'
-		labelsPage.style = 'display: none;'
-		labelsDiv.innerHTML = ''
+		closeLabelsPage()
 	})
 	li.appendChild(saveButton)
 	labelsDiv.appendChild(li)
+
+	function closeLabelsPage() {
+		labelsPage.style = 'display: none;'
+		labelsDiv.innerHTML = ''
+		content.style = 'display: block;'
+	}
 }
