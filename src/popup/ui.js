@@ -80,7 +80,8 @@ function createButtonsDiv(node, onReloadItems, labels) {
 }
 
 function loadLabelSelection(article, labels){
-	document.getElementById('content').style = 'display: none;'
+	const content = document.getElementById('content')
+	content.style = 'display: none;'
 
 	var labelPage = document.getElementById('labelPage')
 	labelPage.style = 'display: flex;'
