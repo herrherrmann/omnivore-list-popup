@@ -114,7 +114,6 @@ function loadLabelSelection(article, labels){
 	backButton.type = 'button'
 	backButton.className = 'closeLabelSelection'
 	backButton.innerHTML = 'Close'
-	backButton.ariaLabel = 'Close'
 	backButton.addEventListener('click', async (event) => {
 		document.getElementById('content').style = 'display: flex;'
 		labelPage.style = 'display: none;'
