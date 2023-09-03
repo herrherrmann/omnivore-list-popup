@@ -193,6 +193,7 @@ li:last-of-type {
 	display: none;
 	justify-content: center;
 	align-items: center;
+	gap: 3px;
 	padding: var(--outer-padding);
 	position: absolute;
 	top: 0;
