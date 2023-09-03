@@ -120,7 +120,7 @@ function loadLabelSelection(article, labels){
 	backButton.ariaLabel = 'Close'
 	backButton.addEventListener('click', async (event) => {
 		document.getElementById('content').style = 'display: flex;'
-		document.getElementById('labelPage').style = 'display: none;'
+		labelPage.style = 'display: none;'
 		ckBoxContainer.innerHTML = '';
 	})
 	li.appendChild(backButton)
