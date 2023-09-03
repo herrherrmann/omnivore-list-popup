@@ -92,20 +92,18 @@ function showLabelsPage(article, labels, onReloadItems) {
 		div.className = 'label'
 
 		const checkbox = document.createElement('input')
-		checkbox.name = 'checkboxLabel'
 		checkbox.type = 'checkbox'
+		checkbox.name = 'label'
 		checkbox.value = item.id
 		checkbox.id = item.id
+		checkbox.checked = !!article.labels?.find((label) => label.id === item.id)
+		div.appendChild(checkbox)
 
 		const label = document.createElement('label')
 		label.htmlFor = item.id
 		label.innerHTML = item.name
-
-		const isChecked = !!article.labels?.find((label) => label.id === item.id)
-		checkbox.checked = isChecked
-
-		div.appendChild(checkbox)
 		div.appendChild(label)
+
 		labelsDiv.appendChild(div)
 	})
 
@@ -124,7 +122,9 @@ function showLabelsPage(article, labels, onReloadItems) {
 	saveButton.type = 'submit'
 	saveButton.innerHTML = 'Save'
 	saveButton.addEventListener('click', async () => {
-		const inputElements = document.getElementsByName('checkboxLabel')
+		const inputElements = document.querySelectorAll(
+			'#labels-page #labels input',
+		)
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
