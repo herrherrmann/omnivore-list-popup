@@ -59,7 +59,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
-		showLabelsPage(node, labels)
+		showLabelsPage(node, labels, onReloadItems)
 	})
 	buttons.appendChild(labelButton)
 
@@ -78,7 +78,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	return buttons
 }
 
-function showLabelsPage(article, labels) {
+function showLabelsPage(article, labels, onReloadItems) {
 	const content = document.getElementById('content')
 	content.style = 'display: none;'
 
@@ -113,7 +113,7 @@ function showLabelsPage(article, labels) {
 	backButton.type = 'button'
 	backButton.className = 'close'
 	backButton.innerHTML = 'Close'
-	backButton.addEventListener('click', async () => {
+	backButton.addEventListener('click', () => {
 		closeLabelsPage()
 	})
 	buttons.appendChild(backButton)
@@ -130,6 +130,7 @@ function showLabelsPage(article, labels) {
 			.map((inputElement) => inputElement.value)
 		await setLabel(article.id, checkedValues)
 		closeLabelsPage()
+		await onReloadItems()
 	})
 	buttons.appendChild(saveButton)
 	labelsDiv.appendChild(buttons)
