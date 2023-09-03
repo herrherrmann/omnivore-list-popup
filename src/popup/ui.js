@@ -118,10 +118,18 @@ function showLabelsPage(article, labels, onReloadItems) {
 	})
 	buttons.appendChild(backButton)
 
+	let isSaving = false
+
 	const saveButton = document.createElement('button')
 	saveButton.type = 'submit'
 	saveButton.innerHTML = 'Save'
 	saveButton.addEventListener('click', async () => {
+		if (isSaving) {
+			return
+		}
+		isSaving = true
+		saveButton.disabled = true
+		backButton.disabled = true
 		const inputElements = document.querySelectorAll(
 			'#labels-page #labels input',
 		)
