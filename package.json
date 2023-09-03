@@ -14,6 +14,8 @@
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
     "dev": "webpack --watch",
+    "lint": "eslint .",
+    "format": "prettier . --write",
     "build": "webpack",
     "zip-release": "zip -r omnivore-list-popup-release.zip icons CHANGELOG.md LICENSE manifest.json options.css options.html options.js popup.css popup.html popup.js",
     "zip-release-with-source": "zip -r omnivore-list-popup-release-with-sources.zip icons src .eslintignore .eslintrc.json .gitignore .nvmrc .prettierignore .prettierrc CHANGELOG.md LICENSE manifest.json options.css options.html package-lock.json package.json popup.css popup.html README.md webpack.config.js",
