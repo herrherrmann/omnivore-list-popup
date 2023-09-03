@@ -55,7 +55,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	labelButton.type = 'button'
 	labelButton.className = 'button label'
 	labelButton.innerHTML = labelSvg
-	labelButton.ariaLabel = 'Set Labels'
+	labelButton.title = 'Set labels'
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
@@ -67,7 +67,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	archiveButton.type = 'button'
 	archiveButton.className = 'button archive'
 	archiveButton.innerHTML = archiveSvg
-	archiveButton.ariaLabel = 'Archive this item'
+	archiveButton.title = 'Archive this item'
 	archiveButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
