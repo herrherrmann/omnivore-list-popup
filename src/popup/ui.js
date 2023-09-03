@@ -107,7 +107,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		labelsDiv.appendChild(div)
 	})
 
-	const buttons = document.querySelector('#labels-page #buttons')
+	const buttons = labelsPage.querySelector('#buttons')
 	buttons.innerHTML = ''
 
 	const backButton = document.createElement('button')
@@ -130,9 +130,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		isSaving = true
 		saveButton.disabled = true
 		backButton.disabled = true
-		const inputElements = document.querySelectorAll(
-			'#labels-page #labels input',
-		)
+		const inputElements = labelsPage.querySelectorAll('#labels input')
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
