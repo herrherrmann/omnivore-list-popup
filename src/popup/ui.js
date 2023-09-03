@@ -89,6 +89,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 
 	labels.forEach((item) => {
 		const div = document.createElement('div')
+		div.className = 'label'
 
 		const checkbox = document.createElement('input')
 		checkbox.name = 'checkboxLabel'
@@ -98,7 +99,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 
 		const label = document.createElement('label')
 		label.htmlFor = item.id
-		label.appendChild(document.createTextNode(' ' + item.name))
+		label.innerHTML = item.name
 
 		const isChecked = !!article.labels?.find((label) => label.id === item.id)
 		checkbox.checked = isChecked
@@ -108,32 +109,22 @@ function showLabelsPage(article, labels, onReloadItems) {
 		labelsDiv.appendChild(div)
 	})
 
-	const buttons = document.createElement('div')
-	const backButton = document.createElement('button')
-	backButton.type = 'button'
-	backButton.className = 'close'
-	backButton.innerHTML = 'Close'
+	const backButton = document.querySelector('#labels-page #buttons #back')
 	backButton.addEventListener('click', () => {
 		closeLabelsPage()
 	})
-	buttons.appendChild(backButton)
 
-	const saveButton = document.createElement('button')
-	saveButton.style = 'margin-left: 10px;'
-	saveButton.type = 'button'
-	saveButton.className = 'save'
-	saveButton.innerHTML = 'Save'
+	const saveButton = document.querySelector('#labels-page #buttons #save')
 	saveButton.addEventListener('click', async () => {
 		const inputElements = document.getElementsByName('checkboxLabel')
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
 		await setLabel(article.id, checkedValues)
+		// TODO: Error handling!
 		closeLabelsPage()
 		await onReloadItems()
 	})
-	buttons.appendChild(saveButton)
-	labelsDiv.appendChild(buttons)
 
 	function closeLabelsPage() {
 		labelsPage.style = 'display: none;'

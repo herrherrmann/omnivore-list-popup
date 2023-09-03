@@ -112,14 +112,16 @@ body {
 	animation: rotate 1s linear 0s infinite;
 }
 
-.content {
+.content,
+.labels-page {
 	max-height: 450px;
+	padding: var(--outer-padding);
 	overflow: auto;
 }
 
 ul {
 	list-style-type: none;
-	padding: var(--outer-padding);
+	padding: 0;
 }
 
 li {
@@ -219,4 +221,46 @@ li:last-of-type {
 .item .buttons button svg {
 	width: 20px;
 	height: 20px;
+}
+
+/* Labels page */
+fieldset {
+	border: none;
+	padding: 0;
+}
+
+legend {
+	font-weight: 600;
+	margin: 0 0 5px 0;
+}
+
+#labels-page #labels {
+	margin: 0 0 10px 0;
+}
+
+#labels-page #labels .label {
+	margin: 0 0 5px 0;
+}
+
+#labels-page #labels .label input {
+	margin: 0 5px 0 0;
+}
+
+#labels-page #buttons {
+	display: flex;
+	gap: 5px;
+}
+
+#labels-page #buttons button {
+	display: flex;
+	font: inherit;
+	padding: 3px 6px;
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+#labels-page #buttons button:hover {
+	background-color: var(--card-background-hover);
 }
