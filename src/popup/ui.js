@@ -1,6 +1,6 @@
 import archiveSvg from '../images/archive.svg'
 import tagSvg from '../images/tag.svg'
-import { archiveLink, setLabel } from '../services/api'
+import { archiveLink, saveLabels } from '../services/api'
 import { openTab } from '../services/tabs'
 
 export function buildItemNode(node, onReloadItems, labels) {
@@ -128,7 +128,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
-		await setLabel(article.id, checkedValues)
+		await saveLabels(article.id, checkedValues)
 		// TODO: Error handling!
 		closeLabelsPage()
 		await onReloadItems()

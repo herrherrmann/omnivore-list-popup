@@ -198,7 +198,7 @@ export async function loadLabels() {
 	return labels
 }
 
-export async function setLabel(linkId, labelIds) {
+export async function saveLabels(pageId, labelIds) {
 	const query = `
         mutation SetLabels($input: SetLabelsInput!) {
             setLabels(input: $input) {
@@ -223,8 +223,8 @@ export async function setLabel(linkId, labelIds) {
         }`
 	const variables = {
 		input: {
-			pageId: linkId,
-			labelIds: labelIds,
+			pageId,
+			labelIds,
 		},
 	}
 	await sendAPIRequest(query, variables)
