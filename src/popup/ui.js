@@ -44,6 +44,23 @@ function createTextDiv(node) {
 	url.className = 'url'
 	url.textContent = node.url
 	textDiv.appendChild(url)
+
+	if (node.labels != null) {
+		const labels = document.createElement('div')
+		const labelsUl = document.createElement('ul')
+		labelsUl.className = 'listHorizontal'
+		labels.appendChild(labelsUl)
+
+		node.labels.forEach((item) => {
+			const lb = document.createElement('li')
+			lb.textContent = item.name
+			lb.className = 'listLabel'
+			lb.style = 'background: ' + item.color + ';'
+
+			labelsUl.appendChild(lb)
+		})
+		textDiv.appendChild(labels)
+	}
 	return textDiv
 }
 

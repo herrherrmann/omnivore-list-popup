@@ -264,3 +264,16 @@ legend {
 #labels-page #buttons button:hover {
 	background-color: var(--card-background-hover);
 }
+
+/* Label in list view  */
+.listHorizontal {
+	display: flex;
+}
+
+.listLabel {
+	border-radius: 5px;
+	padding: 2px;
+	height: max-content;
+	margin-right: 3px;
+	font-size: 11px;
+}
