@@ -271,6 +271,7 @@ legend {
 }
 
 .listLabel {
+	font: inherit;
 	border-radius: 5px;
 	padding: 2px;
 	height: max-content;
