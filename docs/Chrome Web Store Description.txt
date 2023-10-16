@@ -5,6 +5,7 @@ Features:
 - Quickly open the original article URL in a new tab by clicking the article
 - Keep the popup open by keeping CMD (CTRL on Windows) pressed while clicking an article
 - Quickly archive the article with the archive button
+- Change the labels of an article
 - Open the Omnivore main website
 - More features coming soon!
 
