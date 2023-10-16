@@ -1,7 +1,17 @@
+# 1.1.1
+
+Maintenance release only.
+
 # 1.1.0
 
-- Migrate to Manifest v3
-- Add support for Chromium-based browsers
+## Features:
+
+- Edit labels of items (thanks to [allibragi](https://github.com/allibragi))
+
+## Improvements:
+
+- Add support for Chromium-based browsers (Chrome, Vivaldi, etc.)
+- Migrate to Manifest v3 (only for Chromium-based browsers for now)
 - Improve styles on options page
 
 # 1.0.2
