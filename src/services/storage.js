@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill'
+
 export async function loadApiKey() {
 	function onGot(result) {
 		return Promise.resolve(result.apiKey)

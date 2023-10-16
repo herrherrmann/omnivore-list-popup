@@ -9,6 +9,7 @@ logs
 *.log
 npm-debug.log*
 
-# Bundling
+# Build files
 /options.js
 /popup.js
+/manifest.json

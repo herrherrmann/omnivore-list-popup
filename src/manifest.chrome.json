@@ -1,0 +1,19 @@
+{
+	"manifest_version": 3,
+	"action": {
+		"default_title": "Omnivore List Popup",
+		"default_icon": {
+			"64": "icons/wallet-black.png"
+		},
+		"theme_icons": [
+			{
+				"light": "icons/wallet-black.png",
+				"dark": "icons/wallet-white.png",
+				"size": 64
+			}
+		],
+		"default_popup": "popup.html"
+	},
+	"permissions": ["storage", "tabs"],
+	"host_permissions": ["https://api-prod.omnivore.app/*"]
+}

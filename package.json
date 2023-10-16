@@ -1,7 +1,7 @@
 {
   "name": "omnivore-list-popup",
   "description": "Browser extension to show a popup with a list of your Omnivore articles.",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "author": "Sebastian Herrmann",
   "license": "MIT",
   "repository": {
@@ -17,6 +17,7 @@
     "lint": "eslint .",
     "format": "prettier . --write",
     "build": "webpack",
+    "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
     "zip-release": "zip -r omnivore-list-popup-release.zip icons CHANGELOG.md LICENSE manifest.json options.css options.html options.js popup.css popup.html popup.js",
     "zip-release-with-source": "zip -r omnivore-list-popup-release-with-sources.zip icons src .eslintignore .eslintrc.json .gitignore .nvmrc .prettierignore .prettierrc CHANGELOG.md LICENSE manifest.json options.css options.html package-lock.json package.json popup.css popup.html README.md webpack.config.js",
     "create-release": "npm run build && npm run zip-release && npm run zip-release-with-source"
@@ -27,6 +28,8 @@
     "eslint": "8.46.0",
     "prettier": "3.0.0",
     "svg-inline-loader": "^0.8.2",
+    "ts-node": "10.9.1",
+    "webextension-polyfill": "^0.10.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   }
