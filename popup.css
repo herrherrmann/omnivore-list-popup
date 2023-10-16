@@ -45,7 +45,7 @@ html,
 body {
 	width: 350px;
 	background-color: var(--background-color);
-	color: var(--text-color);
+	color: var(--text-color-primary);
 	font-family:
 		-apple-system,
 		BlinkMacSystemFont,
