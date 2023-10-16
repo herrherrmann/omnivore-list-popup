@@ -1,0 +1,13 @@
+{
+	"name": "Omnivore List Popup",
+	"description": "Show a popup with a list of your Omnivore articles to quickly open or archive.",
+	"homepage_url": "https://github.com/herrherrmann/omnivore-list-popup",
+	"version": "1.0.3",
+	"options_ui": {
+		"page": "options.html"
+	},
+	"icons": {
+		"48": "icons/wallet-48.png",
+		"96": "icons/wallet-96.png"
+	}
+}
