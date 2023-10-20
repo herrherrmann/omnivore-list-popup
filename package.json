@@ -29,6 +29,7 @@
     "prettier": "3.0.3",
     "svg-inline-loader": "0.8.2",
     "ts-node": "10.9.1",
+    "typescript": "5.2.2",
     "webextension-polyfill": "0.10.0",
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4"
