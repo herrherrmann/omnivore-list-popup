@@ -1,6 +1,7 @@
 import archiveSvg from '../images/archive.svg'
 import tagSvg from '../images/tag.svg'
 import { archiveLink, saveLabels } from '../services/api'
+import { isMacOS } from '../services/system'
 import { openTab } from '../services/tabs'
 
 export function buildItemNode(node, onReloadItems, labels) {
@@ -13,11 +14,16 @@ export function buildItemNode(node, onReloadItems, labels) {
 	item.addEventListener('click', (event) => {
 		event.preventDefault()
 		openTab(node.url)
-		if (!event.metaKey) {
+		if (!shouldKeepPopupOpen(event)) {
 			window.close()
 		}
 	})
 	return item
+}
+
+function shouldKeepPopupOpen(event) {
+	const modifierKey = isMacOS() ? 'metaKey' : 'ctrlKey'
+	return event[modifierKey]
 }
 
 function createImage(node) {
