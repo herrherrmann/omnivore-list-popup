@@ -222,15 +222,24 @@ li:last-of-type {
 /* Labels in list view  */
 .item .text .labels {
 	display: flex;
-	flex-flow: row wrap;
-	gap: 3px;
+	flex-wrap: wrap;
 }
 
 .item .text .labels .label {
-	border-radius: var(--border-radius);
+	display: flex;
+	align-items: center;
+	gap: 3px;
 	height: 100%;
-	padding: 2px 3px;
+	line-height: 1;
+	padding: 2px 6px 2px 0;
+	border-radius: var(--border-radius);
 	font-size: 11px;
+}
+
+.item .text .labels .label .dot {
+	border-radius: 50%;
+	width: 0.8em;
+	height: 0.8em;
 }
 
 .item:hover .buttons {

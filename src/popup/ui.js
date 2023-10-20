@@ -58,18 +58,21 @@ function createTextDiv(node) {
 }
 
 function createLabelsList(labels) {
-	const container = document.createElement('div')
 	const list = document.createElement('ul')
 	list.className = 'labels'
-	container.appendChild(list)
 	labels.forEach((item) => {
 		const listItem = document.createElement('li')
-		listItem.textContent = item.name
 		listItem.className = 'label'
-		listItem.style = 'background: ' + item.color + ';'
+		const dot = document.createElement('span')
+		dot.className = 'dot'
+		dot.style = 'background: ' + item.color
+		listItem.appendChild(dot)
+		const name = document.createElement('span')
+		name.textContent = item.name
+		listItem.appendChild(name)
 		list.appendChild(listItem)
 	})
-	return container
+	return list
 }
 
 function createButtonsDiv(node, onReloadItems, labels) {
