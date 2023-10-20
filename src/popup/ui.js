@@ -50,24 +50,26 @@ function createTextDiv(node) {
 	url.className = 'url'
 	url.textContent = node.url
 	textDiv.appendChild(url)
-
 	if (node.labels != null) {
-		const labels = document.createElement('div')
-		const labelsUl = document.createElement('ul')
-		labelsUl.className = 'listHorizontal'
-		labels.appendChild(labelsUl)
-
-		node.labels.forEach((item) => {
-			const lb = document.createElement('li')
-			lb.textContent = item.name
-			lb.className = 'listLabel'
-			lb.style = 'background: ' + item.color + ';'
-
-			labelsUl.appendChild(lb)
-		})
-		textDiv.appendChild(labels)
+		const labelsList = createLabelsList(node.labels)
+		textDiv.appendChild(labelsList)
 	}
 	return textDiv
+}
+
+function createLabelsList(labels) {
+	const container = document.createElement('div')
+	const list = document.createElement('ul')
+	list.className = 'listHorizontal'
+	container.appendChild(list)
+	labels.forEach((item) => {
+		const listItem = document.createElement('li')
+		listItem.textContent = item.name
+		listItem.className = 'listLabel'
+		listItem.style = 'background: ' + item.color + ';'
+		list.appendChild(listItem)
+	})
+	return container
 }
 
 function createButtonsDiv(node, onReloadItems, labels) {
