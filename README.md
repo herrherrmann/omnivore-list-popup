@@ -6,8 +6,8 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 ## Installation & Usage
 
-1. Get an [Omnivore API Key](https://omnivore.app/settings/api) through your Omnivore Account.
-2. Install the extension from the [Firefox Extensions page](https://addons.mozilla.org/firefox/addon/omnivore-list-popup/).
+1. Install the extension from the [Firefox Extensions page](https://addons.mozilla.org/firefox/addon/omnivore-list-popup/) or the [Chrome Web Store](https://chrome.google.com/webstore/detail/omnivore-list-popup/dnfckbihnohkfoaclfckbcebclmhleni).
+2. Get an [Omnivore API Key](https://omnivore.app/settings/api) through your Omnivore Account.
 3. Go into the extension’s settings and paste your Omnivore API key.
 4. Launch the extension by clicking the new "Omnivore List Popup" button in your extension toolbar/dropdown.
 5. Optional: Add the extension to your always-visible toolbar.
@@ -48,6 +48,7 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
+- [ ] Add dark mode to options page
 - [ ] Internationalization
 - [ ] Cache list items locally for offline usage
 - [ ] Highlight the popup button if the current page is added to Omnivore
