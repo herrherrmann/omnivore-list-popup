@@ -1,3 +1,13 @@
+# 1.1.2
+
+## Improvements:
+
+- Add a link to the settings page in the popup (if API key is missing)
+
+## Fixes:
+
+- Properly keep the popup open on Windows and Linux when pressing CTRL while opening an item
+
 # 1.1.1
 
 Maintenance release only.
