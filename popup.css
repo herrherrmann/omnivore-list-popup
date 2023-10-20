@@ -198,14 +198,15 @@ li:last-of-type {
 
 .item .text {
 	flex: 0 1 auto;
-	display: block;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
 	overflow: hidden;
 }
 
 .item .text .title {
 	color: var(--text-color-primary);
 	font-weight: 600;
-	margin-bottom: 3px;
 }
 
 .item .text .url {
@@ -216,6 +217,20 @@ li:last-of-type {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-break: break-all;
+}
+
+/* Labels in list view  */
+.item .text .labels {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 3px;
+}
+
+.item .text .labels .label {
+	border-radius: var(--border-radius);
+	height: 100%;
+	padding: 2px 3px;
+	font-size: 11px;
 }
 
 .item:hover .buttons {
@@ -294,18 +309,4 @@ legend {
 
 #labels-page #buttons button:hover {
 	background-color: var(--card-background-hover);
-}
-
-/* Label in list view  */
-.listHorizontal {
-	display: flex;
-}
-
-.listLabel {
-	font: inherit;
-	border-radius: 5px;
-	padding: 2px;
-	height: max-content;
-	margin-right: 3px;
-	font-size: 11px;
 }

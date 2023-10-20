@@ -60,12 +60,12 @@ function createTextDiv(node) {
 function createLabelsList(labels) {
 	const container = document.createElement('div')
 	const list = document.createElement('ul')
-	list.className = 'listHorizontal'
+	list.className = 'labels'
 	container.appendChild(list)
 	labels.forEach((item) => {
 		const listItem = document.createElement('li')
 		listItem.textContent = item.name
-		listItem.className = 'listLabel'
+		listItem.className = 'label'
 		listItem.style = 'background: ' + item.color + ';'
 		list.appendChild(listItem)
 	})
