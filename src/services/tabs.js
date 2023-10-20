@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill'
+
 export async function getActiveTab() {
 	function onGot(tabs) {
 		const activeTab = tabs[0]

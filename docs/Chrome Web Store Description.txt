@@ -1,0 +1,21 @@
+Unofficial extension for Omnivore users who want to access their Omnivore items directly in a little popup. This extension is heavily inspired by the original "In My Pocket" extension for Pocket.
+
+Features:
+- See all your Omnivore articles in a popup
+- Quickly open the original article URL in a new tab by clicking the article
+- Keep the popup open by keeping CMD (CTRL on Windows/Linux) pressed while clicking an article
+- Quickly archive the article with the archive button
+- Change the labels of an article
+- Open the Omnivore main website
+- More features coming soon!
+
+Setup:
+- Get an Omnivore API Key through your Omnivore Account: https://omnivore.app/settings/api
+- Install the extension from the Firefox Extension store.
+- Go into the extension’s settings and paste your Omnivore API key.
+- Launch the extension by clicking the new "Omnivore List Popup" button in your Firefox extension toolbar/dropdown.
+- Optional: Add the extension to your always-visible toolbar.
+
+Links:
+- Source Code: https://github.com/herrherrmann/omnivore-list-popup
+- Issues: https://github.com/herrherrmann/omnivore-list-popup/issues

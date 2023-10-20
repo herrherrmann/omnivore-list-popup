@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill'
 import { addLink, loadItems, loadLabels } from '../services/api'
 import { loadApiKey } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
@@ -7,16 +8,14 @@ async function initialize() {
 	await reloadItems()
 }
 
-function showError(message) {
-	const error = document.getElementById('error')
-	error.innerText = message
-	error.style = 'display: flex;'
+function showApiKeyMissingPage() {
+	const page = document.getElementById('api-key-missing')
+	page.style = 'display: flex;'
 }
 
-function resetError() {
-	const error = document.getElementById('error')
-	error.innerText = ''
-	error.style = 'display: none;'
+function hideApiKeyMissingPage() {
+	const page = document.getElementById('api-key-missing')
+	page.style = 'display: none;'
 }
 
 function showLoadingState() {
@@ -32,10 +31,10 @@ function hideLoadingState() {
 async function reloadItems() {
 	const apiKey = await loadApiKey()
 	if (!apiKey) {
-		showError('No API key found! Please check the extension settings.')
+		showApiKeyMissingPage()
 		return
 	}
-	resetError()
+	hideApiKeyMissingPage()
 	showLoadingState()
 	const content = document.getElementById('content')
 	content.textContent = ''
@@ -73,6 +72,10 @@ document.addEventListener('click', async (event) => {
 	}
 	if (element.classList.contains('open-omnivore')) {
 		openTab('https://omnivore.app/')
+		window.close()
+	}
+	if (element.classList.contains('open-settings')) {
+		browser.runtime.openOptionsPage()
 		window.close()
 	}
 	element.removeAttribute('disabled')
