@@ -198,14 +198,15 @@ li:last-of-type {
 
 .item .text {
 	flex: 0 1 auto;
-	display: block;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
 	overflow: hidden;
 }
 
 .item .text .title {
 	color: var(--text-color-primary);
 	font-weight: 600;
-	margin-bottom: 3px;
 }
 
 .item .text .url {
@@ -216,6 +217,29 @@ li:last-of-type {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-break: break-all;
+}
+
+/* Labels in list view  */
+.item .text .labels {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.item .text .labels .label {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	height: 100%;
+	line-height: 1;
+	padding: 2px 6px 2px 0;
+	border-radius: var(--border-radius);
+	font-size: 11px;
+}
+
+.item .text .labels .label .dot {
+	border-radius: 50%;
+	width: 0.8em;
+	height: 0.8em;
 }
 
 .item:hover .buttons {

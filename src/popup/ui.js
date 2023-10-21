@@ -50,7 +50,29 @@ function createTextDiv(node) {
 	url.className = 'url'
 	url.textContent = node.url
 	textDiv.appendChild(url)
+	if (node.labels != null) {
+		const labelsList = createLabelsList(node.labels)
+		textDiv.appendChild(labelsList)
+	}
 	return textDiv
+}
+
+function createLabelsList(labels) {
+	const list = document.createElement('ul')
+	list.className = 'labels'
+	labels.forEach((item) => {
+		const listItem = document.createElement('li')
+		listItem.className = 'label'
+		const dot = document.createElement('span')
+		dot.className = 'dot'
+		dot.style = 'background: ' + item.color
+		listItem.appendChild(dot)
+		const name = document.createElement('span')
+		name.textContent = item.name
+		listItem.appendChild(name)
+		list.appendChild(listItem)
+	})
+	return list
 }
 
 function createButtonsDiv(node, onReloadItems, labels) {
