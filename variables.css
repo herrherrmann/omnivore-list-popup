@@ -20,6 +20,8 @@
 	--font-family-default: -apple-system, BlinkMacSystemFont, avenir next, avenir,
 		segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
 		sans-serif;
+	--font-family-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+		monospace;
 }
 
 @media (prefers-color-scheme: dark) {

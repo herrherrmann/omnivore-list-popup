@@ -1,3 +1,15 @@
+@import url('variables.css');
+
+:root {
+	--background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-color: #23222b;
+	}
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -6,25 +18,16 @@
 
 html,
 body {
-	font-family:
-		-apple-system,
-		BlinkMacSystemFont,
-		avenir next,
-		avenir,
-		segoe ui,
-		helvetica neue,
-		helvetica,
-		Cantarell,
-		Ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
+	background-color: var(--background-color);
+	color: var(--text-color-primary);
+	font-family: var(--font-family-default);
 	font-size: 14px;
+	margin: 0;
 }
 
 body {
-	padding: 6px 3px;
+	padding: 6px;
+	min-height: 100vh;
 }
 
 form {
@@ -33,24 +36,27 @@ form {
 
 label {
 	display: block;
+	margin-bottom: 10px;
 }
 
 input {
+	--padding: 6px;
 	display: block;
-	width: 100%;
-	padding: 3px 5px;
+	min-width: calc(36ch + 2 * var(--padding) + 2px);
+	padding: var(--padding);
+	background-color: var(--background-color);
+	border: 1px solid var(--text-color-secondary);
+	border-radius: var(--border-radius);
 	margin-top: 3px;
 	font: inherit;
 }
 
 input#api-key {
-	font-family:
-		Menlo,
-		Consolas,
-		Monaco,
-		Liberation Mono,
-		Lucida Console,
-		monospace;
+	font-family: var(--font-family-mono);
+}
+
+input.valid {
+	border-color: var(--success-color);
 }
 
 small {
@@ -59,7 +65,15 @@ small {
 
 button {
 	font: inherit;
-	padding: 3px 6px;
+	padding: var(--button-paddings);
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: var(--card-background-hover);
 }
 
 .message {
@@ -67,5 +81,5 @@ button {
 }
 
 .message.success {
-	color: #2ac3a2;
+	color: var(--success-color);
 }
