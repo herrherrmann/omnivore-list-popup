@@ -48,7 +48,6 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
-- [ ] Add dark mode to options page
 - [ ] Internationalization
 - [ ] Cache list items locally for offline usage
 - [ ] Highlight the popup button if the current page is added to Omnivore
