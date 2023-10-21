@@ -1,3 +1,10 @@
+# 1.2.0
+
+## Improvements:
+
+- Show articles’ labels in the list view (thanks to [allibragi](https://github.com/allibragi))
+- Improved styles and added dark mode to the extension settings
+
 # 1.1.2
 
 ## Improvements:
