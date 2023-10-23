@@ -129,7 +129,14 @@ function showLabelsPage(article, labels, onReloadItems) {
 
 		const label = document.createElement('label')
 		label.htmlFor = item.id
-		label.innerHTML = item.name
+		const dot = document.createElement('span')
+		dot.className = 'dot'
+		dot.style = 'background: ' + item.color
+		label.appendChild(dot)
+		const name = document.createElement('span')
+		name.className = 'name'
+		name.textContent = item.name
+		label.appendChild(name)
 		div.appendChild(label)
 
 		labelsDiv.appendChild(div)
@@ -140,7 +147,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 
 	const backButton = document.createElement('button')
 	backButton.type = 'button'
-	backButton.innerHTML = 'Back'
+	backButton.textContent = 'Back'
 	backButton.addEventListener('click', () => {
 		closeLabelsPage()
 	})
@@ -150,7 +157,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 
 	const saveButton = document.createElement('button')
 	saveButton.type = 'submit'
-	saveButton.innerHTML = 'Save'
+	saveButton.textContent = 'Save'
 	saveButton.addEventListener('click', async () => {
 		if (isSaving) {
 			return

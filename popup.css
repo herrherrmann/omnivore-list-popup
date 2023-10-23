@@ -238,11 +238,16 @@ legend {
 	margin: 0 0 5px 0;
 }
 
+#labels-page fieldset {
+	width: 100%;
+}
+
 #labels-page #labels {
 	margin: 0 0 10px 0;
 }
 
 #labels-page #labels .label {
+	display: flex;
 	margin: 0 0 5px 0;
 }
 
@@ -250,12 +255,31 @@ legend {
 	margin: 0 5px 0 0;
 }
 
-#labels-page #buttons {
+#labels-page #labels .label label {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+#labels-page #labels .label label .dot {
+	border-radius: 50%;
+	flex: 0 0 0.70em;
+	height: 0.70em;
+}
+
+#labels-page #footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+#labels-page #footer #buttons {
 	display: flex;
 	gap: 5px;
 }
 
-#labels-page #buttons button {
+#labels-page #footer #buttons button {
 	display: flex;
 	font: inherit;
 	padding: var(--button-paddings);
@@ -265,6 +289,22 @@ legend {
 	cursor: pointer;
 }
 
-#labels-page #buttons button:hover {
+#labels-page #footer #buttons button:hover {
 	background-color: var(--card-background-hover);
+}
+
+#labels-page #footer #links a {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+#labels-page #footer #links a svg {
+	width: 1em;
+}
+
+#labels-page #footer #links a:hover {
+	text-decoration: underline;
 }
