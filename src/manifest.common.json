@@ -2,7 +2,7 @@
 	"name": "Omnivore List Popup",
 	"description": "Show a popup with a list of your Omnivore articles to quickly open or archive.",
 	"homepage_url": "https://github.com/herrherrmann/omnivore-list-popup",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"options_ui": {
 		"page": "options.html"
 	},

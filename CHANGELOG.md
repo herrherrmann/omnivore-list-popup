@@ -1,3 +1,9 @@
+# 1.2.2
+
+## Improvements:
+
+- Styles are properly loaded again (this time for real!)
+
 # 1.2.1
 
 ## Improvements:
