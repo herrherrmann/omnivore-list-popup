@@ -1,3 +1,11 @@
+# 1.2.1
+
+## Improvements:
+
+- Styles are properly loaded again
+- The label editor displays the labels’ colors as dots
+- The label editor provides a link to manage all labels on Omnivore
+
 # 1.2.0
 
 ## Improvements:
