@@ -14,7 +14,7 @@
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
     "dev": "webpack --watch",
-    "lint": "eslint .",
+    "lint": "eslint . && stylelint '**/*.css'",
     "format": "prettier . --write",
     "build": "webpack",
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
@@ -27,6 +27,8 @@
     "@types/firefox-webext-browser": "111.0.3",
     "eslint": "8.51.0",
     "prettier": "3.0.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.0.0",
     "svg-inline-loader": "0.8.2",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",

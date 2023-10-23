@@ -1,0 +1,12 @@
+{
+	"extends": "stylelint-config-standard-scss",
+	"rules": {
+		"declaration-empty-line-before": null,
+		"color-function-notation": null,
+		"color-hex-length": null,
+		"custom-property-empty-line-before": null,
+		"no-descending-specificity": null,
+		"shorthand-property-no-redundant-values": null,
+		"value-keyword-case": null
+	}
+}
