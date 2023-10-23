@@ -9,8 +9,8 @@
 	--card-background-hover: #f0f0f4;
 	--buttons-container-background: linear-gradient(
 		90deg,
-		rgba(251, 251, 254, 0) 0%,
-		rgba(251, 251, 254, 1) 100%
+		rgba(251, 251, 254, 0%) 0%,
+		rgba(251, 251, 254, 100%) 100%
 	);
 
 	--outer-padding: 5px;
@@ -36,8 +36,8 @@
 		--card-background-hover: #42414d;
 		--buttons-container-background: linear-gradient(
 			90deg,
-			rgba(251, 251, 254, 0) 0%,
-			rgba(91, 91, 102, 1) 100%
+			rgba(251, 251, 254, 0%) 0%,
+			rgba(91, 91, 102, 100%) 100%
 		);
 	}
 }

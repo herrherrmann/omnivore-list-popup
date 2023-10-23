@@ -14,19 +14,21 @@
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
     "dev": "webpack --watch",
-    "lint": "eslint .",
+    "lint": "eslint . && stylelint '**/*.css'",
     "format": "prettier . --write",
     "build": "webpack",
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
-    "zip-release": "zip -r omnivore-list-popup-release.zip icons CHANGELOG.md LICENSE manifest.json options.css options.html options.js popup.css popup.html popup.js",
-    "zip-release-with-source": "zip -r omnivore-list-popup-release-with-sources.zip icons src .eslintignore .eslintrc.json .gitignore .nvmrc .prettierignore .prettierrc CHANGELOG.md LICENSE manifest.json options.css options.html package-lock.json package.json popup.css popup.html README.md webpack.config.js",
-    "create-release": "npm run build && npm run zip-release && npm run zip-release-with-source"
+    "zip-release": "zip -r omnivore-list-popup-release.zip icons CHANGELOG.md LICENSE manifest.json options.css options.html options.js popup.css popup.html popup.js variables.css",
+    "zip-release-sources": "zip -r omnivore-list-popup-release-sources.zip icons src .eslintignore .eslintrc.json .gitignore .nvmrc .prettierignore .prettierrc CHANGELOG.md LICENSE manifest.json options.css options.html package-lock.json package.json popup.css popup.html variables.css README.md webpack.config.js",
+    "create-release": "npm run build && npm run zip-release && npm run zip-release-sources"
   },
   "devDependencies": {
     "@types/chrome": "0.0.248",
     "@types/firefox-webext-browser": "111.0.3",
     "eslint": "8.51.0",
     "prettier": "3.0.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.0.0",
     "svg-inline-loader": "0.8.2",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
