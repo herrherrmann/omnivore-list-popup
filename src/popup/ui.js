@@ -129,7 +129,14 @@ function showLabelsPage(article, labels, onReloadItems) {
 
 		const label = document.createElement('label')
 		label.htmlFor = item.id
-		label.textContent = item.name
+		const dot = document.createElement('span')
+		dot.className = 'dot'
+		dot.style = 'background: ' + item.color
+		label.appendChild(dot)
+		const name = document.createElement('span')
+		name.className = 'name'
+		name.textContent = item.name
+		label.appendChild(name)
 		div.appendChild(label)
 
 		labelsDiv.appendChild(div)
