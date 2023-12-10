@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { addLink, loadItems, loadLabels } from '../services/api'
-import { loadApiKey } from '../services/storage'
+import { loadSetting } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
 import { buildItemNode } from './ui'
 
@@ -29,7 +29,7 @@ function hideLoadingState() {
 }
 
 async function reloadItems() {
-	const apiKey = await loadApiKey()
+	const apiKey = await loadSetting('apiKey')
 	if (!apiKey) {
 		showApiKeyMissingPage()
 		return

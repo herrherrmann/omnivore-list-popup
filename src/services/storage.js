@@ -1,22 +1,30 @@
 import browser from 'webextension-polyfill'
 
-export async function loadApiKey() {
+const settingKeys = ['apiKey']
+
+export async function loadSetting(settingKey) {
+	if (!settingKeys.includes(settingKey)) {
+		throw new Error('Invalid setting key')
+	}
 	function onGot(result) {
-		return Promise.resolve(result.apiKey)
+		return Promise.resolve(result[settingKey])
 	}
 	function onError(error) {
 		return Promise.reject(error)
 	}
-	const getting = browser.storage.sync.get('apiKey')
+	const getting = browser.storage.sync.get(settingKey)
 	return getting.then(onGot, onError)
 }
 
-export async function saveApiKey(apiKey) {
-	function onSet(result) {
-		return Promise.resolve(result.apiKey)
+export async function saveSetting(settingKey, settingValue) {
+	if (!settingKeys.includes(settingKey)) {
+		throw new Error('Invalid setting key')
+	}
+	function onSet() {
+		return Promise.resolve()
 	}
 	function onError(error) {
 		return Promise.reject(error)
 	}
-	browser.storage.sync.set({ apiKey }).then(onSet, onError)
+	browser.storage.sync.set({ [settingKey]: settingValue }).then(onSet, onError)
 }

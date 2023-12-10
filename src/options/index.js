@@ -1,9 +1,9 @@
-import { loadApiKey, saveApiKey } from '../services/storage'
+import { loadSetting, saveSetting } from '../services/storage'
 
 const apiKeyInputSelector = '#api-key'
 
 async function restoreOptions() {
-	const apiKey = await loadApiKey()
+	const apiKey = await loadSetting('apiKey')
 	const apiKeyInput = document.querySelector(apiKeyInputSelector)
 	apiKeyInput.value = apiKey || ''
 	validateInput(apiKey)
@@ -12,7 +12,7 @@ async function restoreOptions() {
 async function saveOptions(event) {
 	event.preventDefault()
 	const apiKey = document.querySelector(apiKeyInputSelector).value
-	await saveApiKey(apiKey)
+	await saveSetting('apiKey', apiKey)
 	validateInput(apiKey)
 	const messageElement = document.querySelector('#message')
 	messageElement.classList.add('success')
