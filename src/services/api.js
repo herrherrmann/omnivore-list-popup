@@ -113,7 +113,11 @@ async function sendAPIRequest(query, variables) {
 }
 
 export async function loadItems() {
-	const data = await sendAPIRequest(searchQuery, { first: 10 })
+	const query = 'in:inbox'
+	const data = await sendAPIRequest(searchQuery, {
+		first: 10,
+		query: query,
+	})
 	const edges = data.search.edges
 	return edges
 }
