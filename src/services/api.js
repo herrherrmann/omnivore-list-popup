@@ -113,7 +113,7 @@ async function sendAPIRequest(query, variables) {
 }
 
 export async function loadItems() {
-	const query = 'in:inbox'
+	const query = await loadSetting('searchQuery')
 	const data = await sendAPIRequest(searchQuery, {
 		first: 10,
 		query: query,

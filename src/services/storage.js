@@ -1,7 +1,11 @@
 import browser from 'webextension-polyfill'
 
+const defaultSettings = {
+	searchQuery: 'in:inbox',
+}
+
 function checkSettingKey(settingKey) {
-	const settingKeys = ['apiKey']
+	const settingKeys = ['apiKey', 'searchQuery']
 	if (!settingKeys.includes(settingKey)) {
 		throw new Error('Invalid setting key')
 	}
@@ -9,8 +13,14 @@ function checkSettingKey(settingKey) {
 
 export async function loadSetting(settingKey) {
 	checkSettingKey(settingKey)
-	function onGot(result) {
-		return Promise.resolve(result[settingKey])
+	async function onGot(result) {
+		const value = result[settingKey]
+		const defaultValue = defaultSettings[settingKey]
+		if (value === undefined && defaultValue) {
+			await saveSetting(settingKey, defaultValue)
+			return Promise.resolve(defaultValue)
+		}
+		return Promise.resolve(value)
 	}
 	function onError(error) {
 		return Promise.reject(error)

@@ -40,7 +40,7 @@ label {
 input {
 	--padding: 6px;
 	display: block;
-	min-width: calc(36ch + 2 * var(--padding) + 2px);
+	min-width: 300px;
 	padding: var(--padding);
 	background-color: var(--background-color);
 	border: 1px solid var(--text-color-secondary);
@@ -50,6 +50,7 @@ input {
 }
 
 input#api-key {
+	min-width: calc(36ch + 2 * var(--padding) + 2px);
 	font-family: var(--font-family-mono);
 }
 
