@@ -1,4 +1,4 @@
-import { loadSetting } from './storage'
+import { defaultSettings, loadSetting } from './storage'
 
 const searchQuery = `
     query Search($after: String, $first: Int, $query: String) {
@@ -95,7 +95,7 @@ const searchQuery = `
 
 async function sendAPIRequest(query, variables) {
 	const apiKey = await loadSetting('apiKey')
-	const apiUrl = await loadSetting('apiUrl')
+	const apiUrl = (await loadSetting('apiUrl')) || defaultSettings.apiUrl
 	if (!apiKey || !apiUrl) {
 		return
 	}

@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 
-const defaultSettings = {
+export const defaultSettings = {
 	apiUrl: 'https://api-prod.omnivore.app/api/graphql',
 	searchQuery: 'in:inbox',
 }
