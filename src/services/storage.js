@@ -1,11 +1,12 @@
 import browser from 'webextension-polyfill'
 
 const defaultSettings = {
+	apiUrl: 'https://api-prod.omnivore.app/api/graphql',
 	searchQuery: 'in:inbox',
 }
 
 function checkSettingKey(settingKey) {
-	const settingKeys = ['apiKey', 'searchQuery']
+	const settingKeys = ['apiUrl', 'apiKey', 'searchQuery']
 	if (!settingKeys.includes(settingKey)) {
 		throw new Error('Invalid setting key')
 	}
