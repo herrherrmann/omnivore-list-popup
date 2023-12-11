@@ -31,7 +31,7 @@ body {
 form {
 	display: flex;
 	flex-direction: column;
-    align-items: flex-start;
+	align-items: flex-start;
 	gap: 15px;
 }
 
@@ -69,6 +69,12 @@ small {
 	font-weight: 400;
 }
 
+.footer {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
 button {
 	font: inherit;
 	padding: var(--button-paddings);
@@ -80,10 +86,6 @@ button {
 
 button:hover {
 	background-color: var(--card-background-hover);
-}
-
-.message {
-	margin-left: 5px;
 }
 
 .message.success {
