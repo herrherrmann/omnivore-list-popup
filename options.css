@@ -34,22 +34,23 @@ form {
 
 label {
 	display: block;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 input {
 	--padding: 6px;
 	display: block;
-	min-width: calc(36ch + 2 * var(--padding) + 2px);
+	min-width: 300px;
 	padding: var(--padding);
 	background-color: var(--background-color);
-	border: 1px solid var(--text-color-secondary);
+	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius);
 	margin-top: 3px;
 	font: inherit;
 }
 
 input#api-key {
+	min-width: calc(36ch + 2 * var(--padding) + 2px);
 	font-family: var(--font-family-mono);
 }
 

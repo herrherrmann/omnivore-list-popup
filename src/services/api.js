@@ -1,4 +1,4 @@
-import { loadApiKey } from './storage'
+import { loadSetting } from './storage'
 
 const API_URL = 'https://api-prod.omnivore.app/api/graphql'
 
@@ -96,7 +96,7 @@ const searchQuery = `
     }`
 
 async function sendAPIRequest(query, variables) {
-	const apiKey = await loadApiKey()
+	const apiKey = await loadSetting('apiKey')
 	if (!apiKey) {
 		return
 	}
@@ -113,7 +113,11 @@ async function sendAPIRequest(query, variables) {
 }
 
 export async function loadItems() {
-	const data = await sendAPIRequest(searchQuery, { first: 10 })
+	const query = await loadSetting('searchQuery')
+	const data = await sendAPIRequest(searchQuery, {
+		first: 10,
+		query: query,
+	})
 	const edges = data.search.edges
 	return edges
 }
