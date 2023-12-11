@@ -23,15 +23,15 @@
     "create-release": "npm run build && npm run zip-release && npm run zip-release-sources"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.248",
-    "@types/firefox-webext-browser": "111.0.3",
-    "eslint": "8.51.0",
-    "prettier": "3.0.3",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.0.0",
+    "@types/chrome": "0.0.254",
+    "@types/firefox-webext-browser": "120.0.0",
+    "eslint": "8.55.0",
+    "prettier": "3.1.1",
+    "stylelint": "15.11.0",
+    "stylelint-config-standard-scss": "11.1.0",
     "svg-inline-loader": "0.8.2",
-    "ts-node": "10.9.1",
-    "typescript": "5.2.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.3.3",
     "webextension-polyfill": "0.10.0",
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4"
