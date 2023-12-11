@@ -26,6 +26,8 @@ function validateInput(settingValue, inputSelector) {
 
 async function saveOptions(event) {
 	event.preventDefault()
+	const apiUrl = document.querySelector(apiUrlInputSelector).value
+	await saveSetting('apiUrl', apiUrl)
 	const apiKey = document.querySelector(apiKeyInputSelector).value
 	await saveSetting('apiKey', apiKey)
 	validateInput(apiKey, apiKeyInputSelector)
