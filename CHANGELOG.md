@@ -1,3 +1,12 @@
+# 1.3.0
+
+## Improvements:
+
+- Search query can be customized and defaults to "in:inbox"
+- Add simple API error handling and empty list state
+- API URL can now be customized (for self-hosting Omnivore)
+- Improve layout of settings page
+
 # 1.2.2
 
 ## Improvements:

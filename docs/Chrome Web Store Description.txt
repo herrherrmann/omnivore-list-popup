@@ -7,6 +7,7 @@ Features:
 - Quickly archive the article with the archive button
 - Change the labels of an article
 - Open the Omnivore main website
+- Use a custom Omnivore API URL (for self-hosted instances)
 - More features coming soon!
 
 Setup:
