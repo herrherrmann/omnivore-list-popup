@@ -1,11 +1,14 @@
 import browser from 'webextension-polyfill'
 
-const settingKeys = ['apiKey']
-
-export async function loadSetting(settingKey) {
+function checkSettingKey(settingKey) {
+	const settingKeys = ['apiKey']
 	if (!settingKeys.includes(settingKey)) {
 		throw new Error('Invalid setting key')
 	}
+}
+
+export async function loadSetting(settingKey) {
+	checkSettingKey(settingKey)
 	function onGot(result) {
 		return Promise.resolve(result[settingKey])
 	}
@@ -17,9 +20,7 @@ export async function loadSetting(settingKey) {
 }
 
 export async function saveSetting(settingKey, settingValue) {
-	if (!settingKeys.includes(settingKey)) {
-		throw new Error('Invalid setting key')
-	}
+	checkSettingKey(settingKey)
 	function onSet() {
 		return Promise.resolve()
 	}
