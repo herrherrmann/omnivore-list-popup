@@ -60,11 +60,13 @@ body {
 }
 
 .api-key-missing,
-.error {
+.error,
+.no-items {
 	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	gap: 10px;
 	padding: var(--outer-padding);
 	min-height: 150px;

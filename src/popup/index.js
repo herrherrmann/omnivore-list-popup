@@ -25,21 +25,26 @@ async function reloadItems() {
 		return
 	}
 	hideState('api-key-missing')
+	hideState('no-items')
 	hideState('error')
 	showState('loading')
 	const content = document.getElementById('content')
 	content.textContent = ''
-	const list = document.createElement('ul')
 	try {
 		const labels = await loadLabels()
 		const items = await loadItems()
-		items.forEach((item) => {
-			const listItem = document.createElement('li')
-			const itemNode = buildItemNode(item.node, reloadItems, labels)
-			listItem.appendChild(itemNode)
-			list.appendChild(listItem)
-		})
-		content.appendChild(list)
+		if (items.length) {
+			const list = document.createElement('ul')
+			items.forEach((item) => {
+				const listItem = document.createElement('li')
+				const itemNode = buildItemNode(item.node, reloadItems, labels)
+				listItem.appendChild(itemNode)
+				list.appendChild(listItem)
+			})
+			content.appendChild(list)
+		} else {
+			showState('no-items')
+		}
 		hideState('loading')
 	} catch (error) {
 		hideState('loading')
