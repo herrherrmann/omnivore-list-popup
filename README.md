@@ -46,6 +46,7 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 
 ## Todos & Ideas
 
+- [ ] Add pagination to browse beyond 10 items ([issue #23](https://github.com/herrherrmann/omnivore-list-popup/issues/23))
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
 - [ ] Use Omnivore’s `savePage` API instead of `saveUrl` (to capture page content directly)
