@@ -8,47 +8,43 @@ async function initialize() {
 	await reloadItems()
 }
 
-function showApiKeyMissingPage() {
-	const page = document.getElementById('api-key-missing')
-	page.style = 'display: flex;'
+function showState(elementId) {
+	const element = document.getElementById(elementId)
+	element.style = 'display: flex;'
 }
 
-function hideApiKeyMissingPage() {
-	const page = document.getElementById('api-key-missing')
-	page.style = 'display: none;'
-}
-
-function showLoadingState() {
-	const loadingContainer = document.getElementById('loading')
-	loadingContainer.style = 'display: flex;'
-}
-
-function hideLoadingState() {
-	const loadingContainer = document.getElementById('loading')
-	loadingContainer.style = 'display: none;'
+function hideState(elementId) {
+	const element = document.getElementById(elementId)
+	element.style = 'display: none;'
 }
 
 async function reloadItems() {
 	const apiKey = await loadSetting('apiKey')
 	if (!apiKey) {
-		showApiKeyMissingPage()
+		showState('api-key-missing')
 		return
 	}
-	hideApiKeyMissingPage()
-	showLoadingState()
+	hideState('api-key-missing')
+	hideState('error')
+	showState('loading')
 	const content = document.getElementById('content')
 	content.textContent = ''
 	const list = document.createElement('ul')
-	const labels = await loadLabels()
-	const items = await loadItems()
-	items.forEach((item) => {
-		const listItem = document.createElement('li')
-		const itemNode = buildItemNode(item.node, reloadItems, labels)
-		listItem.appendChild(itemNode)
-		list.appendChild(listItem)
-	})
-	content.appendChild(list)
-	hideLoadingState()
+	try {
+		const labels = await loadLabels()
+		const items = await loadItems()
+		items.forEach((item) => {
+			const listItem = document.createElement('li')
+			const itemNode = buildItemNode(item.node, reloadItems, labels)
+			listItem.appendChild(itemNode)
+			list.appendChild(listItem)
+		})
+		content.appendChild(list)
+		hideState('loading')
+	} catch (error) {
+		hideState('loading')
+		showState('error')
+	}
 }
 
 document.addEventListener('DOMContentLoaded', initialize)
