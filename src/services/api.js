@@ -1,7 +1,5 @@
 import { loadSetting } from './storage'
 
-const API_URL = 'https://api-prod.omnivore.app/api/graphql'
-
 const searchQuery = `
     query Search($after: String, $first: Int, $query: String) {
         search(first: $first, after: $after, query: $query) {
@@ -97,10 +95,11 @@ const searchQuery = `
 
 async function sendAPIRequest(query, variables) {
 	const apiKey = await loadSetting('apiKey')
-	if (!apiKey) {
+	const apiUrl = await loadSetting('apiUrl')
+	if (!apiKey || !apiUrl) {
 		return
 	}
-	const response = await fetch(API_URL, {
+	const response = await fetch(apiUrl, {
 		body: JSON.stringify({ query, variables }),
 		headers: {
 			Authorization: apiKey,

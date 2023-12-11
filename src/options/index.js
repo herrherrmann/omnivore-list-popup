@@ -1,9 +1,11 @@
 import { loadSetting, saveSetting } from '../services/storage'
 
+const apiUrlInputSelector = '#api-url'
 const apiKeyInputSelector = '#api-key'
 const searchQueryInputSelector = '#search-query'
 
 async function restoreOptions() {
+	await restoreInput('apiUrl', apiUrlInputSelector)
 	const apiKey = await restoreInput('apiKey', apiKeyInputSelector)
 	validateInput(apiKey, apiKeyInputSelector)
 	await restoreInput('searchQuery', searchQueryInputSelector)

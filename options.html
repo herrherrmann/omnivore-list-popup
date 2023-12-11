@@ -12,18 +12,29 @@
 			<label>
 				Omnivore API Key
 				<small>
-					(<a href="https://omnivore.app/settings/api" target="_blank"
+					<a href="https://omnivore.app/settings/api" target="_blank"
 						>Get it on Omnivore</a
-					>)
+					>
 				</small>
 				<input type="text" id="api-key" name="api-key" />
 			</label>
 			<label>
+				Omnivore API URL
+				<small>Only needed if you host your own Omnivore instance</small>
+				<input
+					type="url"
+					placeholder="https://..."
+					id="api-url"
+					name="api-url"
+				/>
+			</label>
+			<label>
 				Search Query
 				<small>
-					(<a href="https://docs.omnivore.app/using/search.html" target="_blank"
+					<a href="https://docs.omnivore.app/using/search.html" target="_blank"
 						>More info on search queries</a
-					> – default: <code>in:inbox</code>)
+					>
+					– default: <code>in:inbox</code>
 				</small>
 				<input type="text" id="search-query" name="search-query" />
 			</label>
