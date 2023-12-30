@@ -27,6 +27,7 @@ async function reloadItems() {
 	hideState('api-key-missing')
 	hideState('no-items')
 	hideState('error')
+	hideState('content')
 	showState('loading')
 	const content = document.getElementById('content')
 	content.textContent = ''
@@ -46,6 +47,7 @@ async function reloadItems() {
 			showState('no-items')
 		}
 		hideState('loading')
+		showState('content')
 	} catch (error) {
 		hideState('loading')
 		showState('error')

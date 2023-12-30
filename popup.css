@@ -99,6 +99,7 @@ body {
 
 .content,
 .labels-page {
+	flex-direction: column;
 	max-height: 450px;
 	padding: var(--outer-padding);
 	overflow: auto;
