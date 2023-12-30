@@ -233,6 +233,41 @@ li:last-of-type {
 	height: 20px;
 }
 
+.pagination {
+	margin: 5px auto 0 auto;
+}
+
+.pagination .buttons {
+	display: flex;
+	align-items: center;
+    gap: 5px;
+}
+
+.pagination .buttons button {
+	font: inherit;
+	padding: var(--button-paddings);
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+.pagination .buttons button:hover {
+	background-color: var(--card-background-hover);
+}
+
+.pagination .buttons button svg {
+	width: 1.2em;
+	height: 1.2em;
+    vertical-align: -.125em;
+	pointer-events: none;
+}
+
+.pagination .buttons .info {
+	font-size: 13px;
+	color: var(--text-color-secondary);
+}
+
 /* Labels page */
 fieldset {
 	border: none;

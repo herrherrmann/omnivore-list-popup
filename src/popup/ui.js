@@ -1,6 +1,8 @@
 import archiveSvg from '../images/archive.svg'
+import chevronLeftSvg from '../images/chevron-left.svg'
+import chevronRightSvg from '../images/chevron-right.svg'
 import tagSvg from '../images/tag.svg'
-import { archiveLink, saveLabels } from '../services/api'
+import { archiveLink, pageSize, saveLabels } from '../services/api'
 import { isMacOS } from '../services/system'
 import { openTab } from '../services/tabs'
 
@@ -104,6 +106,43 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	})
 	buttons.appendChild(archiveButton)
 	return buttons
+}
+
+export function createPagination(pageInfo) {
+	// pagInfo.hasPreviousPage is always false(?), so we’re calculating this manually.
+	const hasPreviousPage =
+		pageInfo.startCursor && Number(pageInfo.startCursor) > 0
+	if (!pageInfo.hasNextPage && !hasPreviousPage) {
+		return null
+	}
+	const pagination = document.createElement('div')
+	pagination.className = 'pagination'
+	const currentPage = Math.ceil(pageInfo.endCursor / pageSize)
+	const totalPages = Math.ceil(pageInfo.totalCount / pageSize)
+	const info = document.createElement('div')
+	info.className = 'info'
+	info.innerText = `${currentPage} / ${totalPages}`
+	const buttons = document.createElement('div')
+	buttons.className = 'buttons'
+	if (hasPreviousPage) {
+		const previousButton = document.createElement('button')
+		previousButton.type = 'button'
+		previousButton.className = 'button previous-page'
+		previousButton.innerHTML = chevronLeftSvg
+		previousButton.title = 'Go to previous page'
+		buttons.appendChild(previousButton)
+	}
+	buttons.appendChild(info)
+	if (pageInfo.hasNextPage) {
+		const nextButton = document.createElement('button')
+		nextButton.type = 'button'
+		nextButton.className = 'button next-page'
+		nextButton.innerHTML = chevronRightSvg
+		nextButton.title = 'Go to next page'
+		buttons.appendChild(nextButton)
+	}
+	pagination.appendChild(buttons)
+	return pagination
 }
 
 function showLabelsPage(article, labels, onReloadItems) {
