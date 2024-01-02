@@ -46,7 +46,7 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 
 ## Todos & Ideas
 
-- [ ] Add pagination to browse beyond 10 items ([issue #9](https://github.com/herrherrmann/omnivore-list-popup/issues/9))
+- [x] Add pagination to browse beyond 10 items ([issue #9](https://github.com/herrherrmann/omnivore-list-popup/issues/9))
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve generation of fallback images (sometimes broken or very low-contrast characters)
 - [ ] Improve error handling
