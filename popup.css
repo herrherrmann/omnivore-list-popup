@@ -240,7 +240,7 @@ li:last-of-type {
 .pagination .buttons {
 	display: flex;
 	align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .pagination .buttons button {
@@ -265,6 +265,7 @@ li:last-of-type {
 
 .pagination .buttons .info {
 	font-size: 13px;
+    text-align: center;
 	color: var(--text-color-secondary);
 }
 
