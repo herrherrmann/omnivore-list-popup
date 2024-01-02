@@ -99,6 +99,7 @@ body {
 
 .content,
 .labels-page {
+	flex-direction: column;
 	max-height: 450px;
 	padding: var(--outer-padding);
 	overflow: auto;
@@ -230,6 +231,42 @@ li:last-of-type {
 .item .buttons button svg {
 	width: 20px;
 	height: 20px;
+}
+
+.pagination {
+	margin: 5px auto 0 auto;
+}
+
+.pagination .buttons {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.pagination .buttons button {
+	font: inherit;
+	padding: var(--button-paddings);
+	background-color: var(--card-background);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+.pagination .buttons button:hover {
+	background-color: var(--card-background-hover);
+}
+
+.pagination .buttons button svg {
+	width: 1.2em;
+	height: 1.2em;
+	vertical-align: -0.125em;
+	pointer-events: none;
+}
+
+.pagination .buttons .info {
+	font-size: 13px;
+	text-align: center;
+	color: var(--text-color-secondary);
 }
 
 /* Labels page */

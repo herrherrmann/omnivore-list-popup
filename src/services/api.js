@@ -111,14 +111,21 @@ async function sendAPIRequest(query, variables) {
 	return graphQLResult.data
 }
 
-export async function loadItems() {
+export const pageSize = 20
+
+export async function loadItems(page) {
 	const query = await loadSetting('searchQuery')
-	const data = await sendAPIRequest(searchQuery, {
-		first: 10,
+	const variables = {
+		// The "after" value requires a string instead of a number.
+		after: page ? String((page - 1) * pageSize) : undefined,
+		first: pageSize,
 		query: query,
-	})
-	const edges = data.search.edges
-	return edges
+	}
+	const data = await sendAPIRequest(searchQuery, variables)
+	return {
+		items: data.search.edges,
+		pageInfo: data.search.pageInfo,
+	}
 }
 
 function generateUUID() {

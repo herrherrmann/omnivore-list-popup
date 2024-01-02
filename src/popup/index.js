@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill'
 import { addLink, loadItems, loadLabels } from '../services/api'
 import { loadSetting } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
-import { buildItemNode } from './ui'
+import { buildItemNode, createPagination } from './ui'
 
 async function initialize() {
 	await reloadItems()
@@ -18,6 +18,8 @@ function hideState(elementId) {
 	element.style = 'display: none;'
 }
 
+let currentPage = 1
+
 async function reloadItems() {
 	const apiKey = await loadSetting('apiKey')
 	if (!apiKey) {
@@ -27,12 +29,20 @@ async function reloadItems() {
 	hideState('api-key-missing')
 	hideState('no-items')
 	hideState('error')
+	hideState('labels-page')
+	hideState('content')
 	showState('loading')
 	const content = document.getElementById('content')
 	content.textContent = ''
 	try {
 		const labels = await loadLabels()
-		const items = await loadItems()
+		const { items, pageInfo } = await loadItems(currentPage)
+		// Load previous page when archiving an article leads to an empty page.
+		if (!items.length && currentPage > 1) {
+			currentPage -= 1
+			await reloadItems()
+			return
+		}
 		if (items.length) {
 			const list = document.createElement('ul')
 			items.forEach((item) => {
@@ -42,10 +52,15 @@ async function reloadItems() {
 				list.appendChild(listItem)
 			})
 			content.appendChild(list)
+			const pagination = createPagination(pageInfo)
+			if (pagination) {
+				content.appendChild(pagination)
+			}
 		} else {
 			showState('no-items')
 		}
 		hideState('loading')
+		showState('content')
 	} catch (error) {
 		hideState('loading')
 		showState('error')
@@ -78,6 +93,14 @@ document.addEventListener('click', async (event) => {
 	if (element.classList.contains('open-settings')) {
 		browser.runtime.openOptionsPage()
 		window.close()
+	}
+	if (element.classList.contains('previous-page')) {
+		currentPage -= 1
+		await reloadItems()
+	}
+	if (element.classList.contains('next-page')) {
+		currentPage += 1
+		await reloadItems()
 	}
 	element.removeAttribute('disabled')
 	event.preventDefault()
