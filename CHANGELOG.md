@@ -1,3 +1,10 @@
+# 1.4.0
+
+## Improvements:
+
+- Added pagination to browse beyond the first 10 articles
+- 20 articles are being loaded per page (instead of 10)
+
 # 1.3.0
 
 ## Improvements:
