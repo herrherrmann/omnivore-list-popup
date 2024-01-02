@@ -240,7 +240,7 @@ li:last-of-type {
 .pagination .buttons {
 	display: flex;
 	align-items: center;
-    gap: 10px;
+	gap: 10px;
 }
 
 .pagination .buttons button {
@@ -259,13 +259,13 @@ li:last-of-type {
 .pagination .buttons button svg {
 	width: 1.2em;
 	height: 1.2em;
-    vertical-align: -.125em;
+	vertical-align: -0.125em;
 	pointer-events: none;
 }
 
 .pagination .buttons .info {
 	font-size: 13px;
-    text-align: center;
+	text-align: center;
 	color: var(--text-color-secondary);
 }
 
