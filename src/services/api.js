@@ -111,7 +111,7 @@ async function sendAPIRequest(query, variables) {
 	return graphQLResult.data
 }
 
-export const pageSize = 10
+export const pageSize = 20
 
 export async function loadItems(page) {
 	const query = await loadSetting('searchQuery')
