@@ -37,6 +37,12 @@ async function reloadItems() {
 	try {
 		const labels = await loadLabels()
 		const { items, pageInfo } = await loadItems(currentPage)
+		// Load previous page when archiving an article leads to an empty page.
+		if (!items.length && currentPage > 1) {
+			currentPage -= 1
+			await reloadItems()
+			return
+		}
 		if (items.length) {
 			const list = document.createElement('ul')
 			items.forEach((item) => {
