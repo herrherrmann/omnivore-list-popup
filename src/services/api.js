@@ -38,6 +38,20 @@ const searchQuery = `
         }
     }`
 
+const setLinkArchivedQuery = `
+    mutation SetLinkArchived($input: ArchiveLinkInput!) {
+        setLinkArchived(input: $input) {
+            ... on ArchiveLinkSuccess {
+                linkId
+                message
+            }
+            ... on ArchiveLinkError {
+                message
+                errorCodes
+            }
+        }
+    }`
+
 async function sendAPIRequest(query, variables) {
 	const apiKey = await loadSetting('apiKey')
 	const apiUrl = (await loadSetting('apiUrl')) || defaultSettings.apiUrl
@@ -103,19 +117,6 @@ export async function addLink(url) {
 }
 
 export async function archiveLink(linkId) {
-	const query = `
-        mutation SetLinkArchived($input: ArchiveLinkInput!) {
-            setLinkArchived(input: $input) {
-                ... on ArchiveLinkSuccess {
-                    linkId
-                    message
-                }
-                ... on ArchiveLinkError {
-                    message
-                    errorCodes
-                }
-            }
-        }`
 	const variables = {
 		input: {
 			archived: true,
@@ -123,7 +124,17 @@ export async function archiveLink(linkId) {
 		},
 	}
 	// TODO: Error handling!
-	await sendAPIRequest(query, variables)
+	await sendAPIRequest(setLinkArchivedQuery, variables)
+}
+export async function unarchiveLink(linkId) {
+	const variables = {
+		input: {
+			archived: false,
+			linkId,
+		},
+	}
+	// TODO: Error handling!
+	await sendAPIRequest(setLinkArchivedQuery, variables)
 }
 
 export async function loadLabels() {
