@@ -160,6 +160,10 @@ li:last-of-type {
 }
 
 .item .text .title {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 	color: var(--text-color-primary);
 	font-weight: 600;
 }
