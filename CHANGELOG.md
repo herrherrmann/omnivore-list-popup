@@ -1,3 +1,14 @@
+# 1.5.0
+
+## Improvements:
+
+- Articles with long titles will not exceed two lines anymore
+- The pagination UI is always properly centered now (was aligned to the left on the last page)
+- There are fewer fields being fetched for each article (which in theory leads to better performance)
+- Already-archived articles can now be unarchived/restored
+- The options page looks a bit better and the advanced options are grouped and labeled a bit better
+- The options page now has a “Restore defaults” button that restores the advanced options’ default values
+
 # 1.4.0
 
 ## Improvements:

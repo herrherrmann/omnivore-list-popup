@@ -4,7 +4,7 @@ Features:
 - See all your Omnivore articles in a popup
 - Quickly open the original article URL in a new tab by clicking the article
 - Keep the popup open by keeping CMD (CTRL on Windows/Linux) pressed while clicking an article
-- Quickly archive the article with the archive button
+- Archive (or unarchive) articles from the list
 - Change the labels of an article
 - Open the Omnivore main website
 - Use a custom Omnivore API URL (for self-hosted instances)
