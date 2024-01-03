@@ -33,12 +33,14 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 1. Run `npm run prepare-manifest -- -firefox` to create the Firefox-specific `manifest.json`.
 2. Run `npm run create-release` to generate the output files and create the extension archives.
 3. Upload the archives on https://addons.mozilla.org/developers/addon/omnivore-list-popup/
+4. Remove the locally-created files via `npm run clean`.
 
 **Chrome:**
 
 1. Run `npm run prepare-manifest -- -chrome` to create the Chrome-specific `manifest.json` (Manifest v3).
 2. Run `npm run create-release` to generate the output files and create the extension archives.
 3. Upload the archives on https://chrome.google.com/webstore/devconsole
+4. Remove the locally-created files via `npm run clean`.
 
 ## Contributing
 

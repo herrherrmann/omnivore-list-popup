@@ -20,13 +20,15 @@
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
     "zip-release": "zip -r omnivore-list-popup-release.zip icons CHANGELOG.md LICENSE manifest.json options.css options.html options.js popup.css popup.html popup.js variables.css",
     "zip-release-sources": "zip -r omnivore-list-popup-release-sources.zip icons src .eslintignore .eslintrc.json .gitignore .nvmrc .prettierignore .prettierrc CHANGELOG.md LICENSE manifest.json options.css options.html package-lock.json package.json popup.css popup.html variables.css README.md webpack.config.js",
-    "create-release": "npm run build && npm run zip-release && npm run zip-release-sources"
+    "create-release": "npm run build && npm run zip-release && npm run zip-release-sources",
+    "clean": "rimraf ./*.zip"
   },
   "devDependencies": {
     "@types/chrome": "0.0.254",
     "@types/firefox-webext-browser": "120.0.0",
     "eslint": "8.55.0",
     "prettier": "3.1.1",
+    "rimraf": "5.0.5",
     "stylelint": "15.11.0",
     "stylelint-config-standard-scss": "11.1.0",
     "svg-inline-loader": "0.8.2",
