@@ -34,13 +34,15 @@
 					<a href="https://docs.omnivore.app/using/search.html" target="_blank"
 						>More info on search queries</a
 					>
-					– default: <code>in:inbox</code>
 				</small>
 				<input type="text" id="search-query" name="search-query" />
 			</label>
 			<div class="footer">
 				<button type="submit">Save</button>
-				<span class="message" id="message"></span>
+				<button type="button" class="restore-defaults">
+					Restore defaults
+				</button>
+				<div class="message" id="message" aria-live="polite"></div>
 			</div>
 		</form>
 
