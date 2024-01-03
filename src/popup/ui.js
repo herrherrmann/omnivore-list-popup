@@ -1,8 +1,14 @@
+import archiveRestoreSvg from '../images/archive-restore.svg'
 import archiveSvg from '../images/archive.svg'
 import chevronLeftSvg from '../images/chevron-left.svg'
 import chevronRightSvg from '../images/chevron-right.svg'
 import tagSvg from '../images/tag.svg'
-import { archiveLink, pageSize, saveLabels } from '../services/api'
+import {
+	archiveLink,
+	pageSize,
+	saveLabels,
+	unarchiveLink,
+} from '../services/api'
 import { isMacOS } from '../services/system'
 import { openTab } from '../services/tabs'
 
@@ -93,18 +99,33 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	})
 	buttons.appendChild(labelButton)
 
-	const archiveButton = document.createElement('button')
-	archiveButton.type = 'button'
-	archiveButton.className = 'button archive'
-	archiveButton.innerHTML = archiveSvg
-	archiveButton.title = 'Archive this item'
-	archiveButton.addEventListener('click', async (event) => {
-		event.preventDefault()
-		event.stopPropagation()
-		await archiveLink(node.id)
-		await onReloadItems()
-	})
-	buttons.appendChild(archiveButton)
+	if (!node.isArchived) {
+		const archiveButton = document.createElement('button')
+		archiveButton.type = 'button'
+		archiveButton.className = 'button'
+		archiveButton.innerHTML = archiveSvg
+		archiveButton.title = 'Archive this item'
+		archiveButton.addEventListener('click', async (event) => {
+			event.preventDefault()
+			event.stopPropagation()
+			await archiveLink(node.id)
+			await onReloadItems()
+		})
+		buttons.appendChild(archiveButton)
+	} else {
+		const restoreButton = document.createElement('button')
+		restoreButton.type = 'button'
+		restoreButton.className = 'button'
+		restoreButton.innerHTML = archiveRestoreSvg
+		restoreButton.title = 'Restore this item'
+		restoreButton.addEventListener('click', async (event) => {
+			event.preventDefault()
+			event.stopPropagation()
+			await unarchiveLink(node.id)
+			await onReloadItems()
+		})
+		buttons.appendChild(restoreButton)
+	}
 	return buttons
 }
 

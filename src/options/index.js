@@ -1,4 +1,4 @@
-import { loadSetting, saveSetting } from '../services/storage'
+import { defaultSettings, loadSetting, saveSetting } from '../services/storage'
 
 const apiUrlInputSelector = '#api-url'
 const apiKeyInputSelector = '#api-key'
@@ -39,8 +39,21 @@ async function saveOptions(event) {
 	setTimeout(() => {
 		messageElement.textContent = ''
 		messageElement.classList.remove('success')
-	}, 1_000)
+	}, 2_000)
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions)
 document.querySelector('form').addEventListener('submit', saveOptions)
+
+document.addEventListener('click', async (event) => {
+	const element = event.target
+	if (element.tagName !== 'BUTTON') {
+		return
+	}
+	if (element.classList.contains('restore-defaults')) {
+		const searchQueryInput = document.querySelector(searchQueryInputSelector)
+		searchQueryInput.value = defaultSettings.searchQuery
+		const apiUrlInput = document.querySelector(apiUrlInputSelector)
+		apiUrlInput.value = defaultSettings.apiUrl
+	}
+})

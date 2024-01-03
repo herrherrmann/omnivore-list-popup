@@ -9,52 +9,19 @@ const searchQuery = `
                     node {
                         id
                         title
-                        slug
                         url
                         pageType
                         contentReader
-                        createdAt
                         isArchived
-                        readingProgressPercent
-                        readingProgressTopPercent
-                        readingProgressAnchorIndex
                         author
                         image
-                        description
-                        publishedAt
-                        ownedByViewer
                         originalArticleUrl
-                        uploadFileId
                         labels {
                             id
                             name
                             color
                         }
-                        pageId
-                        shortId
-                        quote
-                        annotation
                         state
-                        siteName
-                        subscription
-                        readAt
-                        savedAt
-                        wordsCount
-                        recommendations {
-                            id
-                            name
-                            note
-                            user {
-                                userId
-                                name
-                                username
-                                profileImageURL
-                            }
-                            recommendedAt
-                        }
-                        highlights {
-                            ...HighlightFields
-                        }
                     }
                 }
                 pageInfo {
@@ -69,27 +36,19 @@ const searchQuery = `
                 errorCodes
             }
         }
-    }
-    fragment HighlightFields on Highlight {
-        id
-        type
-        shortId
-        quote
-        prefix
-        suffix
-        patch
-        annotation
-        createdByMe
-        createdAt
-        updatedAt
-        sharedAt
-        highlightPositionPercent
-        highlightPositionAnchorIndex
-        labels {
-            id
-            name
-            color
-            createdAt
+    }`
+
+const setLinkArchivedQuery = `
+    mutation SetLinkArchived($input: ArchiveLinkInput!) {
+        setLinkArchived(input: $input) {
+            ... on ArchiveLinkSuccess {
+                linkId
+                message
+            }
+            ... on ArchiveLinkError {
+                message
+                errorCodes
+            }
         }
     }`
 
@@ -158,19 +117,6 @@ export async function addLink(url) {
 }
 
 export async function archiveLink(linkId) {
-	const query = `
-        mutation SetLinkArchived($input: ArchiveLinkInput!) {
-            setLinkArchived(input: $input) {
-                ... on ArchiveLinkSuccess {
-                    linkId
-                    message
-                }
-                ... on ArchiveLinkError {
-                    message
-                    errorCodes
-                }
-            }
-        }`
 	const variables = {
 		input: {
 			archived: true,
@@ -178,7 +124,17 @@ export async function archiveLink(linkId) {
 		},
 	}
 	// TODO: Error handling!
-	await sendAPIRequest(query, variables)
+	await sendAPIRequest(setLinkArchivedQuery, variables)
+}
+export async function unarchiveLink(linkId) {
+	const variables = {
+		input: {
+			archived: false,
+			linkId,
+		},
+	}
+	// TODO: Error handling!
+	await sendAPIRequest(setLinkArchivedQuery, variables)
 }
 
 export async function loadLabels() {

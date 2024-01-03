@@ -18,29 +18,34 @@
 				</small>
 				<input type="text" id="api-key" name="api-key" />
 			</label>
-			<label>
-				Omnivore API URL
-				<small>Only needed if you host your own Omnivore instance</small>
-				<input
-					type="url"
-					placeholder="https://..."
-					id="api-url"
-					name="api-url"
-				/>
-			</label>
-			<label>
-				Search Query
-				<small>
-					<a href="https://docs.omnivore.app/using/search.html" target="_blank"
-						>More info on search queries</a
-					>
-					– default: <code>in:inbox</code>
-				</small>
-				<input type="text" id="search-query" name="search-query" />
-			</label>
+			<fieldset>
+				<legend>⚠️ Advanced options</legend>
+				<label>
+					Custom Omnivore API URL
+					<small>Only needed if you host your own Omnivore instance</small>
+					<input
+						type="url"
+						placeholder="https://..."
+						id="api-url"
+						name="api-url"
+					/>
+				</label>
+				<label>
+					Search Query
+					<small>
+						<a
+							href="https://docs.omnivore.app/using/search.html"
+							target="_blank"
+							>More info on search queries</a
+						>
+					</small>
+					<input type="text" id="search-query" name="search-query" />
+				</label>
+			</fieldset>
 			<div class="footer">
 				<button type="submit">Save</button>
-				<span class="message" id="message"></span>
+				<button type="button" class="restore-defaults">Restore defaults</button>
+				<div class="message" id="message" aria-live="polite"></div>
 			</div>
 		</form>
 
