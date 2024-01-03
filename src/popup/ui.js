@@ -185,6 +185,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		checkbox.value = item.id
 		checkbox.id = item.id
 		checkbox.checked = !!article.labels?.find((label) => label.id === item.id)
+		checkbox.style = `accent-color: ${item.color}`
 		div.appendChild(checkbox)
 
 		const label = document.createElement('label')
