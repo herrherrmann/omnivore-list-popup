@@ -39,7 +39,7 @@ async function saveOptions(event) {
 	setTimeout(() => {
 		messageElement.textContent = ''
 		messageElement.classList.remove('success')
-	}, 1_000)
+	}, 2_000)
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions)
