@@ -238,7 +238,10 @@ li:last-of-type {
 }
 
 .pagination {
-	margin: 5px auto 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5px;
 }
 
 .pagination .buttons {
