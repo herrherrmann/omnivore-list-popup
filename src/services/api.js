@@ -9,52 +9,19 @@ const searchQuery = `
                     node {
                         id
                         title
-                        slug
                         url
                         pageType
                         contentReader
-                        createdAt
                         isArchived
-                        readingProgressPercent
-                        readingProgressTopPercent
-                        readingProgressAnchorIndex
                         author
                         image
-                        description
-                        publishedAt
-                        ownedByViewer
                         originalArticleUrl
-                        uploadFileId
                         labels {
                             id
                             name
                             color
                         }
-                        pageId
-                        shortId
-                        quote
-                        annotation
                         state
-                        siteName
-                        subscription
-                        readAt
-                        savedAt
-                        wordsCount
-                        recommendations {
-                            id
-                            name
-                            note
-                            user {
-                                userId
-                                name
-                                username
-                                profileImageURL
-                            }
-                            recommendedAt
-                        }
-                        highlights {
-                            ...HighlightFields
-                        }
                     }
                 }
                 pageInfo {
@@ -68,28 +35,6 @@ const searchQuery = `
             ... on SearchError {
                 errorCodes
             }
-        }
-    }
-    fragment HighlightFields on Highlight {
-        id
-        type
-        shortId
-        quote
-        prefix
-        suffix
-        patch
-        annotation
-        createdByMe
-        createdAt
-        updatedAt
-        sharedAt
-        highlightPositionPercent
-        highlightPositionAnchorIndex
-        labels {
-            id
-            name
-            color
-            createdAt
         }
     }`
 
