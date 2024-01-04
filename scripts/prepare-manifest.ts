@@ -3,23 +3,22 @@ import manifestChrome from '../src/manifest.chrome.json'
 import manifestCommon from '../src/manifest.common.json'
 import manifestFirefox from '../src/manifest.firefox.json'
 
-type Target = 'firefox' | 'chrome'
+export type TargetBrowser = 'firefox' | 'chrome'
 
-async function prepareManifest() {
-	const target = getTarget()
-	if (!target) {
+export async function prepareManifest(targetBrowser: TargetBrowser | null) {
+	if (!targetBrowser) {
 		console.error(
-			'No target parameter specified! Please specify -firefox or -chrome',
+			'No target browser specified! Please specify "firefox" or "chrome".',
 		)
 		return
 	}
-	const manifests: Record<Target, object> = {
+	const manifests: Record<TargetBrowser, object> = {
 		chrome: manifestChrome,
 		firefox: manifestFirefox,
 	}
 	const mergedManifest = {
 		...manifestCommon,
-		...manifests[target],
+		...manifests[targetBrowser],
 	}
 	try {
 		await fs.writeFile(
@@ -31,7 +30,7 @@ async function prepareManifest() {
 	}
 }
 
-function getTarget(): Target | null {
+function getTargetBrowserFromArgs(): TargetBrowser | null {
 	const isFirefox = process.argv.indexOf('-firefox') > -1
 	if (isFirefox) {
 		return 'firefox'
@@ -43,4 +42,4 @@ function getTarget(): Target | null {
 	return null
 }
 
-prepareManifest()
+prepareManifest(getTargetBrowserFromArgs())

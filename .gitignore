@@ -13,3 +13,5 @@ npm-debug.log*
 /options.js
 /popup.js
 /manifest.json
+/release-*
+/sources-*
