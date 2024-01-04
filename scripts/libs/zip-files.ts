@@ -1,7 +1,7 @@
 import archiver from 'archiver'
 import fs from 'fs'
-import { version } from '../src/manifest.common.json'
-import { TargetBrowser } from './prepare-manifest'
+import { version } from '../../src/manifest.common.json'
+import { TargetBrowser } from './types'
 
 function zipFiles(sourceGlobs: string[], outPath: string) {
 	const archive = archiver('zip', { zlib: { level: 9 } })
