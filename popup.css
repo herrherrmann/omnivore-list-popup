@@ -277,31 +277,25 @@ li:last-of-type {
 }
 
 /* Labels page */
-fieldset {
+#labels-page fieldset {
+	width: 100%;
 	border: none;
 	padding: 0;
 }
 
-legend {
+#labels-page legend {
 	font-weight: 600;
 	margin: 0 0 5px 0;
 }
 
-#labels-page fieldset {
-	width: 100%;
-}
-
 #labels-page #labels {
-	margin: 0 0 10px 0;
+	margin: 0 0 15px 0;
 }
 
 #labels-page #labels .label {
 	display: flex;
+	gap: 5px;
 	margin: 0 0 5px 0;
-}
-
-#labels-page #labels .label input {
-	margin: 0 5px 0 0;
 }
 
 #labels-page #labels .label label {
@@ -314,6 +308,10 @@ legend {
 	border-radius: 50%;
 	flex: 0 0 0.7em;
 	height: 0.7em;
+}
+
+#labels-page #labels .label label .name {
+	flex: 1 0 auto;
 }
 
 #labels-page #footer {

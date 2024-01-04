@@ -185,6 +185,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		checkbox.value = item.id
 		checkbox.id = item.id
 		checkbox.checked = !!article.labels?.find((label) => label.id === item.id)
+		checkbox.style = `accent-color: ${item.color}`
 		div.appendChild(checkbox)
 
 		const label = document.createElement('label')
@@ -205,13 +206,13 @@ function showLabelsPage(article, labels, onReloadItems) {
 	const buttons = labelsPage.querySelector('#buttons')
 	buttons.innerHTML = ''
 
-	const backButton = document.createElement('button')
-	backButton.type = 'button'
-	backButton.textContent = 'Back'
-	backButton.addEventListener('click', () => {
+	const cancelButton = document.createElement('button')
+	cancelButton.type = 'button'
+	cancelButton.textContent = 'Cancel'
+	cancelButton.addEventListener('click', () => {
 		closeLabelsPage()
 	})
-	buttons.appendChild(backButton)
+	buttons.appendChild(cancelButton)
 
 	let isSaving = false
 
@@ -224,7 +225,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		}
 		isSaving = true
 		saveButton.disabled = true
-		backButton.disabled = true
+		cancelButton.disabled = true
 		const inputElements = labelsPage.querySelectorAll('#labels input')
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
