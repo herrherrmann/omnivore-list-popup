@@ -1,3 +1,9 @@
+# 1.5.1
+
+## Improvements:
+
+- Smaller UI improvements for labels page
+
 # 1.5.0
 
 ## Improvements:
