@@ -21,17 +21,18 @@ function hideState(elementId) {
 let currentPage = 1
 
 async function reloadItems() {
-	const apiKey = await loadSetting('apiKey')
-	if (!apiKey) {
-		showState('api-key-missing')
-		return
-	}
 	hideState('api-key-missing')
 	hideState('no-items')
 	hideState('error')
 	hideState('labels-page')
 	hideState('content')
 	showState('loading')
+	const apiKey = await loadSetting('apiKey')
+	if (!apiKey) {
+		hideState('loading')
+		showState('api-key-missing')
+		return
+	}
 	const content = document.getElementById('content')
 	content.textContent = ''
 	try {
@@ -57,6 +58,7 @@ async function reloadItems() {
 				content.appendChild(pagination)
 			}
 		} else {
+			hideState('loading')
 			showState('no-items')
 		}
 		hideState('loading')
