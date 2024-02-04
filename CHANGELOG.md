@@ -1,3 +1,9 @@
+# 1.5.2
+
+## Improvements:
+
+- Labels page is no longer accidentally shown during the initial setup
+
 # 1.5.1
 
 ## Improvements:
