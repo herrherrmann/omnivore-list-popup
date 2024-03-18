@@ -1,5 +1,8 @@
 import browser from 'webextension-polyfill'
 
+/**
+ * @returns {Promise<import('webextension-polyfill').Tabs.Tab>} active browser tab
+ */
 export async function getActiveTab() {
 	function onGot(tabs) {
 		const activeTab = tabs[0]
