@@ -20,6 +20,7 @@ function zipFiles(sourceGlobs: string[], outPath: string) {
 
 const RELEASE_FILES = [
 	'icons/**',
+	'background.js',
 	'LICENSE',
 	'manifest.json',
 	'options.css',
