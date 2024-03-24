@@ -17,6 +17,10 @@ Setup:
 - Launch the extension by clicking the new "Omnivore List Popup" button in your Firefox extension toolbar/dropdown.
 - Optional: Add the extension to your always-visible toolbar.
 
+Keyboard shortcuts:
+- Cmd+Shift+S: Save the current page in Omnivore
+- Cmd+Shift+D: Open the extension popup
+
 Links:
 - Source Code: https://github.com/herrherrmann/omnivore-list-popup
 - Issues: https://github.com/herrherrmann/omnivore-list-popup/issues
