@@ -12,12 +12,19 @@ import {
 import { isMacOS } from '../services/system'
 import { openTab } from '../services/tabs'
 
-export function buildItemNode(node, onReloadItems, labels) {
+/**
+ *
+ * @param {Object} node Omnivore’s item node.
+ * @param {Object[]} labels list of all labels from Omnivore (for the label edit screen)
+ * @param {function} onAfterUpdate function to be called after an item has been updated (e.g. archived or labeled)
+ * @returns {HTMLLinkElement} HTML Node representing an Omnivore entry in an HTML list.
+ */
+export function buildItemNode(node, labels, onAfterUpdate) {
 	const item = document.createElement('a')
 	item.className = 'item'
 	item.appendChild(createImage(node))
 	item.appendChild(createTextDiv(node))
-	item.appendChild(createButtonsDiv(node, onReloadItems, labels))
+	item.appendChild(createButtonsDiv(node, labels, onAfterUpdate))
 	item.setAttribute('href', node.url)
 	item.addEventListener('click', (event) => {
 		event.preventDefault()
@@ -83,7 +90,7 @@ function createLabelsList(labels) {
 	return list
 }
 
-function createButtonsDiv(node, onReloadItems, labels) {
+function createButtonsDiv(node, labels, onAfterUpdate) {
 	const buttons = document.createElement('div')
 	buttons.className = 'buttons'
 
@@ -95,7 +102,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
-		showLabelsPage(node, labels, onReloadItems)
+		showLabelsPage(node, labels, onAfterUpdate)
 	})
 	buttons.appendChild(labelButton)
 
@@ -109,7 +116,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 			event.preventDefault()
 			event.stopPropagation()
 			await archiveLink(node.id)
-			await onReloadItems()
+			onAfterUpdate()
 		})
 		buttons.appendChild(archiveButton)
 	} else {
@@ -122,7 +129,7 @@ function createButtonsDiv(node, onReloadItems, labels) {
 			event.preventDefault()
 			event.stopPropagation()
 			await unarchiveLink(node.id)
-			await onReloadItems()
+			onAfterUpdate()
 		})
 		buttons.appendChild(restoreButton)
 	}
@@ -166,7 +173,7 @@ export function createPagination(pageInfo) {
 	return pagination
 }
 
-function showLabelsPage(article, labels, onReloadItems) {
+function showLabelsPage(article, labels, onAfterUpdate) {
 	const content = document.getElementById('content')
 	content.style = 'display: none;'
 
@@ -233,7 +240,7 @@ function showLabelsPage(article, labels, onReloadItems) {
 		await saveLabels(article.id, checkedValues)
 		// TODO: Error handling!
 		closeLabelsPage()
-		await onReloadItems()
+		onAfterUpdate()
 	})
 	buttons.appendChild(saveButton)
 

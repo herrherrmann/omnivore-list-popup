@@ -48,7 +48,7 @@ async function reloadItems() {
 			const list = document.createElement('ul')
 			items.forEach((item) => {
 				const listItem = document.createElement('li')
-				const itemNode = buildItemNode(item.node, reloadItems, labels)
+				const itemNode = buildItemNode(item.node, labels, reloadItems)
 				listItem.appendChild(itemNode)
 				list.appendChild(listItem)
 			})
