@@ -1,3 +1,10 @@
+# 1.5.3
+
+## Improvements:
+
+- Added keyboard shortcuts for opening the popup and adding the current page/tab to Omnivore
+- Updated all technical dependencies
+
 # 1.5.2
 
 ## Improvements:
