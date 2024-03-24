@@ -18,5 +18,13 @@
 		],
 		"default_popup": "popup.html"
 	},
-	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"]
+	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+D"
+			},
+			"description": "Open popup"
+		}
+	}
 }

@@ -15,5 +15,13 @@
 		"default_popup": "popup.html"
 	},
 	"permissions": ["storage", "tabs"],
-	"host_permissions": ["https://api-prod.omnivore.app/*"]
+	"host_permissions": ["https://api-prod.omnivore.app/*"],
+	"commands": {
+		"_execute_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+D"
+			},
+			"description": "Open popup"
+		}
+	}
 }
