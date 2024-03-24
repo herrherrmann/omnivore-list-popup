@@ -16,12 +16,21 @@
 	},
 	"permissions": ["storage", "tabs"],
 	"host_permissions": ["https://api-prod.omnivore.app/*"],
+	"background": {
+		"service_worker": "background.js"
+	},
 	"commands": {
 		"_execute_action": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+D"
 			},
 			"description": "Open popup"
+		},
+		"add_current_page": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+S"
+			},
+			"description": "Add current page to Omnivore"
 		}
 	}
 }
