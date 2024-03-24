@@ -14,6 +14,7 @@ module.exports = {
 		],
 	},
 	entry: {
+		background: './src/background/index.js',
 		options: './src/options/index.js',
 		popup: './src/popup/index.js',
 	},

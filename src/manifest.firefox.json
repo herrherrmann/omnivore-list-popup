@@ -18,5 +18,22 @@
 		],
 		"default_popup": "popup.html"
 	},
-	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"]
+	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+D"
+			},
+			"description": "Open popup"
+		},
+		"add_current_page": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+S"
+			},
+			"description": "Add current page to Omnivore"
+		}
+	}
 }

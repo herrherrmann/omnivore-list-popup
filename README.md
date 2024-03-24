@@ -40,8 +40,7 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 ## Todos & Ideas
 
 - [x] Add pagination to browse beyond 10 items ([issue #9](https://github.com/herrherrmann/omnivore-list-popup/issues/9))
-- [ ] Add keyboard shortcut for opening the popup
-- [ ] Add keyboard shortcut for adding current page to Omnivore
+- [x] Add keyboard shortcuts for opening the popup and adding the current page to Omnivore
 - [ ] Optionally load other sets like archived items (via saved searches dropdown?)
 - [ ] Cache API results for quicker load times
 - [ ] Add possibility to delete items (additionally to archiving)
