@@ -20,7 +20,8 @@
 	},
 	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": ["background.js"],
+		"persistent": true
 	},
 	"commands": {
 		"_execute_browser_action": {
