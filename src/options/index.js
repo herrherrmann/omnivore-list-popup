@@ -4,7 +4,7 @@ const apiUrlInputSelector = '#api-url'
 const apiKeyInputSelector = '#api-key'
 const searchQueryInputSelector = '#search-query'
 
-async function restoreOptions() {
+async function initialize() {
 	await restoreInput('apiUrl', apiUrlInputSelector)
 	const apiKey = await restoreInput('apiKey', apiKeyInputSelector)
 	validateInput(apiKey, apiKeyInputSelector)
@@ -42,7 +42,7 @@ async function saveOptions(event) {
 	}, 2_000)
 }
 
-document.addEventListener('DOMContentLoaded', restoreOptions)
+document.addEventListener('DOMContentLoaded', initialize)
 document.querySelector('form').addEventListener('submit', saveOptions)
 
 document.addEventListener('click', async (event) => {
