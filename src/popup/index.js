@@ -2,34 +2,18 @@ import browser from 'webextension-polyfill'
 import { addLink, loadItems, loadLabels } from '../services/api'
 import { loadSetting } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
-import { buildItemNode, createPagination } from './ui'
+import { buildItemNode, createPagination, showState } from './ui'
 
 async function initialize() {
 	await reloadItems()
 }
 
-function showState(elementId) {
-	const element = document.getElementById(elementId)
-	element.style = 'display: flex;'
-}
-
-function hideState(elementId) {
-	const element = document.getElementById(elementId)
-	element.style = 'display: none;'
-}
-
 let currentPage = 1
 
 async function reloadItems() {
-	hideState('api-key-missing')
-	hideState('no-items')
-	hideState('error')
-	hideState('labels-page')
-	hideState('content')
 	showState('loading')
 	const apiKey = await loadSetting('apiKey')
 	if (!apiKey) {
-		hideState('loading')
 		showState('api-key-missing')
 		return
 	}
@@ -44,27 +28,24 @@ async function reloadItems() {
 			await reloadItems()
 			return
 		}
-		if (items.length) {
-			const list = document.createElement('ul')
-			items.forEach((item) => {
-				const listItem = document.createElement('li')
-				const itemNode = buildItemNode(item.node, labels, reloadItems)
-				listItem.appendChild(itemNode)
-				list.appendChild(listItem)
-			})
-			content.appendChild(list)
-			const pagination = createPagination(pageInfo)
-			if (pagination) {
-				content.appendChild(pagination)
-			}
-		} else {
-			hideState('loading')
+		if (!items.length) {
 			showState('no-items')
+			return
 		}
-		hideState('loading')
+		const list = document.createElement('ul')
+		items.forEach((item) => {
+			const listItem = document.createElement('li')
+			const itemNode = buildItemNode(item.node, labels, reloadItems)
+			listItem.appendChild(itemNode)
+			list.appendChild(listItem)
+		})
+		content.appendChild(list)
+		const pagination = createPagination(pageInfo)
+		if (pagination) {
+			content.appendChild(pagination)
+		}
 		showState('content')
 	} catch (error) {
-		hideState('loading')
 		showState('error')
 	}
 }

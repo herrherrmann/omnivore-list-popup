@@ -13,6 +13,26 @@ import { isMacOS } from '../services/system'
 import { openTab } from '../services/tabs'
 
 /**
+ * Shows a certain UI state (similar to a page).
+ * @param {('api-key-missing' | 'no-items' | 'error' | 'labels-page' | 'content' | 'loading')} shownStateId
+ */
+export function showState(shownStateId) {
+	const stateIds = [
+		'api-key-missing',
+		'no-items',
+		'error',
+		'labels-page',
+		'content',
+		'loading',
+	]
+	stateIds.forEach((stateId) => {
+		const element = document.getElementById(stateId)
+		const isNewState = stateId === shownStateId
+		element.style = isNewState ? 'display: flex;' : 'display: none;'
+	})
+}
+
+/**
  *
  * @param {Object} node Omnivore’s item node.
  * @param {Object[]} labels list of all labels from Omnivore (for the label edit screen)
@@ -174,13 +194,9 @@ export function createPagination(pageInfo) {
 }
 
 function showLabelsPage(article, labels, onAfterUpdate) {
-	const content = document.getElementById('content')
-	content.style = 'display: none;'
-
+	showState('labels-page')
 	const labelsPage = document.getElementById('labels-page')
-	labelsPage.style = 'display: flex;'
-
-	const labelsDiv = document.getElementById('labels')
+	const labelsDiv = labelsPage.querySelector('#labels')
 
 	labels.forEach((item) => {
 		const div = document.createElement('div')
@@ -245,8 +261,7 @@ function showLabelsPage(article, labels, onAfterUpdate) {
 	buttons.appendChild(saveButton)
 
 	function closeLabelsPage() {
-		labelsPage.style = 'display: none;'
 		labelsDiv.innerHTML = ''
-		content.style = 'display: block;'
+		showState('content')
 	}
 }
