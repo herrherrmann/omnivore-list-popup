@@ -14,6 +14,8 @@
   "homepage": "https://github.com/herrherrmann/omnivore-list-popup#readme",
   "scripts": {
     "dev": "webpack --watch",
+    "start": "web-ext run",
+    "start:dev": "web-ext run --firefox=deved",
     "lint": "eslint . && stylelint '**/*.css'",
     "format": "prettier . --write",
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
@@ -34,6 +36,7 @@
     "svg-inline-loader": "0.8.2",
     "ts-node": "10.9.2",
     "typescript": "5.4.3",
+    "web-ext": "7.11.0",
     "webextension-polyfill": "0.10.0",
     "webpack": "5.91.0",
     "webpack-cli": "5.1.4"

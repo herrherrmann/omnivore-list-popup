@@ -23,6 +23,8 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 ### Development Commands
 
 - Run `npm run dev` to watch files for changes and re-run the build.
+- Run `npm run start` to launch a local Firefox instance with the extension installed (and auto-reload).
+- Run `npm run start:dev` to launch a local Firefox Developer Edition instance with the extension installed (and auto-reload).
 - Run `npm run format` to format the code with [Prettier](https://prettier.io/).
 - Run `npm run lint` to lint the code with [ESLint](https://eslint.org/).
 
