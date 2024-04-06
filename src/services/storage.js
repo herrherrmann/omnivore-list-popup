@@ -5,6 +5,9 @@ export const defaultSettings = {
 	searchQuery: 'in:inbox',
 }
 
+/**
+ * @param {('apiUrl' | 'apiKey' | 'searchQuery')} settingKey
+ */
 function checkSettingKey(settingKey) {
 	const settingKeys = ['apiUrl', 'apiKey', 'searchQuery']
 	if (!settingKeys.includes(settingKey)) {
@@ -12,6 +15,9 @@ function checkSettingKey(settingKey) {
 	}
 }
 
+/**
+ * @param {('apiUrl' | 'apiKey' | 'searchQuery')} settingKey
+ */
 export async function loadSetting(settingKey) {
 	checkSettingKey(settingKey)
 	async function onGot(result) {
@@ -30,6 +36,10 @@ export async function loadSetting(settingKey) {
 	return getting.then(onGot, onError)
 }
 
+/**
+ * @param {('apiUrl' | 'apiKey' | 'searchQuery')} settingKey
+ * @param {string} settingValue String to store in the specified settingKey
+ */
 export async function saveSetting(settingKey, settingValue) {
 	checkSettingKey(settingKey)
 	function onSet() {
