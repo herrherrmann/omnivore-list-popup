@@ -14,5 +14,7 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Install Dependencies
         run: npm install
+      - name: Run TypeScript
+        run: npm run typecheck
       - name: Run the linter
         run: npm run lint

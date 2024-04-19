@@ -15,6 +15,7 @@
   "scripts": {
     "dev": "webpack --watch",
     "lint": "eslint . && stylelint '**/*.css'",
+    "typecheck": "tsc --noEmit",
     "format": "prettier . --write",
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
     "build": "webpack",
