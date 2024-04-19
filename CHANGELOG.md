@@ -1,3 +1,10 @@
+# 1.6.0
+
+- Text fallback will be used if an image cannot be loaded
+- Text fallback for images has higher contrast (previously was not very readable on darker backgrounds)
+  - Shoutout to [Color.js](https://colorjs.io/get/) for the nice color library
+- Updated all technical dependencies
+
 # 1.5.3
 
 ## Improvements:
