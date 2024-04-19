@@ -1,3 +1,4 @@
+import Color from 'colorjs.io'
 import archiveRestoreSvg from '../images/archive-restore.svg'
 import archiveSvg from '../images/archive.svg'
 import chevronLeftSvg from '../images/chevron-left.svg'
@@ -66,12 +67,22 @@ function createImage(node) {
 	image.className = 'image'
 	if (node.image) {
 		image.src = node.image
-	} else {
-		image.innerText = node.title.substring(0, 1)
-		const randomColor = node.id.substring(0, 6)
-		image.style = `background-color: #${randomColor};`
+		return image
 	}
+	image.innerText = node.title.substring(0, 1)
+	const backgroundColor = `#${node.id.substring(0, 6)}`
+	const textColor = getContrastingColor(backgroundColor)
+	image.style.backgroundColor = backgroundColor
+	image.style.color = textColor
 	return image
+}
+
+function getContrastingColor(colorString) {
+	const color = new Color(colorString)
+	const onWhite = Math.abs(color.contrast('white', 'WCAG21'))
+	const onBlack = Math.abs(color.contrast('black', 'WCAG21'))
+	const contrastingColor = onWhite > onBlack ? 'white' : 'black'
+	return contrastingColor
 }
 
 function createTextDiv(node) {
