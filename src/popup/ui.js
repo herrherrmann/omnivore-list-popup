@@ -63,18 +63,28 @@ function shouldKeepPopupOpen(event) {
 }
 
 function createImage(node) {
-	const image = document.createElement(node.image ? 'img' : 'div')
-	image.className = 'image'
 	if (node.image) {
-		image.src = node.image
-		return image
+		const img = document.createElement('img')
+		img.className = 'image'
+		img.onerror = () => {
+			const fallbackDiv = getFallbackDiv(node)
+			img.replaceWith(fallbackDiv)
+		}
+		img.src = node.image
+		return img
 	}
-	image.innerText = node.title.substring(0, 1)
+	return getFallbackDiv(node)
+}
+
+function getFallbackDiv(node) {
+	const div = document.createElement('div')
+	div.className = 'image'
+	div.innerText = node.title.substring(0, 1)
 	const backgroundColor = `#${node.id.substring(0, 6)}`
 	const textColor = getContrastingColor(backgroundColor)
-	image.style.backgroundColor = backgroundColor
-	image.style.color = textColor
-	return image
+	div.style.backgroundColor = backgroundColor
+	div.style.color = textColor
+	return div
 }
 
 function getContrastingColor(colorString) {
