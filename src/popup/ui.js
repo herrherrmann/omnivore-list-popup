@@ -211,16 +211,7 @@ function showLabelsPage(article, labels, onAfterUpdate) {
 		checkbox.style = `accent-color: ${item.color}`
 		div.appendChild(checkbox)
 
-		const label = document.createElement('label')
-		label.htmlFor = item.id
-		const dot = document.createElement('span')
-		dot.className = 'dot'
-		dot.style = 'background: ' + item.color
-		label.appendChild(dot)
-		const name = document.createElement('span')
-		name.className = 'name'
-		name.textContent = item.name
-		label.appendChild(name)
+		const label = createLabel(item)
 		div.appendChild(label)
 
 		labelsDiv.appendChild(div)
@@ -264,4 +255,20 @@ function showLabelsPage(article, labels, onAfterUpdate) {
 		labelsDiv.innerHTML = ''
 		showState('content')
 	}
+}
+
+/**
+ * @param {object} item Label item with name, color, etc.
+ */
+function createLabel(item) {
+	const label = document.createElement('label')
+	label.htmlFor = item.id
+	const dot = document.createElement('span')
+	dot.className = 'dot'
+	dot.style = 'background: ' + item.color
+	label.appendChild(dot)
+	const name = document.createElement('span')
+	name.className = 'name'
+	name.textContent = item.name
+	label.appendChild(name)
 }
