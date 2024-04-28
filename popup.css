@@ -6,6 +6,7 @@
 
 html,
 body {
+	position: relative;
 	width: 350px;
 	background-color: var(--background-color);
 	color: var(--text-color-primary);
@@ -97,8 +98,7 @@ body {
 	animation: rotate 1s linear 0s infinite;
 }
 
-.content,
-.labels-page {
+.content {
 	flex-direction: column;
 	max-height: 450px;
 	padding: var(--outer-padding);
@@ -276,57 +276,109 @@ li:last-of-type {
 	color: var(--text-color-secondary);
 }
 
-/* Labels page */
-#labels-page fieldset {
+/* Modals */
+.modal-overlay {
+	position: absolute;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 50px var(--outer-padding) var(--outer-padding) var(--outer-padding);
+	cursor: pointer;
+}
+
+.modal {
+	position: relative;
+	min-width: 80%;
+	background-color: var(--card-background);
+	border-radius: var(--border-radius);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+	cursor: default;
+}
+
+.modal .modal-header {
+	display: flex;
+	gap: 5px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 3px var(--modal-padding);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.modal .modal-header .modal-title {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.modal .modal-header .modal-close-button {
+	padding: 3px;
+	border: none;
+	border-radius: var(--border-radius);
+	line-height: 1;
+	color: var(--text-color-primary);
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.modal .modal-header .modal-close-button:hover {
+	background-color: var(--card-background-hover);
+}
+
+.modal .modal-body {
+	padding: var(--modal-padding);
+}
+
+#labels-modal fieldset {
 	width: 100%;
 	border: none;
 	padding: 0;
 }
 
-#labels-page legend {
+#labels-modal legend {
 	font-weight: 600;
 	margin: 0 0 5px 0;
 }
 
-#labels-page #labels {
+#labels-modal #labels {
 	margin: 0 0 15px 0;
 }
 
-#labels-page #labels .label {
+#labels-modal #labels .label {
 	display: flex;
 	gap: 5px;
 	margin: 0 0 5px 0;
 }
 
-#labels-page #labels .label label {
+#labels-modal #labels .label label {
 	display: flex;
 	align-items: center;
 	gap: 3px;
 }
 
-#labels-page #labels .label label .dot {
+#labels-modal #labels .label label .dot {
 	border-radius: 50%;
 	flex: 0 0 0.7em;
 	height: 0.7em;
 }
 
-#labels-page #labels .label label .name {
+#labels-modal #labels .label label .name {
 	flex: 1 0 auto;
 }
 
-#labels-page #footer {
+#labels-modal #footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 10px;
 }
 
-#labels-page #footer #buttons {
+#labels-modal #footer #buttons {
 	display: flex;
 	gap: 5px;
 }
 
-#labels-page #footer #buttons button {
+#labels-modal #footer #buttons button {
 	display: flex;
 	font: inherit;
 	padding: var(--button-paddings);
@@ -336,11 +388,11 @@ li:last-of-type {
 	cursor: pointer;
 }
 
-#labels-page #footer #buttons button:hover {
+#labels-modal #footer #buttons button:hover {
 	background-color: var(--card-background-hover);
 }
 
-#labels-page #footer #links a {
+#labels-modal #footer #links a {
 	display: flex;
 	align-items: center;
 	gap: 3px;
@@ -348,10 +400,20 @@ li:last-of-type {
 	text-decoration: none;
 }
 
-#labels-page #footer #links a svg {
+#labels-modal #footer #links a svg {
 	width: 1em;
 }
 
-#labels-page #footer #links a:hover {
+#labels-modal #footer #links a:hover {
 	text-decoration: underline;
+}
+
+/* Screenreader-only content, source: https://webaim.org/techniques/css/invisiblecontent/ */
+.sr-only {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
