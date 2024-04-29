@@ -1,6 +1,7 @@
 {
 	"extends": "stylelint-config-standard-scss",
 	"rules": {
+		"alpha-value-notation": null,
 		"declaration-empty-line-before": null,
 		"color-function-notation": null,
 		"color-hex-length": null,

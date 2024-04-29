@@ -1,5 +1,6 @@
 webpack.config.js
 
 # output files
+/background.js
 /options.js
 /popup.js

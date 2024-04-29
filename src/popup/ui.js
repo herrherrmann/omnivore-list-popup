@@ -12,17 +12,17 @@ import {
 } from '../services/api'
 import { isMacOS } from '../services/system'
 import { openTab } from '../services/tabs'
+import { closeModal, showModal } from './modal'
 
 /**
  * Shows a certain UI state (similar to a page).
- * @param {('api-key-missing' | 'no-items' | 'error' | 'labels-page' | 'content' | 'loading')} shownStateId
+ * @param {('api-key-missing' | 'no-items' | 'error' | 'content' | 'loading')} shownStateId
  */
 export function showState(shownStateId) {
 	const stateIds = [
 		'api-key-missing',
 		'no-items',
 		'error',
-		'labels-page',
 		'content',
 		'loading',
 	]
@@ -143,7 +143,7 @@ function createButtonsDiv(node, labels, onAfterUpdate) {
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
-		showLabelsPage(node, labels, onAfterUpdate)
+		showLabelsModal(node, labels, onAfterUpdate)
 	})
 	buttons.appendChild(labelButton)
 
@@ -214,10 +214,12 @@ export function createPagination(pageInfo) {
 	return pagination
 }
 
-function showLabelsPage(article, labels, onAfterUpdate) {
-	showState('labels-page')
-	const labelsPage = document.getElementById('labels-page')
-	const labelsDiv = labelsPage.querySelector('#labels')
+function showLabelsModal(article, labels, onAfterUpdate) {
+	showModal('labels-modal')
+	const labelsModal = document.getElementById('labels-modal')
+
+	const labelsDiv = labelsModal.querySelector('#labels')
+	labelsDiv.innerHTML = ''
 
 	labels.forEach((item) => {
 		const div = document.createElement('div')
@@ -238,21 +240,21 @@ function showLabelsPage(article, labels, onAfterUpdate) {
 		labelsDiv.appendChild(div)
 	})
 
-	const buttons = labelsPage.querySelector('#buttons')
+	const buttons = labelsModal.querySelector('#buttons')
 	buttons.innerHTML = ''
 
 	const cancelButton = document.createElement('button')
 	cancelButton.type = 'button'
+	cancelButton.className = 'button'
 	cancelButton.textContent = 'Cancel'
-	cancelButton.addEventListener('click', () => {
-		closeLabelsPage()
-	})
+	cancelButton.addEventListener('click', closeLabelsModal)
 	buttons.appendChild(cancelButton)
 
 	let isSaving = false
 
 	const saveButton = document.createElement('button')
 	saveButton.type = 'submit'
+	saveButton.className = 'button'
 	saveButton.textContent = 'Save'
 	saveButton.addEventListener('click', async () => {
 		if (isSaving) {
@@ -261,20 +263,19 @@ function showLabelsPage(article, labels, onAfterUpdate) {
 		isSaving = true
 		saveButton.disabled = true
 		cancelButton.disabled = true
-		const inputElements = labelsPage.querySelectorAll('#labels input')
+		const inputElements = labelsModal.querySelectorAll('#labels input')
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
 		await saveLabels(article.id, checkedValues)
 		// TODO: Error handling!
-		closeLabelsPage()
+		closeLabelsModal()
 		onAfterUpdate()
 	})
 	buttons.appendChild(saveButton)
 
-	function closeLabelsPage() {
-		labelsDiv.innerHTML = ''
-		showState('content')
+	function closeLabelsModal() {
+		closeModal('labels-modal')
 	}
 }
 
