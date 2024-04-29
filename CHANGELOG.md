@@ -1,3 +1,8 @@
+# 1.7.0
+
+- The label editor is now shown in a modal instead of a "page"
+- Style improvements for buttons
+
 # 1.6.0
 
 - Text fallback will be used if an image cannot be loaded
