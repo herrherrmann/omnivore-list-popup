@@ -16,6 +16,7 @@ body {
 
 .button {
 	font: inherit;
+	color: inherit;
 	padding: var(--button-paddings);
 	background-color: var(--card-background);
 	border: 1px solid var(--border-color);
@@ -23,12 +24,12 @@ body {
 	cursor: pointer;
 }
 
-.button:hover {
+.button:not(:disabled):hover {
 	background-color: var(--card-background-hover);
 }
 
 .button:disabled {
-	opacity: 0.8;
+	opacity: 0.5;
 	cursor: wait;
 }
 
