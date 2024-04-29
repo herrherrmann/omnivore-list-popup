@@ -303,7 +303,9 @@ li:last-of-type {
 }
 
 #labels-modal #labels {
-	margin: 0 0 15px 0;
+	margin: 0 0 5px 0;
+	max-height: 60vh;
+	overflow: auto;
 }
 
 #labels-modal #labels .label {
