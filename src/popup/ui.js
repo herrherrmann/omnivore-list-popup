@@ -245,6 +245,7 @@ function showLabelsModal(article, labels, onAfterUpdate) {
 
 	const cancelButton = document.createElement('button')
 	cancelButton.type = 'button'
+	cancelButton.className = 'button'
 	cancelButton.textContent = 'Cancel'
 	cancelButton.addEventListener('click', closeLabelsModal)
 	buttons.appendChild(cancelButton)
@@ -253,6 +254,7 @@ function showLabelsModal(article, labels, onAfterUpdate) {
 
 	const saveButton = document.createElement('button')
 	saveButton.type = 'submit'
+	saveButton.className = 'button'
 	saveButton.textContent = 'Save'
 	saveButton.addEventListener('click', async () => {
 		if (isSaving) {

@@ -14,18 +14,7 @@ body {
 	font-size: 13px;
 }
 
-.toolbar {
-	display: flex;
-	gap: 5px;
-	padding: var(--outer-padding);
-	background-color: var(--card-background);
-	border-bottom: 1px solid var(--border-color);
-}
-
-.toolbar button {
-	display: flex;
-	align-items: center;
-	gap: 3px;
+.button {
 	font: inherit;
 	padding: var(--button-paddings);
 	background-color: var(--card-background);
@@ -34,18 +23,33 @@ body {
 	cursor: pointer;
 }
 
-.toolbar button:hover {
+.button:hover {
 	background-color: var(--card-background-hover);
 }
 
-.toolbar button:disabled {
+.button:disabled {
 	opacity: 0.8;
 	cursor: wait;
 }
 
-.toolbar button svg {
+.button:has(svg) {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.button svg {
 	width: 1.2em;
+	vertical-align: -0.125em;
 	pointer-events: none;
+}
+
+.toolbar {
+	display: flex;
+	gap: 5px;
+	padding: var(--outer-padding);
+	background-color: var(--card-background);
+	border-bottom: 1px solid var(--border-color);
 }
 
 .loading {
@@ -71,21 +75,6 @@ body {
 	gap: 10px;
 	padding: var(--outer-padding);
 	min-height: 150px;
-}
-
-.api-key-missing button,
-.error button {
-	font: inherit;
-	padding: var(--button-paddings);
-	background-color: var(--card-background);
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius);
-	cursor: pointer;
-}
-
-.api-key-missing button:hover,
-.error button:hover {
-	background-color: var(--card-background-hover);
 }
 
 @keyframes rotate {
@@ -218,20 +207,6 @@ li:last-of-type {
 	background: var(--buttons-container-background);
 }
 
-.item .buttons button {
-	display: flex;
-	font: inherit;
-	padding: var(--button-paddings);
-	background-color: var(--card-background);
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius);
-	cursor: pointer;
-}
-
-.item .buttons button:hover {
-	background-color: var(--card-background-hover);
-}
-
 .item .buttons button svg {
 	width: 20px;
 	height: 20px;
@@ -250,26 +225,6 @@ li:last-of-type {
 	gap: 10px;
 }
 
-.pagination .buttons button {
-	font: inherit;
-	padding: var(--button-paddings);
-	background-color: var(--card-background);
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius);
-	cursor: pointer;
-}
-
-.pagination .buttons button:hover {
-	background-color: var(--card-background-hover);
-}
-
-.pagination .buttons button svg {
-	width: 1.2em;
-	height: 1.2em;
-	vertical-align: -0.125em;
-	pointer-events: none;
-}
-
 .pagination .buttons .info {
 	font-size: 13px;
 	text-align: center;
@@ -286,6 +241,12 @@ li:last-of-type {
 	justify-content: center;
 	padding: 50px var(--outer-padding) var(--outer-padding) var(--outer-padding);
 	cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+	.modal-overlay {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
 }
 
 .modal {
@@ -376,20 +337,6 @@ li:last-of-type {
 #labels-modal #footer #buttons {
 	display: flex;
 	gap: 5px;
-}
-
-#labels-modal #footer #buttons button {
-	display: flex;
-	font: inherit;
-	padding: var(--button-paddings);
-	background-color: var(--card-background);
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius);
-	cursor: pointer;
-}
-
-#labels-modal #footer #buttons button:hover {
-	background-color: var(--card-background-hover);
 }
 
 #labels-modal #footer #links a {
