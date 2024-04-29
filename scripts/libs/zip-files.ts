@@ -1,6 +1,6 @@
 import archiver from 'archiver'
 import fs from 'fs'
-import { version } from '../../src/manifest.common.json'
+import { version } from '../../package.json'
 import { TargetBrowser } from './types'
 
 function zipFiles(sourceGlobs: string[], outPath: string) {

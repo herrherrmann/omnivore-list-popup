@@ -1,5 +1,5 @@
 import fs from 'fs/promises'
-import packageJSON from '../../package.json'
+import { version } from '../../package.json'
 import manifestChrome from '../../src/manifest.chrome.json'
 import manifestCommon from '../../src/manifest.common.json'
 import manifestFirefox from '../../src/manifest.firefox.json'
@@ -19,7 +19,7 @@ export async function prepareManifest(targetBrowser: TargetBrowser | null) {
 	const mergedManifest = {
 		...manifestCommon,
 		...manifests[targetBrowser],
-		version: packageJSON.version,
+		version: version,
 	}
 	try {
 		await fs.writeFile(
