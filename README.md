@@ -42,8 +42,9 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 - [x] Add pagination to browse beyond 10 items ([issue #9](https://github.com/herrherrmann/omnivore-list-popup/issues/9))
 - [x] Add keyboard shortcuts for opening the popup and adding the current page to Omnivore
 - [x] Improve generation of fallback images (sometimes broken or very low-contrast characters)
-- [ ] Optionally load other sets like archived items (via saved searches dropdown?)
+- [ ] Indicate saving of new items when triggered via keyboard shortcut (e.g. via toolbar icon)
 - [ ] Cache API results for quicker load times
+- [ ] Optionally load other sets like archived items (via saved searches dropdown?)
 - [ ] Add possibility to delete items (additionally to archiving)
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
