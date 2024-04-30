@@ -33,6 +33,18 @@ export function showState(shownStateId) {
 	})
 }
 
+export function setLoadingState(isLoading) {
+	const refreshButton = document.getElementById('refresh-button')
+	const icon = refreshButton.querySelector('svg')
+	if (isLoading) {
+		refreshButton.disabled = true
+		icon.classList.add('rotating')
+	} else {
+		refreshButton.removeAttribute('disabled')
+		icon.classList.remove('rotating')
+	}
+}
+
 /**
  *
  * @param {Object} node Omnivore’s item node.

@@ -1,53 +1,82 @@
 import browser from 'webextension-polyfill'
 import { addLink, loadItems, loadLabels } from '../services/api'
-import { loadSetting } from '../services/storage'
+import { loadLocal, loadSetting, saveLocal } from '../services/storage'
 import { getActiveTab, openTab } from '../services/tabs'
-import { buildItemNode, createPagination, showState } from './ui'
-
-async function initialize() {
-	await reloadItems()
-}
+import {
+	buildItemNode,
+	createPagination,
+	setLoadingState,
+	showState,
+} from './ui'
 
 let currentPage = 1
 
-async function reloadItems() {
+async function initialize() {
+	currentPage = 1
 	showState('loading')
+	await reloadItems()
+}
+
+async function reloadItems() {
 	const apiKey = await loadSetting('apiKey')
 	if (!apiKey) {
 		showState('api-key-missing')
 		return
 	}
-	const content = document.getElementById('content')
-	content.textContent = ''
 	try {
-		const labels = await loadLabels()
+		setLoadingState(true)
+		// Only the first page (the initial popup state) should be cached.
+		const useCache = currentPage === 1
+		if (useCache) {
+			const cache = await loadLocal('apiCache')
+			if (cache) {
+				const { items, pageInfo, labels } = cache
+				renderItems(items, pageInfo, labels)
+			}
+		}
 		const { items, pageInfo } = await loadItems(currentPage)
+		const labels = await loadLabels()
 		// Load previous page when archiving an article leads to an empty page.
 		if (!items.length && currentPage > 1) {
 			currentPage -= 1
 			await reloadItems()
 			return
 		}
-		if (!items.length) {
-			showState('no-items')
-			return
+		renderItems(items, pageInfo, labels)
+		// Cache API responses.
+		if (useCache) {
+			await saveLocal('apiCache', { items, pageInfo, labels })
 		}
-		const list = document.createElement('ul')
-		items.forEach((item) => {
-			const listItem = document.createElement('li')
-			const itemNode = buildItemNode(item.node, labels, reloadItems)
-			listItem.appendChild(itemNode)
-			list.appendChild(listItem)
-		})
-		content.appendChild(list)
-		const pagination = createPagination(pageInfo)
-		if (pagination) {
-			content.appendChild(pagination)
-		}
-		showState('content')
 	} catch (error) {
 		showState('error')
+	} finally {
+		setLoadingState(false)
 	}
+}
+
+function renderItems(items, pageInfo, labels) {
+	if (!items.length) {
+		showState('no-items')
+		return
+	}
+	const newContent = document.createElement('div')
+	newContent.className = 'content'
+	newContent.id = 'content'
+	const list = document.createElement('ul')
+	items.forEach((item) => {
+		const listItem = document.createElement('li')
+		const itemNode = buildItemNode(item.node, labels, reloadItems)
+		listItem.appendChild(itemNode)
+		list.appendChild(listItem)
+	})
+	newContent.appendChild(list)
+	const pagination = createPagination(pageInfo)
+	if (pagination) {
+		newContent.appendChild(pagination)
+	}
+	const content = document.getElementById('content')
+	content.replaceWith(newContent)
+	showState('content')
 }
 
 document.addEventListener('DOMContentLoaded', initialize)
@@ -64,10 +93,9 @@ document.addEventListener('click', async (event) => {
 		await reloadItems()
 	}
 	if (element.classList.contains('refresh')) {
-		const icon = element.querySelector('svg')
-		icon.classList.add('rotating')
+		setLoadingState(true)
 		await reloadItems()
-		icon.classList.remove('rotating')
+		setLoadingState(false)
 	}
 	if (element.classList.contains('open-omnivore')) {
 		openTab('https://omnivore.app/')

@@ -38,7 +38,7 @@ export async function loadSetting(settingKey) {
 
 /**
  * @param {('apiUrl' | 'apiKey' | 'searchQuery')} settingKey
- * @param {string} settingValue String to store in the specified settingKey
+ * @param {string | object} settingValue String or object to store in the specified settingKey
  */
 export async function saveSetting(settingKey, settingValue) {
 	checkSettingKey(settingKey)
@@ -49,4 +49,26 @@ export async function saveSetting(settingKey, settingValue) {
 		return Promise.reject(error)
 	}
 	browser.storage.sync.set({ [settingKey]: settingValue }).then(onSet, onError)
+}
+
+/**
+ * @param {('apiCache')} key
+ * @param {string | object} value String or object to store in the specified key
+ */
+export async function saveLocal(key, value) {
+	const onSet = () => Promise.resolve()
+	const onError = (error) => Promise.reject(error)
+	browser.storage.local.set({ [key]: value }).then(onSet, onError)
+}
+
+/**
+ * @param {('apiCache')} key
+ */
+export async function loadLocal(key) {
+	function onGot(result) {
+		const value = result[key]
+		return Promise.resolve(value)
+	}
+	const onError = (error) => Promise.reject(error)
+	return browser.storage.local.get(key).then(onGot, onError)
 }
