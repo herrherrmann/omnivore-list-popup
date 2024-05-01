@@ -112,8 +112,15 @@ export async function addLink(url) {
 			clientRequestId: generateUUID(),
 		},
 	}
-	// TODO: Error handling!
-	await sendAPIRequest(query, variables)
+	const response = await sendAPIRequest(query, variables)
+	if (hasResponseError(response.saveUrl)) {
+		throw new Error('adding link failed')
+	}
+	return response
+}
+
+function hasResponseError(responseBody) {
+	return responseBody.errorCodes?.length > 0
 }
 
 export async function archiveLink(linkId) {
