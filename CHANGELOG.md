@@ -1,3 +1,8 @@
+# 1.8.0
+
+- Items are being cached locally, improving initial loading time of the popup
+- The popup icon shows the success/failure status when adding items via keyboard shortcut
+
 # 1.7.0
 
 - The label editor is now shown in a modal instead of a "page"
