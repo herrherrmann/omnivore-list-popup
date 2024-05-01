@@ -89,8 +89,13 @@ document.addEventListener('click', async (event) => {
 	element.disabled = true
 	if (element.classList.contains('add-current-page')) {
 		const activeTab = await getActiveTab()
-		await addLink(activeTab.url)
-		await reloadItems()
+		try {
+			await addLink(activeTab.url)
+		} catch (error) {
+			// TODO: Indicate error in UI.
+		} finally {
+			await reloadItems()
+		}
 	}
 	if (element.classList.contains('refresh')) {
 		setLoadingState(true)
