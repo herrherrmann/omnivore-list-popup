@@ -20,7 +20,7 @@
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
     "build": "webpack",
     "create-releases": "ts-node ./scripts/create-releases.ts",
-    "clean": "rimraf ./*.zip"
+    "clean": "rimraf ./*.zip background.js manifest.json options.js popup.js"
   },
   "devDependencies": {
     "@types/archiver": "6.0.2",
