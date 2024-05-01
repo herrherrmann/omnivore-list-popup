@@ -13,10 +13,13 @@ browser.commands.onCommand.addListener(async (command) => {
 		setSuccessBadgeText('+', activeTab.id)
 		try {
 			await addLink(activeTab.url)
+			await setSuccessBadgeText('✔︎', activeTab.id)
 		} catch (error) {
-			setErrorBadgeText('X', activeTab.id)
+			await setErrorBadgeText('✗', activeTab.id)
 		} finally {
-			resetBadgeText(activeTab.id)
+			setTimeout(() => {
+				resetBadgeText(activeTab.id)
+			}, 2_000)
 		}
 	}
 })
