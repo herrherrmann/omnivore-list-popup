@@ -1,7 +1,8 @@
 {
-	"name": "Omnivore List Popup",
-	"description": "Show a popup with a list of your Omnivore articles to quickly open or archive.",
+	"name": "__MSG_extensionName__",
+	"description": "__MSG_extensionDescription__",
 	"homepage_url": "https://github.com/herrherrmann/omnivore-list-popup",
+	"default_locale": "en",
 	"options_ui": {
 		"page": "options.html"
 	},

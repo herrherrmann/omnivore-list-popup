@@ -1,4 +1,5 @@
 import Color from 'colorjs.io'
+import browser from 'webextension-polyfill'
 import archiveRestoreSvg from '../images/archive-restore.svg'
 import archiveSvg from '../images/archive.svg'
 import chevronLeftSvg from '../images/chevron-left.svg'
@@ -151,7 +152,7 @@ function createButtonsDiv(node, labels, onAfterUpdate) {
 	labelButton.type = 'button'
 	labelButton.className = 'button label'
 	labelButton.innerHTML = tagSvg
-	labelButton.title = 'Set labels'
+	labelButton.title = browser.i18n.getMessage('setLabelsButtonTitle')
 	labelButton.addEventListener('click', async (event) => {
 		event.preventDefault()
 		event.stopPropagation()
@@ -164,7 +165,7 @@ function createButtonsDiv(node, labels, onAfterUpdate) {
 		archiveButton.type = 'button'
 		archiveButton.className = 'button'
 		archiveButton.innerHTML = archiveSvg
-		archiveButton.title = 'Archive this item'
+		archiveButton.title = browser.i18n.getMessage('archiveItemButtonTitle')
 		archiveButton.addEventListener('click', async (event) => {
 			event.preventDefault()
 			event.stopPropagation()
@@ -177,7 +178,7 @@ function createButtonsDiv(node, labels, onAfterUpdate) {
 		restoreButton.type = 'button'
 		restoreButton.className = 'button'
 		restoreButton.innerHTML = archiveRestoreSvg
-		restoreButton.title = 'Restore this item'
+		restoreButton.title = browser.i18n.getMessage('restoreItemButtonTitle')
 		restoreButton.addEventListener('click', async (event) => {
 			event.preventDefault()
 			event.stopPropagation()
@@ -210,7 +211,9 @@ export function createPagination(pageInfo) {
 		previousButton.type = 'button'
 		previousButton.className = 'button previous-page'
 		previousButton.innerHTML = chevronLeftSvg
-		previousButton.title = 'Go to previous page'
+		previousButton.title = browser.i18n.getMessage(
+			'goToPreviousPageButtonTitle',
+		)
 		buttons.appendChild(previousButton)
 	}
 	buttons.appendChild(info)
@@ -219,7 +222,7 @@ export function createPagination(pageInfo) {
 		nextButton.type = 'button'
 		nextButton.className = 'button next-page'
 		nextButton.innerHTML = chevronRightSvg
-		nextButton.title = 'Go to next page'
+		nextButton.title = browser.i18n.getMessage('goToNextPageButtonTitle')
 		buttons.appendChild(nextButton)
 	}
 	pagination.appendChild(buttons)

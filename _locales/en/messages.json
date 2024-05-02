@@ -1,0 +1,25 @@
+{
+	"extensionName": {
+		"message": "Omnivore List Popup",
+		"description": "Name of the extension."
+	},
+	"extensionDescription": {
+		"message": "Show a popup with a list of your Omnivore articles to quickly open or archive.",
+		"description": "Description of the extension."
+	},
+	"setLabelsButtonTitle": {
+		"message": "Set labels"
+	},
+	"archiveItemButtonTitle": {
+		"message": "Archive this item"
+	},
+	"restoreItemButtonTitle": {
+		"message": "Restore this item"
+	},
+	"goToPreviousPageButtonTitle": {
+		"message": "Go to previous page"
+	},
+	"goToNextPageButtonTitle": {
+		"message": "Go to next page"
+	}
+}
