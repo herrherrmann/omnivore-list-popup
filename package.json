@@ -20,7 +20,7 @@
     "prepare-manifest": "ts-node ./scripts/prepare-manifest.ts",
     "build": "vite build",
     "create-releases": "ts-node ./scripts/create-releases.ts",
-    "clean": "rimraf ./*.zip dist/"
+    "clean": "rimraf dist/ ./*.zip manifest.json"
   },
   "devDependencies": {
     "@types/archiver": "6.0.2",
