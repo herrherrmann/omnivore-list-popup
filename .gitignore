@@ -11,6 +11,6 @@ npm-debug.log*
 
 # Build files
 dist/
-public/manifest.json
+/manifest.json
 /release-*
 /sources-*

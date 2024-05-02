@@ -23,7 +23,7 @@ export async function prepareManifest(targetBrowser: TargetBrowser | null) {
 	}
 	try {
 		await fs.writeFile(
-			'./public/manifest.json',
+			'./manifest.json',
 			JSON.stringify(mergedManifest, undefined, 4),
 		)
 	} catch (error) {

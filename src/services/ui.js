@@ -4,15 +4,10 @@ import archiveSvg from '../../public/images/archive.svg'
 import chevronLeftSvg from '../../public/images/chevron-left.svg'
 import chevronRightSvg from '../../public/images/chevron-right.svg'
 import tagSvg from '../../public/images/tag.svg'
-import {
-	archiveLink,
-	pageSize,
-	saveLabels,
-	unarchiveLink,
-} from '../services/api'
-import { isMacOS } from '../services/system'
-import { openTab } from '../services/tabs'
+import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api'
 import { closeModal, showModal } from './modal'
+import { isMacOS } from './system'
+import { openTab } from './tabs'
 
 /**
  * Shows a certain UI state (similar to a page).
