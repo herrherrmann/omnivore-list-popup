@@ -1,20 +1,18 @@
-import webpack from 'webpack'
-// @ts-ignore
-import webpackConfig from '../../webpack.config.js'
-import { prepareManifest } from './manifest'
-import { TargetBrowser } from './types'
-import { zipRelease, zipSources } from './zip-files'
+import webExtension from 'vite-plugin-web-extension'
+import { prepareManifest } from './manifest.ts'
+import type { TargetBrowser } from './types.d.ts'
+import { zipRelease, zipSources } from './zip-files.ts'
 
-async function runWebpack() {
-	const promise = new Promise((resolve, reject) => {
-		webpack(webpackConfig, (error, stats) => {
-			if (error || stats?.hasErrors()) {
-				reject(error || '(See errors in stats)')
-			}
-			resolve(null)
-		})
+async function runVite() {
+	const vite = await import('vite')
+	await vite.build({
+		plugins: [
+			webExtension({
+				browser: 'firefox',
+				disableAutoLaunch: true,
+			}),
+		],
 	})
-	return promise
 }
 
 export async function createReleases() {
@@ -23,7 +21,7 @@ export async function createReleases() {
 		console.log(`⏳ Creating release for ${targetBrowser} ...`)
 		try {
 			await prepareManifest(targetBrowser)
-			await runWebpack()
+			await runVite()
 			await zipRelease(targetBrowser)
 			if (targetBrowser === 'firefox') {
 				await zipSources(targetBrowser)

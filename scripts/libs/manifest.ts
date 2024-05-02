@@ -3,7 +3,7 @@ import { version } from '../../package.json'
 import manifestChrome from '../../src/manifest.chrome.json'
 import manifestCommon from '../../src/manifest.common.json'
 import manifestFirefox from '../../src/manifest.firefox.json'
-import { TargetBrowser } from './types'
+import type { TargetBrowser } from './types.d.ts'
 
 export async function prepareManifest(targetBrowser: TargetBrowser | null) {
 	if (!targetBrowser) {

@@ -6,6 +6,8 @@
 		"resolveJsonModule": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
 		"skipLibCheck": true
 	}
 }

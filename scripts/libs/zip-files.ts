@@ -1,7 +1,7 @@
 import archiver from 'archiver'
 import fs from 'fs'
 import { version } from '../../package.json'
-import { TargetBrowser } from './types'
+import type { TargetBrowser } from './types.d.ts'
 
 function zipFiles(sourceGlobs: string[], outPath: string) {
 	const archive = archiver('zip', { zlib: { level: 9 } })
