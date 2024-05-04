@@ -24,7 +24,7 @@
 		"https://api-prod.omnivore.app/*"
 	],
 	"{{firefox}}.background": {
-		"scripts": ["background.js"]
+		"scripts": ["background.ts"]
 	},
 	"{{firefox}}.commands": {
 		"_execute_browser_action": {

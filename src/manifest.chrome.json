@@ -17,7 +17,7 @@
 	"{{chrome}}.permissions": ["storage", "tabs"],
 	"{{chrome}}.host_permissions": ["https://api-prod.omnivore.app/*"],
 	"{{chrome}}.background": {
-		"service_worker": "background.js"
+		"service_worker": "background.ts"
 	},
 	"{{chrome}}.commands": {
 		"_execute_action": {

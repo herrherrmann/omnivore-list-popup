@@ -26,6 +26,7 @@
     "@types/archiver": "6.0.2",
     "@types/chrome": "0.0.267",
     "@types/firefox-webext-browser": "120.0.3",
+    "@types/webextension-polyfill": "0.10.7",
     "eslint": "8.57.0",
     "prettier": "3.2.5",
     "rimraf": "5.0.5",
