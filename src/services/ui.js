@@ -1,18 +1,13 @@
 import Color from 'colorjs.io'
-import archiveRestoreSvg from '../images/archive-restore.svg'
-import archiveSvg from '../images/archive.svg'
-import chevronLeftSvg from '../images/chevron-left.svg'
-import chevronRightSvg from '../images/chevron-right.svg'
-import tagSvg from '../images/tag.svg'
-import {
-	archiveLink,
-	pageSize,
-	saveLabels,
-	unarchiveLink,
-} from '../services/api'
-import { isMacOS } from '../services/system'
-import { openTab } from '../services/tabs'
+import archiveRestoreSvg from '../../public/images/archive-restore.svg?raw'
+import archiveSvg from '../../public/images/archive.svg?raw'
+import chevronLeftSvg from '../../public/images/chevron-left.svg?raw'
+import chevronRightSvg from '../../public/images/chevron-right.svg?raw'
+import tagSvg from '../../public/images/tag.svg?raw'
+import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api'
 import { closeModal, showModal } from './modal'
+import { isMacOS } from './system'
+import { openTab } from './tabs'
 
 /**
  * Shows a certain UI state (similar to a page).

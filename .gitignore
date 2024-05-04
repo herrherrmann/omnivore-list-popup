@@ -10,9 +10,6 @@ logs
 npm-debug.log*
 
 # Build files
-/background.js
-/options.js
-/popup.js
-/manifest.json
+dist/
 /release-*
 /sources-*

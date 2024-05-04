@@ -1,4 +1,4 @@
-import { defaultSettings, loadSetting, saveSetting } from '../services/storage'
+import { defaultSettings, loadSetting, saveSetting } from './services/storage'
 
 const apiUrlInputSelector = '#api-url'
 const apiKeyInputSelector = '#api-key'

@@ -1,6 +1,6 @@
 {
-	"manifest_version": 3,
-	"action": {
+	"{{chrome}}.manifest_version": 3,
+	"{{chrome}}.action": {
 		"default_title": "Omnivore List Popup",
 		"default_icon": {
 			"64": "icons/wallet-black.png"
@@ -12,14 +12,14 @@
 				"size": 64
 			}
 		],
-		"default_popup": "popup.html"
+		"default_popup": "src/popup.html"
 	},
-	"permissions": ["storage", "tabs"],
-	"host_permissions": ["https://api-prod.omnivore.app/*"],
-	"background": {
+	"{{chrome}}.permissions": ["storage", "tabs"],
+	"{{chrome}}.host_permissions": ["https://api-prod.omnivore.app/*"],
+	"{{chrome}}.background": {
 		"service_worker": "background.js"
 	},
-	"commands": {
+	"{{chrome}}.commands": {
 		"_execute_action": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+D"

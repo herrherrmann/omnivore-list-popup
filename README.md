@@ -16,19 +16,19 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 1. Install the Node version defined in `.nvmrc` (e.g. with `nvm use`).
 2. Install dependencies with `npm install`.
-3. Run `npm run prepare-manifest -- -firefox` (or `-chrome`) to create the browser-specific `manifest.json`.
-4. Run the build with `npm run build` to generate the output files.
-5. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox) and/or Chromium.
 
 ### Development Commands
 
-- Run `npm run dev` to watch files for changes and re-run the build.
+- Run `npm run dev` to watch files for changes and start Firefox for debugging.
+  - Run `TARGET=chrome npm run dev` to use Chrome
+  - Run `TARGET=vivaldi npm run dev` to use Vivaldi
 - Run `npm run format` to format the code with [Prettier](https://prettier.io/).
 - Run `npm run lint` to lint the code with [ESLint](https://eslint.org/).
+- Run `npm run build` (or `TARGET=chrome npm run build`) to generate the output files in `dist`.
 
 ## Releasing
 
-1. Run `npm run create-releases` to generate the output files and extension archives in the root directory.
+1. Run `npm run create-releases` to generate the extension archives in the root directory.
 2. Upload the Firefox release on https://addons.mozilla.org/developers/addon/omnivore-list-popup/
 3. Upload the Chrome release on https://chrome.google.com/webstore/devconsole
 4. Remove the locally-created files after uploading via `npm run clean`.

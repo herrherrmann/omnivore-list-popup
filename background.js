@@ -1,11 +1,11 @@
 import browser from 'webextension-polyfill'
-import { addLink } from '../services/api'
+import { addLink } from './src/services/api'
 import {
 	resetBadgeText,
 	setErrorBadgeText,
 	setSuccessBadgeText,
-} from '../services/badge'
-import { getActiveTab } from '../services/tabs'
+} from './src/services/badge'
+import { getActiveTab } from './src/services/tabs'
 
 browser.commands.onCommand.addListener(async (command) => {
 	if (command === 'add_current_page') {

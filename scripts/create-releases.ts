@@ -1,3 +1,3 @@
-import { createReleases } from './libs/releases'
+import { createReleases } from './libs/releases.ts'
 
 createReleases()

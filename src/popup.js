@@ -1,13 +1,13 @@
 import browser from 'webextension-polyfill'
-import { addLink, loadItems, loadLabels } from '../services/api'
-import { loadLocal, loadSetting, saveLocal } from '../services/storage'
-import { getActiveTab, openTab } from '../services/tabs'
+import { addLink, loadItems, loadLabels } from './services/api'
+import { loadLocal, loadSetting, saveLocal } from './services/storage'
+import { getActiveTab, openTab } from './services/tabs'
 import {
 	buildItemNode,
 	createPagination,
 	setLoadingState,
 	showState,
-} from './ui'
+} from './services/ui'
 
 let currentPage = 1
 
