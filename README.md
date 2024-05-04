@@ -21,13 +21,14 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 ### Development Commands
 
-- Run `npm run dev` to watch files for changes and re-run the build.
+- Run `npm run dev` to watch files for changes and start a browser for debugging.
+  - Run `TARGET=chrome npm run dev` to use Chrome instead of Firefox
 - Run `npm run format` to format the code with [Prettier](https://prettier.io/).
 - Run `npm run lint` to lint the code with [ESLint](https://eslint.org/).
 
 ## Releasing
 
-1. Run `npm run create-releases` to generate the output files and extension archives in the root directory.
+1. Run `npm run create-releases` to generate the extension archives in the root directory.
 2. Upload the Firefox release on https://addons.mozilla.org/developers/addon/omnivore-list-popup/
 3. Upload the Chrome release on https://chrome.google.com/webstore/devconsole
 4. Remove the locally-created files after uploading via `npm run clean`.
