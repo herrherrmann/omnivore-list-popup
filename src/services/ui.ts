@@ -4,7 +4,11 @@ import archiveSvg from '../../public/images/archive.svg?raw'
 import chevronLeftSvg from '../../public/images/chevron-left.svg?raw'
 import chevronRightSvg from '../../public/images/chevron-right.svg?raw'
 import tagSvg from '../../public/images/tag.svg?raw'
-import { OmnivoreLabel, OmnivoreNode } from '../omnivoreTypes.ts'
+import {
+	OmnivoreLabel,
+	OmnivoreNode,
+	OmnivorePageInfo,
+} from '../omnivoreTypes.ts'
 import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api.ts'
 import { closeModal, showModal } from './modal.ts'
 import { isMacOS } from './system.ts'
@@ -31,7 +35,9 @@ export function showState(shownStateId: StateId) {
 }
 
 export function setLoadingState(isLoading: boolean) {
-	const refreshButton = document.getElementById('refresh-button')!
+	const refreshButton = document.getElementById(
+		'refresh-button',
+	) as HTMLButtonElement
 	const icon = refreshButton.querySelector('svg')!
 	if (isLoading) {
 		refreshButton.disabled = true
