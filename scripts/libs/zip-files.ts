@@ -18,19 +18,7 @@ function zipFiles(sourceGlobs: string[], outPath: string) {
 	})
 }
 
-const RELEASE_FILES = [
-	'icons/**',
-	'background.js',
-	'LICENSE',
-	'manifest.json',
-	'options.css',
-	'options.html',
-	'options.js',
-	'popup.css',
-	'popup.html',
-	'popup.js',
-	'variables.css',
-]
+const RELEASE_FILES = ['dist']
 
 const SOURCE_FILES = [
 	...RELEASE_FILES,
@@ -45,11 +33,12 @@ const SOURCE_FILES = [
 	'.prettierrc',
 	'.stylelintrc.json',
 	'CHANGELOG.md',
+	'LICENSE',
 	'package-lock.json',
 	'package.json',
 	'README.md',
 	'tsconfig.json',
-	'webpack.config.js',
+	'vite.config.mts',
 ]
 
 export async function zipRelease(targetBrowser: TargetBrowser) {

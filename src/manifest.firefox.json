@@ -1,11 +1,11 @@
 {
-	"manifest_version": 2,
-	"browser_specific_settings": {
+	"{{firefox}}.manifest_version": 2,
+	"{{firefox}}.browser_specific_settings": {
 		"gecko": {
 			"id": "omnivore-list-popup@herrherrmann.net"
 		}
 	},
-	"browser_action": {
+	"{{firefox}}.browser_action": {
 		"browser_style": true,
 		"default_title": "Omnivore List Popup",
 		"default_icon": "icons/wallet-black.png",
@@ -16,13 +16,17 @@
 				"size": 64
 			}
 		],
-		"default_popup": "popup.html"
+		"default_popup": "src/popup.html"
 	},
-	"permissions": ["storage", "tabs", "https://api-prod.omnivore.app/*"],
-	"background": {
+	"{{firefox}}.permissions": [
+		"storage",
+		"tabs",
+		"https://api-prod.omnivore.app/*"
+	],
+	"{{firefox}}.background": {
 		"scripts": ["background.js"]
 	},
-	"commands": {
+	"{{firefox}}.commands": {
 		"_execute_browser_action": {
 			"suggested_key": {
 				"default": "Ctrl+Alt+D"

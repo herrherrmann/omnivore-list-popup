@@ -16,9 +16,8 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 1. Install the Node version defined in `.nvmrc` (e.g. with `nvm use`).
 2. Install dependencies with `npm install`.
-3. Run `npm run prepare-manifest -- -firefox` (or `-chrome`) to create the browser-specific `manifest.json`.
-4. Run the build with `npm run build` to generate the output files.
-5. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox) and/or Chromium.
+3. Run the build with `npm run build` (or `TARGET=chrome npm run build`) to generate the output files.
+4. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox) and/or Chrome.
 
 ### Development Commands
 
