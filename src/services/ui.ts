@@ -108,7 +108,9 @@ function getFallbackDiv(node: OmnivoreNode) {
 
 function getContrastingColor(colorString: string) {
 	const color = new Color(colorString)
+	// @ts-expect-error color.contrast() type is missing from 3rd-party library.
 	const onWhite = Math.abs(color.contrast('white', 'WCAG21'))
+	// @ts-expect-error color.contrast() type is missing from 3rd-party library.
 	const onBlack = Math.abs(color.contrast('black', 'WCAG21'))
 	const contrastingColor = onWhite > onBlack ? 'white' : 'black'
 	return contrastingColor
