@@ -1,4 +1,4 @@
-import webExtension from 'vite-plugin-web-extension'
+import viteConfig from '../../vite.config.mts'
 import type { TargetBrowser } from './types.d.ts'
 import { zipRelease, zipSources } from './zip-files.ts'
 
@@ -8,14 +8,7 @@ export async function createReleases() {
 	for (const targetBrowser of targetBrowsers) {
 		console.log(`⏳ Creating release for ${targetBrowser} ...`)
 		try {
-			await vite.build({
-				plugins: [
-					webExtension({
-						browser: 'firefox',
-						disableAutoLaunch: true,
-					}),
-				],
-			})
+			await vite.build(viteConfig)
 			await zipRelease(targetBrowser)
 			if (targetBrowser === 'firefox') {
 				await zipSources(targetBrowser)
