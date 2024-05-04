@@ -16,15 +16,15 @@ Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to q
 
 1. Install the Node version defined in `.nvmrc` (e.g. with `nvm use`).
 2. Install dependencies with `npm install`.
-3. Run the build with `npm run build` (or `TARGET=chrome npm run build`) to generate the output files.
-4. Load the extension folder in [Firefox](about:debugging#/runtime/this-firefox) and/or Chrome.
 
 ### Development Commands
 
-- Run `npm run dev` to watch files for changes and start a browser for debugging.
-  - Run `TARGET=chrome npm run dev` to use Chrome instead of Firefox
+- Run `npm run dev` to watch files for changes and start Firefox for debugging.
+  - Run `TARGET=chrome npm run dev` to use Chrome
+  - Run `TARGET=vivaldi npm run dev` to use Vivaldi
 - Run `npm run format` to format the code with [Prettier](https://prettier.io/).
 - Run `npm run lint` to lint the code with [ESLint](https://eslint.org/).
+- Run `npm run build` (or `TARGET=chrome npm run build`) to generate the output files in `dist`.
 
 ## Releasing
 
