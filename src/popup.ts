@@ -1,13 +1,18 @@
 import browser from 'webextension-polyfill'
-import { addLink, loadItems, loadLabels } from './services/api'
-import { loadLocal, loadSetting, saveLocal } from './services/storage'
-import { getActiveTab, openTab } from './services/tabs'
+import {
+	OmnivoreLabel,
+	OmnivoreNode,
+	OmnivorePageInfo,
+} from './omnivoreTypes.ts'
+import { addLink, loadItems, loadLabels } from './services/api.ts'
+import { loadLocal, loadSetting, saveLocal } from './services/storage.ts'
+import { getActiveTab, openTab } from './services/tabs.ts'
 import {
 	buildItemNode,
 	createPagination,
 	setLoadingState,
 	showState,
-} from './services/ui'
+} from './services/ui.ts'
 
 let currentPage = 1
 
@@ -54,7 +59,11 @@ async function reloadItems() {
 	}
 }
 
-function renderItems(items, pageInfo, labels) {
+function renderItems(
+	items: OmnivoreNode[],
+	pageInfo: OmnivorePageInfo,
+	labels: OmnivoreLabel[],
+) {
 	if (!items.length) {
 		showState('no-items')
 		return
@@ -74,7 +83,7 @@ function renderItems(items, pageInfo, labels) {
 	if (pagination) {
 		newContent.appendChild(pagination)
 	}
-	const content = document.getElementById('content')
+	const content = document.getElementById('content')!
 	content.replaceWith(newContent)
 	showState('content')
 }
@@ -82,7 +91,7 @@ function renderItems(items, pageInfo, labels) {
 document.addEventListener('DOMContentLoaded', initialize)
 
 document.addEventListener('click', async (event) => {
-	const element = event.target
+	const element = event.target as HTMLButtonElement
 	if (element.tagName !== 'BUTTON') {
 		return
 	}
@@ -90,6 +99,9 @@ document.addEventListener('click', async (event) => {
 	if (element.classList.contains('add-current-page')) {
 		const activeTab = await getActiveTab()
 		try {
+			if (!activeTab.url) {
+				throw Error('No tab url')
+			}
 			await addLink(activeTab.url)
 		} catch (error) {
 			// TODO: Indicate error in UI.

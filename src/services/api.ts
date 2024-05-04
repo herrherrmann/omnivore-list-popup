@@ -1,4 +1,4 @@
-import { defaultSettings, loadSetting } from './storage'
+import { defaultSettings, loadSetting } from './storage.ts'
 
 const searchQuery = `
     query Search($after: String, $first: Int, $query: String) {
@@ -52,7 +52,7 @@ const setLinkArchivedQuery = `
         }
     }`
 
-async function sendAPIRequest(query, variables) {
+async function sendAPIRequest(query: string, variables?: object) {
 	const apiKey = await loadSetting('apiKey')
 	const apiUrl = (await loadSetting('apiUrl')) || defaultSettings.apiUrl
 	if (!apiKey || !apiUrl) {
@@ -72,7 +72,7 @@ async function sendAPIRequest(query, variables) {
 
 export const pageSize = 20
 
-export async function loadItems(page) {
+export async function loadItems(page: number) {
 	const query = await loadSetting('searchQuery')
 	const variables = {
 		// The "after" value requires a string instead of a number.
@@ -91,7 +91,7 @@ function generateUUID() {
 	return self.crypto.randomUUID()
 }
 
-export async function addLink(url) {
+export async function addLink(url: string) {
 	const query = `
         mutation SaveUrl($input: SaveUrlInput!) {
             saveUrl(input: $input) {
@@ -119,11 +119,11 @@ export async function addLink(url) {
 	return response
 }
 
-function hasResponseError(responseBody) {
-	return responseBody.errorCodes?.length > 0
+function hasResponseError(responseBody: { errorCodes?: string[] }) {
+	return (responseBody.errorCodes || []).length > 0
 }
 
-export async function archiveLink(linkId) {
+export async function archiveLink(linkId: string) {
 	const variables = {
 		input: {
 			archived: true,
@@ -133,7 +133,7 @@ export async function archiveLink(linkId) {
 	// TODO: Error handling!
 	await sendAPIRequest(setLinkArchivedQuery, variables)
 }
-export async function unarchiveLink(linkId) {
+export async function unarchiveLink(linkId: string) {
 	const variables = {
 		input: {
 			archived: false,
@@ -171,7 +171,7 @@ export async function loadLabels() {
 	return labels
 }
 
-export async function saveLabels(pageId, labelIds) {
+export async function saveLabels(pageId: string, labelIds: string[]) {
 	const query = `
         mutation SetLabels($input: SetLabelsInput!) {
             setLabels(input: $input) {

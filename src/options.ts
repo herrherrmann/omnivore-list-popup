@@ -1,4 +1,9 @@
-import { defaultSettings, loadSetting, saveSetting } from './services/storage'
+import {
+	SettingKey,
+	defaultSettings,
+	loadSetting,
+	saveSetting,
+} from './services/storage.ts'
 
 const apiUrlInputSelector = '#api-url'
 const apiKeyInputSelector = '#api-key'
@@ -11,29 +16,33 @@ async function initialize() {
 	await restoreInput('searchQuery', searchQueryInputSelector)
 }
 
-async function restoreInput(settingKey, inputSelector) {
+function getInput(selector: string) {
+	return document.querySelector<HTMLInputElement>(selector)!
+}
+
+async function restoreInput(settingKey: SettingKey, inputSelector: string) {
 	const settingValue = (await loadSetting(settingKey)) || ''
-	const input = document.querySelector(inputSelector)
+	const input = getInput(inputSelector)
 	input.value = settingValue
 	return settingValue
 }
 
-function validateInput(settingValue, inputSelector) {
+function validateInput(settingValue: string, inputSelector: string) {
 	const isValid = !!settingValue
-	const input = document.querySelector(inputSelector)
+	const input = getInput(inputSelector)
 	input.className = isValid ? 'valid' : ''
 }
 
-async function saveOptions(event) {
+async function saveOptions(event: SubmitEvent) {
 	event.preventDefault()
-	const apiUrl = document.querySelector(apiUrlInputSelector).value
+	const apiUrl = getInput(apiUrlInputSelector)!.value
 	await saveSetting('apiUrl', apiUrl)
-	const apiKey = document.querySelector(apiKeyInputSelector).value
+	const apiKey = getInput(apiKeyInputSelector)!.value
 	await saveSetting('apiKey', apiKey)
 	validateInput(apiKey, apiKeyInputSelector)
-	const searchQuery = document.querySelector(searchQueryInputSelector).value
+	const searchQuery = getInput(searchQueryInputSelector).value
 	await saveSetting('searchQuery', searchQuery)
-	const messageElement = document.querySelector('#message')
+	const messageElement = document.querySelector('#message')!
 	messageElement.classList.add('success')
 	messageElement.textContent = 'Saved!'
 	setTimeout(() => {
@@ -43,17 +52,19 @@ async function saveOptions(event) {
 }
 
 document.addEventListener('DOMContentLoaded', initialize)
-document.querySelector('form').addEventListener('submit', saveOptions)
+document
+	.querySelector<HTMLFormElement>('form')!
+	.addEventListener('submit', saveOptions)
 
 document.addEventListener('click', async (event) => {
-	const element = event.target
+	const element = event.target as HTMLElement
 	if (element.tagName !== 'BUTTON') {
 		return
 	}
 	if (element.classList.contains('restore-defaults')) {
-		const searchQueryInput = document.querySelector(searchQueryInputSelector)
+		const searchQueryInput = getInput(searchQueryInputSelector)
 		searchQueryInput.value = defaultSettings.searchQuery
-		const apiUrlInput = document.querySelector(apiUrlInputSelector)
+		const apiUrlInput = getInput(apiUrlInputSelector)
 		apiUrlInput.value = defaultSettings.apiUrl
 	}
 })

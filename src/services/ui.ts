@@ -4,17 +4,23 @@ import archiveSvg from '../../public/images/archive.svg?raw'
 import chevronLeftSvg from '../../public/images/chevron-left.svg?raw'
 import chevronRightSvg from '../../public/images/chevron-right.svg?raw'
 import tagSvg from '../../public/images/tag.svg?raw'
-import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api'
-import { closeModal, showModal } from './modal'
-import { isMacOS } from './system'
-import { openTab } from './tabs'
+import {
+	OmnivoreLabel,
+	OmnivoreNode,
+	OmnivorePageInfo,
+} from '../omnivoreTypes.ts'
+import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api.ts'
+import { closeModal, showModal } from './modal.ts'
+import { isMacOS } from './system.ts'
+import { openTab } from './tabs.ts'
+
+type StateId = 'api-key-missing' | 'no-items' | 'error' | 'content' | 'loading'
 
 /**
  * Shows a certain UI state (similar to a page).
- * @param {('api-key-missing' | 'no-items' | 'error' | 'content' | 'loading')} shownStateId
  */
-export function showState(shownStateId) {
-	const stateIds = [
+export function showState(shownStateId: StateId) {
+	const stateIds: StateId[] = [
 		'api-key-missing',
 		'no-items',
 		'error',
@@ -22,15 +28,17 @@ export function showState(shownStateId) {
 		'loading',
 	]
 	stateIds.forEach((stateId) => {
-		const element = document.getElementById(stateId)
 		const isNewState = stateId === shownStateId
-		element.style = isNewState ? 'display: flex;' : 'display: none;'
+		const element = document.getElementById(stateId)!
+		element.style.display = isNewState ? 'flex' : 'none'
 	})
 }
 
-export function setLoadingState(isLoading) {
-	const refreshButton = document.getElementById('refresh-button')
-	const icon = refreshButton.querySelector('svg')
+export function setLoadingState(isLoading: boolean) {
+	const refreshButton = document.getElementById(
+		'refresh-button',
+	) as HTMLButtonElement
+	const icon = refreshButton.querySelector('svg')!
 	if (isLoading) {
 		refreshButton.disabled = true
 		icon.classList.add('rotating')
@@ -42,12 +50,16 @@ export function setLoadingState(isLoading) {
 
 /**
  *
- * @param {Object} node Omnivore’s item node.
- * @param {Object[]} labels list of all labels from Omnivore (for the label edit screen)
- * @param {function} onAfterUpdate function to be called after an item has been updated (e.g. archived or labeled)
- * @returns {HTMLLinkElement} HTML Node representing an Omnivore entry in an HTML list.
+ * @param node Omnivore’s item node.
+ * @param labels list of all labels from Omnivore (for the label edit screen)
+ * @param onAfterUpdate function to be called after an item has been updated (e.g. archived or labeled)
+ * @returns HTML node representing an Omnivore entry in an HTML list.
  */
-export function buildItemNode(node, labels, onAfterUpdate) {
+export function buildItemNode(
+	node: OmnivoreNode,
+	labels: OmnivoreLabel[],
+	onAfterUpdate: () => void,
+): HTMLAnchorElement {
 	const item = document.createElement('a')
 	item.className = 'item'
 	item.appendChild(createImage(node))
@@ -64,12 +76,12 @@ export function buildItemNode(node, labels, onAfterUpdate) {
 	return item
 }
 
-function shouldKeepPopupOpen(event) {
+function shouldKeepPopupOpen(event: MouseEvent) {
 	const modifierKey = isMacOS() ? 'metaKey' : 'ctrlKey'
 	return event[modifierKey]
 }
 
-function createImage(node) {
+function createImage(node: OmnivoreNode) {
 	if (node.image) {
 		const img = document.createElement('img')
 		img.className = 'image'
@@ -83,7 +95,7 @@ function createImage(node) {
 	return getFallbackDiv(node)
 }
 
-function getFallbackDiv(node) {
+function getFallbackDiv(node: OmnivoreNode) {
 	const div = document.createElement('div')
 	div.className = 'image'
 	div.innerText = node.title.substring(0, 1)
@@ -94,15 +106,17 @@ function getFallbackDiv(node) {
 	return div
 }
 
-function getContrastingColor(colorString) {
+function getContrastingColor(colorString: string) {
 	const color = new Color(colorString)
+	// @ts-expect-error color.contrast() type is missing from 3rd-party library.
 	const onWhite = Math.abs(color.contrast('white', 'WCAG21'))
+	// @ts-expect-error color.contrast() type is missing from 3rd-party library.
 	const onBlack = Math.abs(color.contrast('black', 'WCAG21'))
 	const contrastingColor = onWhite > onBlack ? 'white' : 'black'
 	return contrastingColor
 }
 
-function createTextDiv(node) {
+function createTextDiv(node: OmnivoreNode) {
 	const textDiv = document.createElement('div')
 	textDiv.className = 'text'
 	const title = document.createElement('div')
@@ -120,7 +134,7 @@ function createTextDiv(node) {
 	return textDiv
 }
 
-function createLabelsList(labels) {
+function createLabelsList(labels: OmnivoreLabel[]) {
 	const list = document.createElement('ul')
 	list.className = 'labels'
 	labels.forEach((item) => {
@@ -128,7 +142,7 @@ function createLabelsList(labels) {
 		listItem.className = 'label'
 		const dot = document.createElement('span')
 		dot.className = 'dot'
-		dot.style = 'background: ' + item.color
+		dot.style.background = item.color
 		listItem.appendChild(dot)
 		const name = document.createElement('span')
 		name.textContent = item.name
@@ -138,7 +152,11 @@ function createLabelsList(labels) {
 	return list
 }
 
-function createButtonsDiv(node, labels, onAfterUpdate) {
+function createButtonsDiv(
+	node: OmnivoreNode,
+	labels: OmnivoreLabel[],
+	onAfterUpdate: () => void,
+) {
 	const buttons = document.createElement('div')
 	buttons.className = 'buttons'
 
@@ -184,7 +202,7 @@ function createButtonsDiv(node, labels, onAfterUpdate) {
 	return buttons
 }
 
-export function createPagination(pageInfo) {
+export function createPagination(pageInfo: OmnivorePageInfo) {
 	// pagInfo.hasPreviousPage is always false(?), so we’re calculating this manually.
 	const hasPreviousPage =
 		pageInfo.startCursor && Number(pageInfo.startCursor) > 0
@@ -221,11 +239,15 @@ export function createPagination(pageInfo) {
 	return pagination
 }
 
-function showLabelsModal(article, labels, onAfterUpdate) {
+function showLabelsModal(
+	article: OmnivoreNode,
+	labels: OmnivoreLabel[],
+	onAfterUpdate: () => void,
+) {
 	showModal('labels-modal')
-	const labelsModal = document.getElementById('labels-modal')
+	const labelsModal = document.getElementById('labels-modal')!
 
-	const labelsDiv = labelsModal.querySelector('#labels')
+	const labelsDiv = labelsModal.querySelector('#labels')!
 	labelsDiv.innerHTML = ''
 
 	labels.forEach((item) => {
@@ -237,8 +259,10 @@ function showLabelsModal(article, labels, onAfterUpdate) {
 		checkbox.name = 'label'
 		checkbox.value = item.id
 		checkbox.id = item.id
-		checkbox.checked = !!article.labels?.find((label) => label.id === item.id)
-		checkbox.style = `accent-color: ${item.color}`
+		checkbox.checked = !!article.labels?.find(
+			(label: OmnivoreLabel) => label.id === item.id,
+		)
+		checkbox.style.accentColor = item.color
 		div.appendChild(checkbox)
 
 		const label = createLabel(item)
@@ -247,7 +271,7 @@ function showLabelsModal(article, labels, onAfterUpdate) {
 		labelsDiv.appendChild(div)
 	})
 
-	const buttons = labelsModal.querySelector('#buttons')
+	const buttons = labelsModal.querySelector('#buttons')!
 	buttons.innerHTML = ''
 
 	const cancelButton = document.createElement('button')
@@ -270,7 +294,8 @@ function showLabelsModal(article, labels, onAfterUpdate) {
 		isSaving = true
 		saveButton.disabled = true
 		cancelButton.disabled = true
-		const inputElements = labelsModal.querySelectorAll('#labels input')
+		const inputElements =
+			labelsModal.querySelectorAll<HTMLInputElement>('#labels input')
 		const checkedValues = Array.from(inputElements)
 			.filter((inputElement) => inputElement.checked)
 			.map((inputElement) => inputElement.value)
@@ -286,19 +311,16 @@ function showLabelsModal(article, labels, onAfterUpdate) {
 	}
 }
 
-/**
- * @param {object} item Label item with name, color, etc.
- */
-function createLabel(item) {
-	const label = document.createElement('label')
-	label.htmlFor = item.id
+function createLabel(label: OmnivoreLabel) {
+	const labelElement = document.createElement('label')
+	labelElement.htmlFor = label.id
 	const dot = document.createElement('span')
 	dot.className = 'dot'
-	dot.style = 'background: ' + item.color
-	label.appendChild(dot)
+	dot.style.background = label.color
+	labelElement.appendChild(dot)
 	const name = document.createElement('span')
 	name.className = 'name'
-	name.textContent = item.name
-	label.appendChild(name)
-	return label
+	name.textContent = label.name
+	labelElement.appendChild(name)
+	return labelElement
 }
