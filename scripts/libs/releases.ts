@@ -1,4 +1,4 @@
-import viteConfig from '../../vite.config.mts'
+import viteConfig from '../../vite.config.ts'
 import type { TargetBrowser } from './types.d.ts'
 import { zipRelease, zipSources } from './zip-files.ts'
 

@@ -20,7 +20,7 @@ async function zipSourceFiles(outPath: string) {
 		'package.json',
 		'README.md',
 		'tsconfig.json',
-		'vite.config.mts',
+		'vite.config.ts',
 	]
 	await zip(SOURCE_GLOBS.join(', '), outPath)
 }
