@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@eslint/js": "9.2.0",
-    "@types/archiver": "6.0.2",
     "@types/chrome": "0.0.267",
     "@types/firefox-webext-browser": "120.0.3",
     "@types/webextension-polyfill": "0.10.7",
@@ -33,7 +32,6 @@
     "rimraf": "5.0.5",
     "stylelint": "16.5.0",
     "stylelint-config-standard-scss": "13.1.0",
-    "svg-inline-loader": "0.8.2",
     "tsx": "4.9.0",
     "typescript": "5.4.5",
     "typescript-eslint": "7.8.0",
