@@ -15,6 +15,6 @@ export async function getActiveTab() {
 	return querying.then(onGot, onError)
 }
 
-export function openTab(url: string) {
-	return browser.tabs.create({ url })
+export function openTab(url: string, active = true) {
+	return browser.tabs.create({ url, active: active })
 }

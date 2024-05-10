@@ -77,7 +77,7 @@ export function buildItemNode(
 	item.setAttribute('href', node.url)
 	item.addEventListener('click', (event) => {
 		event.preventDefault()
-		openTab(node.url)
+		openTab(node.url, !shouldKeepPopupOpen(event))
 		if (!shouldKeepPopupOpen(event)) {
 			window.close()
 		}
