@@ -1,5 +1,6 @@
 import {
 	SettingKey,
+	UiOptions,
 	defaultSettings,
 	loadSetting,
 	saveSetting,
@@ -9,6 +10,9 @@ const inputSelectors = {
 	apiUrl: '#api-url',
 	apiKey: '#api-key',
 	searchQuery: '#search-query',
+	showLabelsButton: '#show-labels-button',
+	showArchiveButton: '#show-archive-button',
+	showDeleteButton: '#show-delete-button',
 }
 
 async function initialize() {
@@ -16,6 +20,18 @@ async function initialize() {
 	const apiKey = await restoreInput('apiKey', inputSelectors.apiKey)
 	validateInput(apiKey, inputSelectors.apiKey)
 	await restoreInput('searchQuery', inputSelectors.searchQuery)
+	await restoreOptionsCheckbox(
+		inputSelectors.showLabelsButton,
+		'showLabelsButton',
+	)
+	await restoreOptionsCheckbox(
+		inputSelectors.showArchiveButton,
+		'showArchiveButton',
+	)
+	await restoreOptionsCheckbox(
+		inputSelectors.showDeleteButton,
+		'showDeleteButton',
+	)
 }
 
 function getInput(selector: string) {
@@ -26,6 +42,16 @@ async function restoreInput(settingKey: SettingKey, inputSelector: string) {
 	const settingValue = (await loadSetting(settingKey)) || ''
 	const input = getInput(inputSelector)
 	input.value = settingValue
+	return settingValue
+}
+
+async function restoreOptionsCheckbox(
+	inputSelector: string,
+	uiOptionsKey: keyof UiOptions,
+) {
+	const settingValue = (await loadSetting('uiOptions'))[uiOptionsKey]
+	const input = getInput(inputSelector)
+	input.checked = settingValue
 	return settingValue
 }
 
@@ -44,6 +70,16 @@ async function saveOptions(event: SubmitEvent) {
 	validateInput(apiKey, inputSelectors.apiKey)
 	const searchQuery = getInput(inputSelectors.searchQuery).value
 	await saveSetting('searchQuery', searchQuery)
+
+	const showLabelsButton = getInput(inputSelectors.showLabelsButton).checked
+	const showArchiveButton = getInput(inputSelectors.showArchiveButton).checked
+	const showDeleteButton = getInput(inputSelectors.showDeleteButton).checked
+	await saveSetting('uiOptions', {
+		showLabelsButton,
+		showArchiveButton,
+		showDeleteButton,
+	})
+
 	const messageElement = document.querySelector('#message')!
 	messageElement.classList.add('success')
 	messageElement.textContent = 'Saved!'

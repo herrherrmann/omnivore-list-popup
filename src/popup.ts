@@ -5,7 +5,12 @@ import {
 	OmnivorePageInfo,
 } from './omnivoreTypes.ts'
 import { addLink, loadItems, loadLabels } from './services/api.ts'
-import { loadLocal, loadSetting, saveLocal } from './services/storage.ts'
+import {
+	UiOptions,
+	loadLocal,
+	loadSetting,
+	saveLocal,
+} from './services/storage.ts'
 import { getActiveTab, openTab } from './services/tabs.ts'
 import {
 	buildItemNode,
@@ -30,13 +35,14 @@ async function reloadItems() {
 	}
 	try {
 		setLoadingState(true)
+		const uiOptions = (await loadSetting('uiOptions')) as UiOptions
 		// Only the first page (the initial popup state) should be cached.
 		const useCache = currentPage === 1
 		if (useCache) {
 			const cache = await loadLocal('apiCache')
 			if (cache) {
 				const { items, pageInfo, labels } = cache
-				renderItems(items, pageInfo, labels)
+				renderItems(items, pageInfo, labels, uiOptions)
 			}
 		}
 		const { items, pageInfo } = await loadItems(currentPage)
@@ -47,7 +53,7 @@ async function reloadItems() {
 			await reloadItems()
 			return
 		}
-		renderItems(items, pageInfo, labels)
+		renderItems(items, pageInfo, labels, uiOptions)
 		// Cache API responses.
 		if (useCache) {
 			await saveLocal('apiCache', { items, pageInfo, labels })
@@ -63,6 +69,7 @@ function renderItems(
 	items: OmnivoreNode[],
 	pageInfo: OmnivorePageInfo,
 	labels: OmnivoreLabel[],
+	uiOptions: UiOptions,
 ) {
 	if (!items.length) {
 		showState('no-items')
@@ -74,7 +81,7 @@ function renderItems(
 	const list = document.createElement('ul')
 	items.forEach((item) => {
 		const listItem = document.createElement('li')
-		const itemNode = buildItemNode(item.node, labels, reloadItems)
+		const itemNode = buildItemNode(item.node, labels, uiOptions, reloadItems)
 		listItem.appendChild(itemNode)
 		list.appendChild(listItem)
 	})
