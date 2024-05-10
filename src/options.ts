@@ -39,7 +39,7 @@ function getInput(selector: string) {
 }
 
 async function restoreInput(settingKey: SettingKey, inputSelector: string) {
-	const settingValue = (await loadSetting(settingKey)) || ''
+	const settingValue = await loadSetting(settingKey)
 	const input = getInput(inputSelector)
 	input.value = settingValue
 	return settingValue

@@ -1,9 +1,10 @@
 import browser from 'webextension-polyfill'
 
-export type SettingKey = 'apiUrl' | 'apiKey' | 'searchQuery' | 'uiOptions'
+export type SettingKey = keyof typeof defaultSettings
 export type UiOptions = (typeof defaultSettings)['uiOptions']
 
 export const defaultSettings = {
+	apiKey: '',
 	apiUrl: 'https://api-prod.omnivore.app/api/graphql',
 	searchQuery: 'in:inbox',
 	uiOptions: {
@@ -13,16 +14,10 @@ export const defaultSettings = {
 	},
 }
 
-function hasDefaultSetting(
-	settingKey: SettingKey,
-): settingKey is keyof typeof defaultSettings {
-	return settingKey in defaultSettings
-}
-
 export async function loadSetting(settingKey: SettingKey) {
 	async function onGot(result: Record<SettingKey, any>) {
 		const value = result[settingKey]
-		if (value === undefined && hasDefaultSetting(settingKey)) {
+		if (value === undefined) {
 			const defaultValue = defaultSettings[settingKey]
 			await saveSetting(settingKey, defaultValue)
 			return Promise.resolve(defaultValue)
