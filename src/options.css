@@ -39,6 +39,12 @@ fieldset {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	gap: 5px;
+	padding: 10px 0 0 0;
+	border: none;
+}
+
+fieldset.advanced-options {
 	gap: 15px;
 	padding: 10px;
 	border: 1px solid var(--border-color);
@@ -57,7 +63,16 @@ label {
 	font-weight: 600;
 }
 
-input {
+label:has(input[type='checkbox']) {
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 3px;
+	align-items: center;
+	font-weight: 400;
+}
+
+input[type='text'],
+input[type='url'] {
 	--padding: 6px;
 	display: block;
 	min-width: 400px;

@@ -1,30 +1,23 @@
 import browser from 'webextension-polyfill'
 
-export type SettingKey = 'apiUrl' | 'apiKey' | 'searchQuery'
+export type SettingKey = keyof typeof defaultSettings
+export type UiOptions = (typeof defaultSettings)['uiOptions']
 
 export const defaultSettings = {
+	apiKey: '',
 	apiUrl: 'https://api-prod.omnivore.app/api/graphql',
 	searchQuery: 'in:inbox',
-}
-
-function hasDefaultSetting(
-	settingKey: SettingKey,
-): settingKey is keyof typeof defaultSettings {
-	return settingKey in defaultSettings
-}
-
-function checkSettingKey(settingKey: 'apiUrl' | 'apiKey' | 'searchQuery') {
-	const settingKeys = ['apiUrl', 'apiKey', 'searchQuery']
-	if (!settingKeys.includes(settingKey)) {
-		throw new Error('Invalid setting key')
-	}
+	uiOptions: {
+		showLabelsButton: true,
+		showArchiveButton: true,
+		showDeleteButton: false,
+	},
 }
 
 export async function loadSetting(settingKey: SettingKey) {
-	checkSettingKey(settingKey)
 	async function onGot(result: Record<SettingKey, any>) {
 		const value = result[settingKey]
-		if (value === undefined && hasDefaultSetting(settingKey)) {
+		if (value === undefined) {
 			const defaultValue = defaultSettings[settingKey]
 			await saveSetting(settingKey, defaultValue)
 			return Promise.resolve(defaultValue)
@@ -42,7 +35,6 @@ export async function saveSetting(
 	settingKey: SettingKey,
 	settingValue: string | object,
 ) {
-	checkSettingKey(settingKey)
 	function onSet() {
 		return Promise.resolve()
 	}

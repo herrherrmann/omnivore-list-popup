@@ -4,15 +4,23 @@ import archiveSvg from '../../public/images/archive.svg?raw'
 import chevronLeftSvg from '../../public/images/chevron-left.svg?raw'
 import chevronRightSvg from '../../public/images/chevron-right.svg?raw'
 import tagSvg from '../../public/images/tag.svg?raw'
+import trash2Svg from '../../public/images/trash-2.svg?raw'
 import {
 	OmnivoreLabel,
 	OmnivoreNode,
 	OmnivorePageInfo,
 } from '../omnivoreTypes.ts'
-import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api.ts'
+import {
+	archiveLink,
+	deleteLink,
+	pageSize,
+	saveLabels,
+	unarchiveLink,
+} from './api.ts'
 import { closeModal, showModal } from './modal.ts'
 import { isMacOS } from './system.ts'
 import { openTab } from './tabs.ts'
+import { UiOptions } from './storage.ts'
 
 type StateId = 'api-key-missing' | 'no-items' | 'error' | 'content' | 'loading'
 
@@ -58,13 +66,14 @@ export function setLoadingState(isLoading: boolean) {
 export function buildItemNode(
 	node: OmnivoreNode,
 	labels: OmnivoreLabel[],
+	uiOptions: UiOptions,
 	onAfterUpdate: () => void,
 ): HTMLAnchorElement {
 	const item = document.createElement('a')
 	item.className = 'item'
 	item.appendChild(createImage(node))
 	item.appendChild(createTextDiv(node))
-	item.appendChild(createButtonsDiv(node, labels, onAfterUpdate))
+	item.appendChild(createButtonsDiv(node, labels, uiOptions, onAfterUpdate))
 	item.setAttribute('href', node.url)
 	item.addEventListener('click', (event) => {
 		event.preventDefault()
@@ -155,49 +164,66 @@ function createLabelsList(labels: OmnivoreLabel[]) {
 function createButtonsDiv(
 	node: OmnivoreNode,
 	labels: OmnivoreLabel[],
+	uiOptions: UiOptions,
 	onAfterUpdate: () => void,
 ) {
 	const buttons = document.createElement('div')
 	buttons.className = 'buttons'
-
-	const labelButton = document.createElement('button')
-	labelButton.type = 'button'
-	labelButton.className = 'button label'
-	labelButton.innerHTML = tagSvg
-	labelButton.title = 'Set labels'
-	labelButton.addEventListener('click', async (event) => {
-		event.preventDefault()
-		event.stopPropagation()
-		showLabelsModal(node, labels, onAfterUpdate)
-	})
-	buttons.appendChild(labelButton)
-
-	if (!node.isArchived) {
-		const archiveButton = document.createElement('button')
-		archiveButton.type = 'button'
-		archiveButton.className = 'button'
-		archiveButton.innerHTML = archiveSvg
-		archiveButton.title = 'Archive this item'
-		archiveButton.addEventListener('click', async (event) => {
+	if (uiOptions.showLabelsButton) {
+		const labelButton = document.createElement('button')
+		labelButton.type = 'button'
+		labelButton.className = 'button label'
+		labelButton.innerHTML = tagSvg
+		labelButton.title = 'Set labels'
+		labelButton.addEventListener('click', async (event) => {
 			event.preventDefault()
 			event.stopPropagation()
-			await archiveLink(node.id)
-			onAfterUpdate()
+			showLabelsModal(node, labels, onAfterUpdate)
 		})
-		buttons.appendChild(archiveButton)
-	} else {
-		const restoreButton = document.createElement('button')
-		restoreButton.type = 'button'
-		restoreButton.className = 'button'
-		restoreButton.innerHTML = archiveRestoreSvg
-		restoreButton.title = 'Restore this item'
-		restoreButton.addEventListener('click', async (event) => {
+		buttons.appendChild(labelButton)
+	}
+	if (uiOptions.showArchiveButton) {
+		if (!node.isArchived) {
+			const archiveButton = document.createElement('button')
+			archiveButton.type = 'button'
+			archiveButton.className = 'button'
+			archiveButton.innerHTML = archiveSvg
+			archiveButton.title = 'Archive this item'
+			archiveButton.addEventListener('click', async (event) => {
+				event.preventDefault()
+				event.stopPropagation()
+				await archiveLink(node.id)
+				onAfterUpdate()
+			})
+			buttons.appendChild(archiveButton)
+		} else {
+			const restoreButton = document.createElement('button')
+			restoreButton.type = 'button'
+			restoreButton.className = 'button'
+			restoreButton.innerHTML = archiveRestoreSvg
+			restoreButton.title = 'Restore this item'
+			restoreButton.addEventListener('click', async (event) => {
+				event.preventDefault()
+				event.stopPropagation()
+				await unarchiveLink(node.id)
+				onAfterUpdate()
+			})
+			buttons.appendChild(restoreButton)
+		}
+	}
+	if (uiOptions.showDeleteButton) {
+		const deleteButton = document.createElement('button')
+		deleteButton.type = 'button'
+		deleteButton.className = 'button'
+		deleteButton.innerHTML = trash2Svg
+		deleteButton.title = 'Delete this item'
+		deleteButton.addEventListener('click', async (event) => {
 			event.preventDefault()
 			event.stopPropagation()
-			await unarchiveLink(node.id)
+			await deleteLink(node.id)
 			onAfterUpdate()
 		})
-		buttons.appendChild(restoreButton)
+		buttons.appendChild(deleteButton)
 	}
 	return buttons
 }

@@ -1,19 +1,37 @@
 import {
 	SettingKey,
+	UiOptions,
 	defaultSettings,
 	loadSetting,
 	saveSetting,
 } from './services/storage.ts'
 
-const apiUrlInputSelector = '#api-url'
-const apiKeyInputSelector = '#api-key'
-const searchQueryInputSelector = '#search-query'
+const inputSelectors = {
+	apiUrl: '#api-url',
+	apiKey: '#api-key',
+	searchQuery: '#search-query',
+	showLabelsButton: '#show-labels-button',
+	showArchiveButton: '#show-archive-button',
+	showDeleteButton: '#show-delete-button',
+}
 
 async function initialize() {
-	await restoreInput('apiUrl', apiUrlInputSelector)
-	const apiKey = await restoreInput('apiKey', apiKeyInputSelector)
-	validateInput(apiKey, apiKeyInputSelector)
-	await restoreInput('searchQuery', searchQueryInputSelector)
+	await restoreInput('apiUrl', inputSelectors.apiUrl)
+	const apiKey = await restoreInput('apiKey', inputSelectors.apiKey)
+	validateInput(apiKey, inputSelectors.apiKey)
+	await restoreInput('searchQuery', inputSelectors.searchQuery)
+	await restoreOptionsCheckbox(
+		inputSelectors.showLabelsButton,
+		'showLabelsButton',
+	)
+	await restoreOptionsCheckbox(
+		inputSelectors.showArchiveButton,
+		'showArchiveButton',
+	)
+	await restoreOptionsCheckbox(
+		inputSelectors.showDeleteButton,
+		'showDeleteButton',
+	)
 }
 
 function getInput(selector: string) {
@@ -21,9 +39,19 @@ function getInput(selector: string) {
 }
 
 async function restoreInput(settingKey: SettingKey, inputSelector: string) {
-	const settingValue = (await loadSetting(settingKey)) || ''
+	const settingValue = await loadSetting(settingKey)
 	const input = getInput(inputSelector)
 	input.value = settingValue
+	return settingValue
+}
+
+async function restoreOptionsCheckbox(
+	inputSelector: string,
+	uiOptionsKey: keyof UiOptions,
+) {
+	const settingValue = (await loadSetting('uiOptions'))[uiOptionsKey]
+	const input = getInput(inputSelector)
+	input.checked = settingValue
 	return settingValue
 }
 
@@ -35,13 +63,23 @@ function validateInput(settingValue: string, inputSelector: string) {
 
 async function saveOptions(event: SubmitEvent) {
 	event.preventDefault()
-	const apiUrl = getInput(apiUrlInputSelector)!.value
+	const apiUrl = getInput(inputSelectors.apiUrl).value
 	await saveSetting('apiUrl', apiUrl)
-	const apiKey = getInput(apiKeyInputSelector)!.value
+	const apiKey = getInput(inputSelectors.apiKey).value
 	await saveSetting('apiKey', apiKey)
-	validateInput(apiKey, apiKeyInputSelector)
-	const searchQuery = getInput(searchQueryInputSelector).value
+	validateInput(apiKey, inputSelectors.apiKey)
+	const searchQuery = getInput(inputSelectors.searchQuery).value
 	await saveSetting('searchQuery', searchQuery)
+
+	const showLabelsButton = getInput(inputSelectors.showLabelsButton).checked
+	const showArchiveButton = getInput(inputSelectors.showArchiveButton).checked
+	const showDeleteButton = getInput(inputSelectors.showDeleteButton).checked
+	await saveSetting('uiOptions', {
+		showLabelsButton,
+		showArchiveButton,
+		showDeleteButton,
+	})
+
 	const messageElement = document.querySelector('#message')!
 	messageElement.classList.add('success')
 	messageElement.textContent = 'Saved!'
@@ -62,9 +100,9 @@ document.addEventListener('click', async (event) => {
 		return
 	}
 	if (element.classList.contains('restore-defaults')) {
-		const searchQueryInput = getInput(searchQueryInputSelector)
+		const searchQueryInput = getInput(inputSelectors.searchQuery)
 		searchQueryInput.value = defaultSettings.searchQuery
-		const apiUrlInput = getInput(apiUrlInputSelector)
+		const apiUrlInput = getInput(inputSelectors.apiUrl)
 		apiUrlInput.value = defaultSettings.apiUrl
 	}
 })
