@@ -104,6 +104,19 @@ const apiQueries = {
                 }
             }
         }`,
+	setBookmarkArticle: `
+        mutation SetBookmarkArticle($input: SetBookmarkArticleInput!) {
+            setBookmarkArticle(input: $input) {
+                ... on SetBookmarkArticleSuccess {
+                    bookmarkedArticle {
+                        id
+                    }
+                }
+                ... on SetBookmarkArticleError {
+                    errorCodes
+                }
+            }
+        }`,
 }
 
 export default apiQueries

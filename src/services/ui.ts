@@ -4,12 +4,19 @@ import archiveSvg from '../../public/images/archive.svg?raw'
 import chevronLeftSvg from '../../public/images/chevron-left.svg?raw'
 import chevronRightSvg from '../../public/images/chevron-right.svg?raw'
 import tagSvg from '../../public/images/tag.svg?raw'
+import trash2Svg from '../../public/images/trash-2.svg?raw'
 import {
 	OmnivoreLabel,
 	OmnivoreNode,
 	OmnivorePageInfo,
 } from '../omnivoreTypes.ts'
-import { archiveLink, pageSize, saveLabels, unarchiveLink } from './api.ts'
+import {
+	archiveLink,
+	deleteLink,
+	pageSize,
+	saveLabels,
+	unarchiveLink,
+} from './api.ts'
 import { closeModal, showModal } from './modal.ts'
 import { isMacOS } from './system.ts'
 import { openTab } from './tabs.ts'
@@ -199,6 +206,20 @@ function createButtonsDiv(
 		})
 		buttons.appendChild(restoreButton)
 	}
+
+	const deleteButton = document.createElement('button')
+	deleteButton.type = 'button'
+	deleteButton.className = 'button'
+	deleteButton.innerHTML = trash2Svg
+	deleteButton.title = 'Delete this item'
+	deleteButton.addEventListener('click', async (event) => {
+		event.preventDefault()
+		event.stopPropagation()
+		await deleteLink(node.id)
+		onAfterUpdate()
+	})
+	buttons.appendChild(deleteButton)
+
 	return buttons
 }
 

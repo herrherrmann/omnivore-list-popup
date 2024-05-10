@@ -80,6 +80,17 @@ export async function unarchiveLink(linkId: string) {
 	await sendAPIRequest(apiQueries.setLinkArchived, variables)
 }
 
+export async function deleteLink(linkId: string) {
+	const variables = {
+		input: {
+			bookmark: false,
+			articleID: linkId,
+		},
+	}
+	// TODO: Error handling!
+	await sendAPIRequest(apiQueries.setBookmarkArticle, variables)
+}
+
 export async function loadLabels() {
 	const data = await sendAPIRequest(apiQueries.getLabels)
 	const labels = data.labels.labels
