@@ -5,15 +5,17 @@ import {
 	saveSetting,
 } from './services/storage.ts'
 
-const apiUrlInputSelector = '#api-url'
-const apiKeyInputSelector = '#api-key'
-const searchQueryInputSelector = '#search-query'
+const inputSelectors = {
+	apiUrl: '#api-url',
+	apiKey: '#api-key',
+	searchQuery: '#search-query',
+}
 
 async function initialize() {
-	await restoreInput('apiUrl', apiUrlInputSelector)
-	const apiKey = await restoreInput('apiKey', apiKeyInputSelector)
-	validateInput(apiKey, apiKeyInputSelector)
-	await restoreInput('searchQuery', searchQueryInputSelector)
+	await restoreInput('apiUrl', inputSelectors.apiUrl)
+	const apiKey = await restoreInput('apiKey', inputSelectors.apiKey)
+	validateInput(apiKey, inputSelectors.apiKey)
+	await restoreInput('searchQuery', inputSelectors.searchQuery)
 }
 
 function getInput(selector: string) {
@@ -35,12 +37,12 @@ function validateInput(settingValue: string, inputSelector: string) {
 
 async function saveOptions(event: SubmitEvent) {
 	event.preventDefault()
-	const apiUrl = getInput(apiUrlInputSelector)!.value
+	const apiUrl = getInput(inputSelectors.apiUrl).value
 	await saveSetting('apiUrl', apiUrl)
-	const apiKey = getInput(apiKeyInputSelector)!.value
+	const apiKey = getInput(inputSelectors.apiKey).value
 	await saveSetting('apiKey', apiKey)
-	validateInput(apiKey, apiKeyInputSelector)
-	const searchQuery = getInput(searchQueryInputSelector).value
+	validateInput(apiKey, inputSelectors.apiKey)
+	const searchQuery = getInput(inputSelectors.searchQuery).value
 	await saveSetting('searchQuery', searchQuery)
 	const messageElement = document.querySelector('#message')!
 	messageElement.classList.add('success')
@@ -62,9 +64,9 @@ document.addEventListener('click', async (event) => {
 		return
 	}
 	if (element.classList.contains('restore-defaults')) {
-		const searchQueryInput = getInput(searchQueryInputSelector)
+		const searchQueryInput = getInput(inputSelectors.searchQuery)
 		searchQueryInput.value = defaultSettings.searchQuery
-		const apiUrlInput = getInput(apiUrlInputSelector)
+		const apiUrlInput = getInput(inputSelectors.apiUrl)
 		apiUrlInput.value = defaultSettings.apiUrl
 	}
 })
