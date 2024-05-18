@@ -1,3 +1,8 @@
+# 1.9.0
+
+- Possibility to configure which buttons are shown in the list (see extension settings)
+- Delete button can be added to the list (turned off by default)
+
 # 1.8.0
 
 - Items are being cached locally, improving initial loading time of the popup
