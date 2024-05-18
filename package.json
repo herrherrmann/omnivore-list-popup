@@ -19,7 +19,7 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier . --write",
     "build": "vite build",
-    "create-releases": "tsx ./scripts/create-releases.ts",
+    "create-releases": "TARGET=firefox tsx ./scripts/create-releases.ts && TARGET=chrome tsx ./scripts/create-releases.ts",
     "clean": "rimraf dist/ ./*.zip"
   },
   "devDependencies": {
