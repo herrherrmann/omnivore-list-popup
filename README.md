@@ -1,5 +1,8 @@
 # Omnivore List Popup Web Extension (Firefox & Chrome)
 
+> [!WARNING]
+> Omnivore is unfortunately [shutting down](https://blog.omnivore.app/p/details-on-omnivore-shutting-down) soon. I am currently looking into other platforms to migrate this extension to (and keep most or ideally all of the current features). Get in touch if you have specific ideas or requests. RIP, Omnivore.
+
 Show a popup with a list of your [Omnivore](https://omnivore.app/) articles to quickly open or archive.
 
 ![Screenshot of the extension running in a browser](docs/screenshot.jpg)
