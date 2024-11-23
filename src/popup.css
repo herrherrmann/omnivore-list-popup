@@ -79,6 +79,19 @@ body {
 	min-height: 150px;
 }
 
+.warning {
+	text-align: center;
+	padding: var(--outer-padding);
+	margin: 10px;
+	border: 1px solid var(--error-color);
+	border-radius: var(--border-radius);
+	color: var(--text-color-primary);
+}
+
+.warning a {
+	color: var(--text-color-primary);
+}
+
 @keyframes rotate {
 	100% {
 		transform: rotate(360deg);
