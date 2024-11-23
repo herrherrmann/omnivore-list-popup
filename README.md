@@ -50,9 +50,9 @@ If you have ideas or issues, please get in touch! You can either use [GitHub iss
 - [x] Improve generation of fallback images (sometimes broken or very low-contrast characters)
 - [x] Cache API results for quicker load times
 - [x] Indicate saving of new items when triggered via keyboard shortcut (e.g. via toolbar icon)
+- [x] Add possibility to delete items (additionally to archiving)
 - [ ] Edit article info (title, description, dates, etc.)
 - [ ] Optionally load other sets like archived items (via saved searches dropdown?)
-- [ ] Add possibility to delete items (additionally to archiving)
 - [ ] Improve onboarding, e.g. make it possible to enter API key in popup
 - [ ] Improve error handling
 - [ ] Use Omnivore’s `savePage` API instead of `saveUrl` (to capture page content directly)
