@@ -2,7 +2,7 @@ import viteConfig from '../vite.config.ts'
 import type { TargetBrowser } from './libs/types.d.ts'
 import { zipRelease, zipSources } from './libs/zip-files.ts'
 
-export async function createReleases() {
+async function createReleases() {
 	/* eslint-disable no-console */
 	const vite = await import('vite')
 	const targetBrowser = process.env.TARGET as TargetBrowser
@@ -22,3 +22,5 @@ export async function createReleases() {
 	console.log(`✅ Release for ${targetBrowser} created!`)
 	/* eslint-enable no-console */
 }
+
+createReleases()
