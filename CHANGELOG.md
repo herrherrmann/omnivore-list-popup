@@ -1,3 +1,7 @@
+# 1.9.1
+
+- Add warning about Omnivore shutting down
+
 # 1.9.0
 
 - Possibility to configure which buttons are shown in the list (see extension settings)

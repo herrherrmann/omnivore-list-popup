@@ -1,7 +1,7 @@
 {
   "name": "omnivore-list-popup",
   "description": "Browser extension to show a popup with a list of your Omnivore articles.",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "author": "Sebastian Herrmann",
   "license": "MIT",
   "type": "module",
